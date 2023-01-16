@@ -1,15 +1,15 @@
 {
   "name": "react-extreme-admin",
   "version": "1.0.0",
-  "description": "基于react开发的一款后台管理系统",
+  "description": "基于 react-antd-webpack 开发的一款后台管理系统",
   "main": "index.js",
   "scripts": {
-    "commit": "git-cz",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commit": "git-cz"
   },
   "keywords": [
     "react",
-    "antd"
+    "antd",
+    "webapck"
   ],
   "author": "",
   "license": "ISC",
@@ -20,6 +20,8 @@
     "cz-customizable": "^7.0.0",
     "husky": "^7.0.4"
   },
+
+//  自定义提交命令
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
