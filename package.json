@@ -1,0 +1,12 @@
+{
+  "name": "react-extreme-admin",
+  "version": "1.0.0",
+  "description": "基于react开发的一款后台管理系统",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["react","antd"],
+  "author": "",
+  "license": "ISC"
+}
