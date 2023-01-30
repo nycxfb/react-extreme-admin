@@ -1,9 +1,9 @@
-import {oraPromise} from 'ora'
 import webpack from 'webpack'
 import {merge} from 'webpack-merge'
+import {oraPromise} from 'ora'
 import baseConfig from '../config/webpack.common.cjs'
 import prodConfig from '../config/webapck.prod.cjs'
-// const errLog = require('./utils/log')
+
 
 const compilesTasks = Promise.all([
   new Promise((resolve, reject) => {

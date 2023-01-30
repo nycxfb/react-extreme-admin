@@ -1,6 +1,6 @@
 import webpack from 'webpack'
-import {merge} from 'webpack-merge'
 import devServer from 'webpack-dev-server'
+import {merge} from 'webpack-merge'
 import baseConfig from '../config/webpack.common.cjs'
 import devConfig from "../config/webpack.dev.cjs"
 

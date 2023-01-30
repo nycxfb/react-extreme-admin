@@ -1,31 +1,47 @@
 import React from "react";
 import {useNavigate} from 'react-router-dom'
 import {Layout, Form, Input, Button} from 'antd'
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import SvgIcon from '@/components/svgIcon'
 import './index.less'
 
 const Login = function () {
     const navigate = useNavigate()
-    const toHomePage = () => {
+    const userLogin = () => {
         navigate('/home')
     }
     return (
         <div className="login">
-            <div className="login_inset">
-
+            <div className="login-inset">
+                <SvgIcon iconClass="bgc2"/>
             </div>
-            <div className="login_form">
+            <div className="login-form">
+                <div className="logo-title">
+                    <SvgIcon iconClass="logo"/>
+                    <div className="title">
+                        <h4>EXTREMEADMIN (react)</h4>
+                        <p>A compact, clean system!</p>
+                    </div>
+                </div>
                 <Form>
-                    <Form.Item label="账号">
+                    <Form.Item>
+                        <Input prefix={<UserOutlined/>} placeholder="Username"/>
+                    </Form.Item>
+                    <Form.Item>
+                        <Input
+                            prefix={<LockOutlined/>}
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </Form.Item>
+                    <Form.Item>
                         <Input/>
                     </Form.Item>
-                    <Form.Item label="密码">
-                        <Input/>
-                    </Form.Item>
-                    <Form.Item wrapperCol={{offset: 8, span: 16}}>
-                        <Button type="primary" onClick={() => {
-                            toHomePage()
+                    <Form.Item>
+                        <Button type="primary" className="login-button" onClick={() => {
+                            userLogin()
                         }}>
-                            Submit
+                            登录
                         </Button>
                     </Form.Item>
                 </Form>
