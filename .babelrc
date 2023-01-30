@@ -1,0 +1,23 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "60",
+          "safari": "11.1"
+        }
+      }
+    ],
+    [
+      "@babel/preset-typescript",
+      {
+        "isTSX": true,
+        "allExtensions": true
+      }
+    ],
+    "@babel/preset-react"
+  ]
+}
