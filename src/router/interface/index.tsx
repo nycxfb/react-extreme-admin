@@ -1,13 +1,13 @@
-import React from "react";
+import React, {LazyExoticComponent} from "react";
 
 export interface metaConfig {
     title?: string,
     name?: string
 }
 
-export interface baseRouterConfig {
+export interface baseRouter {
     path?: string,
-    element?: React.ReactNode,
+    element?: React.ReactNode | LazyExoticComponent<any>,
     meta?: metaConfig,
-    children?: baseRouterConfig[]
+    children?: baseRouter[]
 }

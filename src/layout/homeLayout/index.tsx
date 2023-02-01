@@ -1,47 +1,37 @@
 import React, {useState} from 'react';
-import {Layout, Menu, theme, Breadcrumb} from 'antd';
-import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined
-} from '@ant-design/icons';
-import {Footer, HomeMenu,HomeHeader} from './components/index'
+import {Outlet} from 'react-router-dom'
+import {Layout, theme} from 'antd';
+import {HomeMenu, HomeHeader} from './components/index';
+import {connect} from 'react-redux';
 
-const {Header, Sider, Content} = Layout;
-import './index.less'
+const {Sider, Content} = Layout;
+import './index.less';
+import {toggleSideMenu} from '@/redux/module/menu/action';
 
 
-
-
-const HomeLayout: React.FC = () => {
-    const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: {colorBgContainer},
-    } = theme.useToken();
-
+const HomeLayout: React.FC = (props: any) => {
     return (
-        <Layout style={{height: "100%"}}>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+        <Layout>
+            <Sider trigger={null} collapsible collapsed={props.isCollapse}>
                 <div className="logo"/>
                 <HomeMenu/>
             </Sider>
-            <Layout className="site-layout">
+            <Layout>
                 <HomeHeader/>
-                <Content
-                    style={{
-                        margin: '24px 16px',
-                        padding: 24,
-                        minHeight: 280,
-                        background: colorBgContainer,
-                    }}
-                >
-                    Content
+                <Content>
+                    <Outlet/>
                 </Content>
             </Layout>
         </Layout>
     );
 };
 
-export default HomeLayout;
+const mapStateToProps = (state: any) => {
+    return state.menu
+}
+
+const mapDispatchToProps = {
+    toggleSideMenu
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeLayout);

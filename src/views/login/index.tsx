@@ -1,6 +1,6 @@
 import React from "react";
 import {useNavigate} from 'react-router-dom'
-import {Layout, Form, Input, Button} from 'antd'
+import {Form, Input, Button} from 'antd'
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import SvgIcon from '@/components/svgIcon'
 import './index.less'

@@ -1,13 +1,26 @@
 import React from "react";
-import {Button, Menu} from 'antd';
+import {connect} from 'react-redux';
+import {toggleSideMenu} from '@/redux/module/menu/action';
 import {MenuFoldOutlined, MenuUnfoldOutlined} from '@ant-design/icons';
+import './index.less'
 
-const SwitchButton = () => {
+const SwitchButton = (props: any) => {
+    const {isCollapse, toggleSideMenu} = props
+    const ontoggle = () => {
+        toggleSideMenu(!isCollapse)
+    }
     return (
-        <Button type="primary" style={{marginBottom: 16}}>
-            {<MenuUnfoldOutlined/>}
-        </Button>
+        <div className="switch-button" onClick={ontoggle}>
+            {props.isCollapse ? (<MenuUnfoldOutlined/>) : (<MenuFoldOutlined/>)}
+        </div>
     )
 }
 
-export default SwitchButton
+const mapStateToProps = (state: any) => {
+    return state.menu
+}
+const mapDispatchToProps = {
+    toggleSideMenu
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SwitchButton)
+

@@ -4,7 +4,9 @@ import storage from 'redux-persist/lib/storage'
 import reduxThunk from 'redux-thunk'
 import reduxPromise from 'redux-promise'
 
-const reducer = combineReducers({})
+import menu from './module/menu/reducer'
+
+const reducer = combineReducers({menu})
 const middleWares = applyMiddleware(reduxThunk, reduxPromise)
 
 const persistConfig = {

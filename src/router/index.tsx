@@ -1,34 +1,15 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import {Navigate, useRoutes} from "react-router-dom"
-import {baseRouterConfig} from "@/router/interface";
-import HomeLayout from '@/layout/homeLayout/index'
-import Login from '@/views/login/index'
-import Demo from "@/views/demo/index";
+import asyncRoutes from '@/router/module/asyncRoutes'
+import constantRoutes from '@/router/module/constantRoutes'
 
-export const constantRouter: baseRouterConfig[] = [
-    {
-        path: "/",
-        element: <Navigate to="/login"/>
-    },
-    {
-        path: "/login",
-        element: <Login/>
-    },
-    {
-        path: '/home',
-        element: <HomeLayout/>,
-        children: [
-            {
-                path: '/home/index',
-                element: <Demo/>
-            }
-        ]
-    }
-]
+
+const allRouter = constantRoutes.concat(asyncRoutes)
 
 
 export default () => {
-    return useRoutes(constantRouter)
+    // @ts-ignore
+    return useRoutes(allRouter)
 }
 
 

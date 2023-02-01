@@ -1,4 +1,4 @@
-## react-extreme-admin
+## react-extreme-admin (持续更新中)
 ### 对于react 项目，目前比较成熟的创建项目的方案有三种，第一种是 facebook 官方出品的脚手架，
 ### 第二种是阿里出品的umi.js 脚手架
 ### 第三种就是基于webpack 创建的项目

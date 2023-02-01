@@ -1,11 +1,12 @@
 import React from "react";
+import {UserOutlined} from '@ant-design/icons';
+import {Avatar} from 'antd';
 
-const UserInfo = ()=>{
+const UserInfo = () => {
     return (
-        <div>
-       <h4>用户信息区域</h4>
-
-        </div>
+        <>
+            <Avatar size={50} icon={<UserOutlined/>}/>
+        </>
     )
 }
 

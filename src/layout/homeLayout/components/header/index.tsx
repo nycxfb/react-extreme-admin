@@ -1,26 +1,27 @@
 import React from "react";
-import {Breadcrumbs, Tags, UserInfo, SwitchButton} from './components/index'
-import {Layout, Row, Col} from "antd";
+import {Breadcrumbs, Tags, UserInfo, SwitchButton} from './components/index';
+import {Row, Col} from "antd";
 import './index.less'
-
-const {Header} = Layout
 
 
 const HomeHeader = () => {
     return (
         <div className="header-wrapper">
             <Row className="header-A">
-                <Col span={4}>
+                <Col span={1}>
                     <SwitchButton/>
                 </Col>
-                <Col span={12}>
+                <Col span={16}>
                     <Breadcrumbs/>
                 </Col>
-                <Col span={8}>
+                <Col span={6}>
                     <UserInfo/>
                 </Col>
             </Row>
-            <Tags/>
+            <Row className="header-B">
+                <Tags/>
+            </Row>
+
         </div>
     )
 }
