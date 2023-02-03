@@ -6,34 +6,33 @@ const APP_PATH = path.resolve(__dirname, '../src')
 const ROOT_PATH = path.resolve(__dirname)
 const BUILD_PATH = path.resolve(__dirname, '../dist')
 
-
 module.exports = {
   entry: {
-    app: path.resolve(APP_PATH,'main.tsx')
+    app: path.resolve(APP_PATH, 'main.tsx')
   },
   resolve: {
     alias: {
       "@": APP_PATH
     },
-    extensions: ['.js','.jsx','.ts','.tsx','.json']
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },
   plugins: [
     new htmlWebpackPlugin({
       title: "react-extreme-admin",
-      template: path.resolve(__dirname,'../public/index.html')
+      template: path.resolve(__dirname, '../public/index.html')
     })
   ],
   module: {
     rules: [
       {
-        test:/\.(tsx|js|ts)$/,
-        use:'babel-loader',
-        exclude: path.resolve(__dirname,'../node_modules')
+        test: /\.(tsx|js|ts)$/,
+        use: 'babel-loader',
+        exclude: path.resolve(__dirname, '../node_modules')
       },
       {
-        test:/\.css$|\.less$/i,
-        exclude: /node_modules/,
-        use:[
+        test: /\.css$|\.less$/i,
+        // exclude: /node_modules/,
+        use: [
           {
             loader: "style-loader"
           },

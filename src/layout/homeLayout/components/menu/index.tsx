@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
 import type {MenuProps} from 'antd';
 import {Menu} from 'antd';
+import {MailOutlined, SettingOutlined} from '@ant-design/icons';
 import asyncRoutes from '@/router/module/asyncRoutes'
-import {AppstoreOutlined, MailOutlined, SettingOutlined} from '@ant-design/icons';
+import {connect} from 'react-redux'
+import {toggleTags, updateTags} from '@/redux/module/header/action'
 import './index.less'
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -33,16 +35,34 @@ const items: MenuItem[] = [
 ];
 
 
-const HomeMenu: React.FC = () => {
+const HomeMenu: React.FC = (props: any) => {
     const navigate = useNavigate()
+    const [menuArr, setMenuArr] = useState([])
+    const childrenArr: any = []
+    const {tags, updateTags} = props
     useEffect(() => {
+        menuArr_.length = 0
+
         handleRoutes(asyncRoutes, '')
     }, [])
 
-    const [menuArr, setMenuArr] = useState([])
-
     const clickMenu = (props: any) => {
+        const arr = props.key.split('/')
+        arr.shift()
+        toggleTags(arr)
         navigate(props.key)
+        childrenArr.length = 0
+        menuArr_.forEach((item: any) => {
+            if (item.children) {
+                item.children.forEach((item_: any) => {
+                    childrenArr.push(item_)
+                })
+            }
+        })
+        const item = childrenArr.find((item: any) => item.key == props.key)
+        if (tags.indexOf(item.label) == -1) {
+            updateTags([...tags, item.label])
+        }
     }
 
     const handleRoutes = (menuArr: any, path: string) => {
@@ -50,13 +70,13 @@ const HomeMenu: React.FC = () => {
             if (path) {
                 menuArr_.forEach((item: any) => {
                     if (item.key == path) {
-                        item.children.push(getItem(menuItem.meta.title, menuItem.path, '',))
+                        item.children.push(getItem(menuItem.meta.title, menuItem.path,))
                     }
                 })
             }
 
             if (menuItem.children) {
-                menuArr_.push(getItem(menuItem.meta.title, menuItem.path, '', []))
+                menuArr_.push(getItem(menuItem.meta.title, menuItem.path, <SettingOutlined/>, []))
                 handleRoutes(menuItem.children, menuItem.path)
 
             } else {
@@ -78,4 +98,12 @@ const HomeMenu: React.FC = () => {
     );
 };
 
-export default HomeMenu;
+const mapStateToProps = (state: any) => {
+    return state.header
+}
+const mapDispatchToProps = {
+    toggleTags,
+    updateTags
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeMenu);

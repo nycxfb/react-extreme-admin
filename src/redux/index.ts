@@ -5,8 +5,9 @@ import reduxThunk from 'redux-thunk'
 import reduxPromise from 'redux-promise'
 
 import menu from './module/menu/reducer'
+import header from "@/redux/module/header/reducer";
 
-const reducer = combineReducers({menu})
+const reducer = combineReducers({menu, header})
 const middleWares = applyMiddleware(reduxThunk, reduxPromise)
 
 const persistConfig = {
@@ -19,5 +20,6 @@ const persistReducerConfig = persistReducer(persistConfig, reducer)
 const store: Store = createStore(persistReducerConfig, middleWares)
 
 const persist = persistStore(store)
+
 
 export {store, persist}

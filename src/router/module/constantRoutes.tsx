@@ -3,7 +3,7 @@ import {lazyLoad} from '@/router/util/lazyLoad'
 import {Navigate} from "react-router-dom";
 import Login from "@/views/login";
 import React from "react";
-
+import HomeLayout from '@/layout/homeLayout'
 
 const constantRouter: baseRouter[] = [
     {
@@ -13,13 +13,6 @@ const constantRouter: baseRouter[] = [
     {
         path: "/login",
         element: <Login/>
-    },
-    {
-        path: '/home',
-        element: lazyLoad(() => import('@/layout/homeLayout')),
-        meta: {
-            title: "主页"
-        }
     }
 ]
 

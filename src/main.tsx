@@ -5,6 +5,7 @@ import {PersistGate} from "redux-persist/integration/react";
 import App from '@/app'
 import {store, persist} from '@/redux'
 import '@/styles/common.less'
+import {StyleProvider,legacyLogicalPropertiesTransformer } from '@ant-design/cssinjs';
 
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
 try {
@@ -18,7 +19,9 @@ const root = ReactDOM.createRoot(document.getElementById('app') as HTMLElement)
 root.render(
     <Provider store={store}>
         <PersistGate persistor={persist}>
-            <App/>
+            <StyleProvider hashPriority="high"  transformers={[legacyLogicalPropertiesTransformer]}>
+                <App/>
+            </StyleProvider>
         </PersistGate>
     </Provider>
 )

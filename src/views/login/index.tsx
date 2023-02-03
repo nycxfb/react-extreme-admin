@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import {useNavigate} from 'react-router-dom'
 import {Form, Input, Button} from 'antd'
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import SvgIcon from '@/components/svgIcon'
 import './index.less'
+import {NProgress} from 'nprogress'
 
 const Login = function () {
+    const [loading, setLoading] = useState<boolean>(false)
     const navigate = useNavigate()
     const userLogin = () => {
-        navigate('/home')
+        setLoading(true)
+        navigate('/home/index')
     }
     return (
         <div className="login">
@@ -38,7 +41,7 @@ const Login = function () {
                         <Input/>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" className="login-button" onClick={() => {
+                        <Button type="primary" loading={loading} className="login-button" onClick={() => {
                             userLogin()
                         }}>
                             登录
