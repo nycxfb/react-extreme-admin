@@ -2,11 +2,11 @@
   "name": "react-extreme-admin",
   "version": "1.0.0",
   "description": "基于 react-antd-webpack 开发的一款后台管理系统",
-  "main": "index.js",
   "scripts": {
     "start": "node scripts/devServer.mjs",
     "build": "node scripts/build.mjs",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "test": ""
   },
   "keywords": [
     "react",
@@ -18,6 +18,7 @@
   "dependencies": {
     "@ant-design/cssinjs": "^1.5.6",
     "antd": "^5.1.5",
+    "axios": "^1.3.2",
     "echarts": "^5.4.1",
     "immer": "^9.0.19",
     "nprogress": "^0.2.0",
@@ -54,6 +55,7 @@
     "less-loader": "^11.1.0",
     "mini-css-extract-plugin": "^2.7.2",
     "ora": "^6.1.2",
+    "prettier": "^2.8.3",
     "strip-ansi": "^3.0.0",
     "style-loader": "^3.3.1",
     "svg-sprite-loader": "^6.0.11",

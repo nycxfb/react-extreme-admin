@@ -7,8 +7,17 @@ import devConfig from "../config/webpack.dev.cjs"
 import {infoLog, errLog, doneLog} from "./utils/log.cjs"
 
 infoLog('>本地开发服务启动中')
-const compiler = webpack(merge(baseConfig, devConfig))
-const server = new devServer({}, compiler)
+const compiler = webpack(merge(baseConfig,devConfig))
+const server = new devServer({
+  proxy: {
+    '/api': {
+      target: 'http://localhost:3000',
+      pathRewrite: {"/api": ""},
+      changeOrigin: true,
+      open: true,
+    }
+  }
+}, compiler)
 
 compiler.hooks.watchRun.tap('serve', () => {
   infoLog('>代码编译中')
