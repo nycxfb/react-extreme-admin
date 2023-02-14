@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { Card, Form, Input, Row, Col, Space, Table, Tag } from "antd";
+import React, { useEffect, useState, useRef } from "react";
+import { Card, Form, Input, Row, Col, Space, Table, Tag, Button } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { getUserList } from "@/api/systemManagement/user";
-import { store } from "@/redux/index";
+import { http_user_list, http_user_delete } from "@/api/systemManagement/user";
+import UserFormDialog from "./components/userFormDialog";
 
 interface DataType {
 	key: string;
@@ -12,114 +12,136 @@ interface DataType {
 	tags: string[];
 }
 
-const columns: ColumnsType<DataType> = [
-	{
-		title: "Name",
-		dataIndex: "name",
-		key: "name",
-		render: text => <a>{text}</a>
-	},
-	{
-		title: "Age",
-		dataIndex: "age",
-		key: "age"
-	},
-	{
-		title: "Address",
-		dataIndex: "address",
-		key: "address"
-	},
-	{
-		title: "Tags",
-		key: "tags",
-		dataIndex: "tags",
-		render: (_, { tags }) => (
-			<>
-				{tags.map(tag => {
-					let color = tag.length > 5 ? "geekblue" : "green";
-					if (tag === "loser") {
-						color = "volcano";
-					}
-					return (
-						<Tag color={color} key={tag}>
-							{tag.toUpperCase()}
-						</Tag>
-					);
-				})}
-			</>
-		)
-	},
-	{
-		title: "Action",
-		key: "action",
-		render: (_, record) => (
-			<Space size="middle">
-				<a>Invite {record.name}</a>
-				<a>Delete</a>
-			</Space>
-		)
-	}
-];
-
-const data: DataType[] = [
-	{
-		key: "1",
-		name: "John Brown",
-		age: 32,
-		address: "New York No. 1 Lake Park",
-		tags: ["nice", "developer"]
-	},
-	{
-		key: "2",
-		name: "Jim Green",
-		age: 42,
-		address: "London No. 1 Lake Park",
-		tags: ["loser"]
-	},
-	{
-		key: "3",
-		name: "Joe Black",
-		age: 32,
-		address: "Sydney No. 1 Lake Park",
-		tags: ["cool", "teacher"]
-	}
-];
-
 const User: React.FC = () => {
-	const getList = () => {
-		getUserList("").then(res => {
-			console.log(res, "测试");
-		});
-	};
+	const columns: ColumnsType<DataType> = [
+		{
+			title: "姓名",
+			dataIndex: "userName",
+			key: "userName",
+			align: "center"
+		},
+		{
+			title: "年龄",
+			dataIndex: "age",
+			key: "age",
+			align: "center"
+		},
+		{
+			title: "手机号码",
+			dataIndex: "phone",
+			key: "phone",
+			align: "center"
+		},
+		{
+			title: "地址",
+			dataIndex: "address",
+			key: "address",
+			align: "center"
+		},
+		{
+			title: "操作",
+			key: "action",
+			align: "center",
+			render: (_, record: DataType) => (
+				<>
+					<Button
+						type="link"
+						onClick={() => {
+							newUser("edit", record);
+						}}
+					>
+						编辑
+					</Button>
+					<Button
+						type="link"
+						onClick={() => {
+							deleteUser(record);
+						}}
+					>
+						删除
+					</Button>
+				</>
+			)
+		}
+	];
+	const userFormRef = useRef<any>(null);
+	const [loading, setLoading] = useState<boolean>(false);
+	const [userList, setUserList] = useState<DataType[]>([]);
+	useEffect(() => {
+		getUserList();
+	}, []);
 
+	const getUserList = async () => {
+		setLoading(true);
+		const res = await http_user_list(null);
+		const userList = res.data.result;
+		userList.forEach((item: any) => {
+			Object.assign(item, { key: item.userId });
+		});
+		setUserList(userList);
+		setLoading(false);
+	};
+	const newUser = (type: string, record: any) => {
+		userFormRef.current.showModal(type, record);
+	};
+	const deleteUser = async (record: any) => {
+		await http_user_delete({ userId: record.userId });
+		getUserList();
+	};
 	return (
-		<div className="base-container">
-			<Card className="base-form-card">
-				<Form>
-					<Row gutter={24}>
-						<Col span={7}>
-							<Form.Item label="姓名">
-								<Input></Input>
-							</Form.Item>
+		<>
+			<UserFormDialog ref={userFormRef} onGetUserList={getUserList} />
+			<div className="base-container">
+				<Card className="base-form-card">
+					<Form>
+						<Row gutter={24}>
+							<Col span={7}>
+								<Form.Item label="姓名">
+									<Input></Input>
+								</Form.Item>
+							</Col>
+							<Col span={7}>
+								<Form.Item label="手机">
+									<Input></Input>
+								</Form.Item>
+							</Col>
+							<Col span={7}>
+								<Form.Item label="状态">
+									<Input></Input>
+								</Form.Item>
+							</Col>
+						</Row>
+					</Form>
+					<Row>
+						<Col span={3}>
+							<Button type="primary" onClick={getUserList}>
+								查询
+							</Button>
 						</Col>
-						<Col span={7}>
-							<Form.Item label="手机">
-								<Input></Input>
-							</Form.Item>
-						</Col>
-						<Col span={7}>
-							<Form.Item label="状态">
-								<Input></Input>
-							</Form.Item>
+						<Col span={3}>
+							<Button>重置</Button>
 						</Col>
 					</Row>
-				</Form>
-			</Card>
+				</Card>
 
-			<Card className="base-table-card">
-				<Table columns={columns} dataSource={data} />
-			</Card>
-		</div>
+				<Card
+					className="base-table-card"
+					title="用户列表"
+					extra={
+						<Button
+							type="primary"
+							onClick={() => {
+								newUser("add", "");
+							}}
+						>
+							新增
+						</Button>
+					}
+				>
+					<Table columns={columns} dataSource={userList} loading={loading} />
+				</Card>
+			</div>
+		</>
 	);
 };
 

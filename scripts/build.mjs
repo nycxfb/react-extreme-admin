@@ -3,11 +3,13 @@ import {merge} from 'webpack-merge'
 import {oraPromise} from 'ora'
 import baseConfig from '../config/webpack.common.cjs'
 import prodConfig from '../config/webapck.prod.cjs'
+import SpeedMeasurePlugin from "speed-measure-webpack-plugin"
+const smp = new SpeedMeasurePlugin()
 
 
 const compilesTasks = Promise.all([
   new Promise((resolve, reject) => {
-    webpack(merge(baseConfig, prodConfig), (err, stats) => {
+    webpack(smp.wrap(merge(baseConfig, prodConfig)), (err, stats) => {
       if (err) {
         // errLog(err.message)
         return reject(false)

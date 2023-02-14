@@ -18,10 +18,10 @@ const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
 
 root.render(
 	<Provider store={store}>
-		<PersistGate persistor={persist}>
-			<StyleProvider hashPriority="high" transformers={[legacyLogicalPropertiesTransformer]}>
-				<App />
-			</StyleProvider>
-		</PersistGate>
+		{/*<PersistGate persistor={persist}>*/}
+		<StyleProvider hashPriority="high" transformers={[legacyLogicalPropertiesTransformer]}>
+			<App />
+		</StyleProvider>
+		{/*</PersistGate>*/}
 	</Provider>
 );

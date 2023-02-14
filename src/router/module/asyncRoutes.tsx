@@ -21,6 +21,22 @@ const asyncRoutes: baseRouter[] = [
 		]
 	},
 	{
+		path: "/demo",
+		element: <HomeLayout />,
+		meta: {
+			title: "测试"
+		},
+		children: [
+			{
+				path: "/demo/demo1",
+				element: lazyLoad(() => import("@/views/demo")),
+				meta: {
+					title: "接口测试"
+				}
+			}
+		]
+	},
+	{
 		path: "/systemManagement",
 		element: <HomeLayout />,
 		meta: {
@@ -54,7 +70,7 @@ const asyncRoutes: baseRouter[] = [
 				path: "/largeScreenDisplay/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "demo1"
+					title: "大屏展示"
 				}
 			}
 		]
@@ -70,7 +86,7 @@ const asyncRoutes: baseRouter[] = [
 				path: "/customComponent/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "demo1"
+					title: "自定义组件"
 				}
 			}
 		]
@@ -109,7 +125,7 @@ const asyncRoutes: baseRouter[] = [
 				path: "/designMode/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "demo1"
+					title: "设计模式"
 				}
 			}
 		]
@@ -123,9 +139,9 @@ const asyncRoutes: baseRouter[] = [
 		children: [
 			{
 				path: "/editor/demo1",
-				element: lazyLoad(() => import("@/views/demo")),
+				element: lazyLoad(() => import("@/views/editor")),
 				meta: {
-					title: "demo1"
+					title: "编辑器"
 				}
 			}
 		]
@@ -141,7 +157,7 @@ const asyncRoutes: baseRouter[] = [
 				path: "/ganttChart/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "demo1"
+					title: "甘特图"
 				}
 			}
 		]
@@ -157,7 +173,46 @@ const asyncRoutes: baseRouter[] = [
 				path: "/storageScheme/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "demo1"
+					title: "存储方案"
+				}
+			}
+		]
+	},
+	{
+		path: "/pageScheme",
+		element: <HomeLayout />,
+		meta: {
+			title: "页面方案"
+		},
+		children: [
+			{
+				path: "/pageScheme/strongRelationship",
+				element: lazyLoad(() => import("@/views/pageScheme/strongRelationship")),
+				meta: {
+					title: "强关联"
+				}
+			},
+			{
+				path: "/pageScheme/weakRelationship",
+				element: lazyLoad(() => import("@/views/pageScheme/weakRelationship")),
+				meta: {
+					title: "弱关联"
+				}
+			}
+		]
+	},
+	{
+		path: "/instantMessage",
+		element: <HomeLayout />,
+		meta: {
+			title: "即时通信"
+		},
+		children: [
+			{
+				path: "/instantMessage/demo1",
+				element: lazyLoad(() => import("@/views/demo")),
+				meta: {
+					title: "即时通信"
 				}
 			}
 		]

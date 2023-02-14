@@ -1,33 +1,18 @@
-import React, { useEffect } from "react";
-import * as echarts from "echarts";
-import "./index.less";
+import React from "react";
+import { Card } from "antd";
+
+const cardList = [{}];
 
 const Home: React.FC = () => {
-	useEffect(() => {
-		initEcharts();
-	}, []);
+	return (
+		<>
+			<div className="base-container">
+				<Card>卡片1</Card>
 
-	const initEcharts = () => {
-		var myChart = echarts.init(document.getElementById("main") as HTMLElement);
-		myChart.setOption({
-			title: {
-				text: "ECharts 入门示例"
-			},
-			tooltip: {},
-			xAxis: {
-				data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-			},
-			yAxis: {},
-			series: [
-				{
-					name: "销量",
-					type: "bar",
-					data: [5, 20, 36, 10, 10, 20]
-				}
-			]
-		});
-	};
-	return <div id="main"></div>;
+				<Card>卡片2</Card>
+			</div>
+		</>
+	);
 };
 
 export default Home;
