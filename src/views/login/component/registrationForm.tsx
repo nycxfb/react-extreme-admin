@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form, Input } from "antd";
-import "./index.less";
+import "./registrationForm.less";
 import { http_user_register } from "@/api/system/user";
 
 const RegistrationForm = (props: any) => {
@@ -12,7 +12,6 @@ const RegistrationForm = (props: any) => {
 	const userRegister = async () => {
 		const params = form.getFieldsValue();
 		const res = await http_user_register(params);
-		console.log(res, "测试");
 	};
 	return (
 		<>

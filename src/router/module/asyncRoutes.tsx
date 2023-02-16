@@ -21,17 +21,19 @@ const asyncRoutes: baseRouter[] = [
 		]
 	},
 	{
-		path: "/demo",
+		path: "/error",
 		element: <HomeLayout />,
+		hidden: true,
 		meta: {
 			title: "测试"
 		},
 		children: [
 			{
-				path: "/demo/demo1",
-				element: lazyLoad(() => import("@/views/demo")),
+				path: "/error/404",
+				element: lazyLoad(() => import("@/views/errorPage")),
+				hidden: true,
 				meta: {
-					title: "接口测试"
+					title: "错误页面"
 				}
 			}
 		]
@@ -55,6 +57,29 @@ const asyncRoutes: baseRouter[] = [
 				element: lazyLoad(() => import("@/views/systemManagement/role")),
 				meta: {
 					title: "角色列表"
+				}
+			}
+		]
+	},
+	{
+		path: "/dynamicComponent",
+		element: <HomeLayout />,
+		meta: {
+			title: "动态组件"
+		},
+		children: [
+			{
+				path: "/dynamicComponent/dynamicForm",
+				element: lazyLoad(() => import("@/views/dynamicComponent/dynamicForm")),
+				meta: {
+					title: "动态表单"
+				}
+			},
+			{
+				path: "/dynamicComponent/dynamicTable",
+				element: lazyLoad(() => import("@/views/systemManagement/role")),
+				meta: {
+					title: "动态表格"
 				}
 			}
 		]
@@ -213,6 +238,22 @@ const asyncRoutes: baseRouter[] = [
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
 					title: "即时通信"
+				}
+			}
+		]
+	},
+	{
+		path: "/demo",
+		element: <HomeLayout />,
+		meta: {
+			title: "测试"
+		},
+		children: [
+			{
+				path: "/demo/demo1",
+				element: lazyLoad(() => import("@/views/demo")),
+				meta: {
+					title: "接口测试"
 				}
 			}
 		]

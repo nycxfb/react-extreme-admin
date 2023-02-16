@@ -16,16 +16,22 @@ const Login = function (props: any) {
 	const navigate = useNavigate();
 	const [form] = Form.useForm();
 	const userLogin = async () => {
-		setLoading(true);
-		const params = form.getFieldsValue();
-		const res = await http_user_login(params);
-		setLoading(false);
-		setToken(res.data.data);
-		navigate("/home/index");
+		try {
+			await form.validateFields();
+			setLoading(true);
+			const params = form.getFieldsValue();
+			const res = await http_user_login(params);
+			setToken(res.data.data.token);
+			localStorage.setItem("userName", res.data.data.userInfo.userName);
+			localStorage.setItem("avatar", res.data.data.userInfo.avatarUrl);
+			navigate("/home/index");
+		} catch (e) {
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	const switchForm = (type: string) => {
-		console.log(type, "Kkkkkkk");
 		setFormType(type);
 	};
 	return (
@@ -44,30 +50,23 @@ const Login = function (props: any) {
 							<p>A compact, clean system!</p>
 						</div>
 					</div>
-					<Form form={form}>
-						<Form.Item name="phone">
+					<Form form={form} initialValues={{ remember: false }} autoComplete="off" onFinish={userLogin}>
+						<Form.Item name="phone" rules={[{ required: true, message: "Please input your phone!" }]}>
 							<Input prefix={<UserOutlined />} placeholder="Username" />
 						</Form.Item>
-						<Form.Item name="password">
-							<Input prefix={<LockOutlined />} autoComplete="false" type="password" placeholder="Password" />
+						<Form.Item name="password" rules={[{ required: true, message: "Please input your password!" }]}>
+							<Input.Password prefix={<LockOutlined />} autoComplete="false" type="password" placeholder="Password" />
 						</Form.Item>
 						<Form.Item>
 							<Input />
 						</Form.Item>
 						<Form.Item>
-							<Button
-								type="primary"
-								loading={loading}
-								className="login-button"
-								onClick={async () => {
-									await userLogin();
-								}}
-							>
+							<Button type="primary" loading={loading} className="login-button" htmlType={"submit"}>
 								登录
 							</Button>
 						</Form.Item>
 						<span>
-							还没有账号? 点击{" "}
+							还没有账号? 点击
 							<a
 								href="javascript:void(0)"
 								onClick={() => {

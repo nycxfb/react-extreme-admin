@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import App from "@/app";
-import { store, persist } from "@/redux";
+import { store } from "@/redux";
 import "@/styles/common.less";
 import { StyleProvider, legacyLogicalPropertiesTransformer } from "@ant-design/cssinjs";
 
+// 引入全部svg供全局使用
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
+
 try {
 	importAll(require.context("./assets/svg", true, /\.svg$/));
 } catch (error) {
@@ -18,10 +19,8 @@ const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
 
 root.render(
 	<Provider store={store}>
-		{/*<PersistGate persistor={persist}>*/}
 		<StyleProvider hashPriority="high" transformers={[legacyLogicalPropertiesTransformer]}>
 			<App />
 		</StyleProvider>
-		{/*</PersistGate>*/}
 	</Provider>
 );

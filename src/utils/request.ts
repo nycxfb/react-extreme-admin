@@ -1,4 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { useNavigate } from "react-router-dom";
+import { config } from "webpack";
 
 const ERROR_CODES: { [key: number]: string } = {
 	400: "错误请求,状态码:400",
@@ -31,5 +33,13 @@ service.interceptors.request.use(
 		return Promise.reject(error);
 	}
 );
+
+service.interceptors.response.use(response => {
+	if (response.headers.tokenexpired || response.headers.JsonWebTokenError) {
+		localStorage.clear();
+		window.location.href = "/";
+	}
+	return response;
+});
 
 export default service;

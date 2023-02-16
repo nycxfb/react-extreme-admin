@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Card, Form, Input, Row, Col, Space, Table, Tag, Button } from "antd";
+import { Card, Form, Input, Row, Col, Space, Table, Tag, Button, Avatar } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { http_user_list, http_user_delete } from "@/api/systemManagement/user";
 import UserFormDialog from "./components/userFormDialog";
@@ -10,6 +10,7 @@ interface DataType {
 	age: number;
 	address: string;
 	tags: string[];
+	avatarUrl: string;
 }
 
 const User: React.FC = () => {
@@ -37,6 +38,12 @@ const User: React.FC = () => {
 			dataIndex: "address",
 			key: "address",
 			align: "center"
+		},
+		{
+			title: "用户头像",
+			key: "avatarUrl",
+			align: "center",
+			render: (_, record: DataType) => <>{record?.avatarUrl && <Avatar shape="square" size="large" src={record.avatarUrl} />}</>
 		},
 		{
 			title: "操作",

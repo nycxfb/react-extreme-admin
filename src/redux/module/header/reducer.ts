@@ -1,14 +1,22 @@
 import { produce } from "immer";
 import { AnyAction } from "redux";
 
+interface tagItem {
+	title: string;
+	path: string;
+	active: boolean;
+}
+
 interface headerState {
 	pagePath: string[];
-	tags: string[];
+	tags: tagItem[];
+	breadcrumb: string[];
 }
 
 const headerState: headerState = {
 	pagePath: [],
-	tags: ["首页"]
+	tags: [],
+	breadcrumb: []
 };
 
 const header = (state: headerState = headerState, action: AnyAction) =>
@@ -17,8 +25,29 @@ const header = (state: headerState = headerState, action: AnyAction) =>
 			case "UPDATE_PATH":
 				draftSate.pagePath = action.pagePath;
 				break;
-			case "UPDATE_TAGS":
+			case "ADD_VISIT_TAG":
+				if (draftSate.tags.some(t => t.path == action.tags.path)) return;
 				draftSate.tags.push(action.tags);
+				break;
+			case "TOGGLE_VISIT_TAG":
+				draftSate.tags.forEach((item: any) => {
+					if (item.path === action.path) {
+						item.active = true;
+					} else {
+						item.active = false;
+					}
+				});
+				break;
+			case "DELETE_VISIT_TAG":
+				for (let [i, t] of draftSate.tags.entries()) {
+					if (t.path === action.path) {
+						draftSate.tags.splice(i, 1);
+						break;
+					}
+				}
+				break;
+			case "TOGGLE_BREADCRUMB":
+				draftSate.breadcrumb = action.breadcrumb;
 				break;
 		}
 	});

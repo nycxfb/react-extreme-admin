@@ -1,30 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { store } from "@/redux";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { connect, useSelector } from "react-redux";
 import { Tag } from "antd";
+import { deleteVisitTag } from "@/redux/module/header/action";
+import { store } from "@/redux/index";
+import "./index.less";
 
 const Tags = (props: any) => {
-	const { tags } = props;
-	const [tagsView, setTagsView] = useState([]);
+	const { tags, deleteVisitTag } = props;
+	const navigate = useNavigate();
+	const handleClose = (removedTag: any) => {
+		deleteVisitTag(removedTag.path);
+		const currentTag = store.getState().header.tags;
+		navigate(currentTag[currentTag.length - 1].path);
+	};
 
-	useEffect(() => {
-		// setTagsView(tags);
-		// let unsubscribe = store.subscribe(() => {
-		//     const {header} = store.getState()
-		//     setTags(header.tags)
-		//
-		// })
-		// return () => {
-		//     unsubscribe()
-		// }
-	}, []);
+	const toTargetPage = (tagItem: any) => {
+		navigate(tagItem.path);
+	};
 
 	return (
 		<>
-			{props.tags.map((tagItem: any) => {
+			{tags.map((tagItem: any) => {
 				return (
-					<Tag closable key={tagItem}>
-						{tagItem}
+					<Tag
+						closable
+						color={tagItem.active ? "rgba(132,65,216,0.74)" : ""}
+						key={tagItem.path}
+						onClick={() => {
+							toTargetPage(tagItem);
+						}}
+						onClose={e => {
+							e.preventDefault();
+							handleClose(tagItem);
+						}}
+					>
+						{tagItem.title}
 					</Tag>
 				);
 			})}
@@ -35,4 +46,8 @@ const mapStateToProps = (state: any) => {
 	return state.header;
 };
 
-export default connect(mapStateToProps, {})(Tags);
+const mapDispatchToProps = {
+	deleteVisitTag
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tags);

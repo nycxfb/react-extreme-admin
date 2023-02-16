@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import { connect } from "react-redux";
 import { Breadcrumb } from "antd";
 
-const Breadcrumbs: React.FC = (_props: any) => {
-	const { pathname } = useLocation();
-	const pagePath = pathname.split("/");
-	pagePath.shift();
+const Breadcrumbs: React.FC = (props: any) => {
+	const { breadcrumb } = props;
 
 	return (
 		<Breadcrumb>
-			{pagePath.map((item: any) => {
+			{breadcrumb.map((item: any) => {
 				return <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>;
 			})}
 		</Breadcrumb>

@@ -15,3 +15,11 @@ export function http_user_register(params: any) {
 		data: params
 	});
 }
+
+export function http_user_upload(params: any) {
+	return request({
+		url: "/api/system/user/upload",
+		method: "post",
+		data: params
+	});
+}
