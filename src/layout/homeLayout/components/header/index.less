@@ -6,11 +6,30 @@
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #efefef;
-    .ant-col-6{
-      &:nth-child(3){
-        text-align: right;
+    .left-part{
+      display: flex;
+      align-items: center;
+      .svg-icon{
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
       }
     }
+    .right-part{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      .svg-icon{
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+    }
+    //.ant-col-6{
+    //  &:nth-child(3){
+    //    text-align: right;
+    //  }
+    //}
   }
   .header-B{
     padding: 10px;

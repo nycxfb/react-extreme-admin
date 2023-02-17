@@ -5908,6 +5908,11 @@
     "ajv-formats" "^2.1.1"
     "ajv-keywords" "^5.0.0"
 
+"screenfull@^6.0.2":
+  "integrity" "sha512-AQdy8s4WhNvUZ6P8F6PB21tSPIYKniic+Ogx0AacBMjKP1GUHN2E9URxQHtCusiwxudnCKkdy4GrHXPPJSkCCw=="
+  "resolved" "https://registry.npmmirror.com/screenfull/-/screenfull-6.0.2.tgz"
+  "version" "6.0.2"
+
 "scroll-into-view-if-needed@^2.2.28":
   "integrity" "sha512-dGCXy99wZQivjmjIqihaBQNjryrz5rueJY7eHfTdyWEiR4ttYpsajb14rn9s5d4DY4EcY6+4+U/maARBXJedkA=="
   "resolved" "https://registry.npmmirror.com/scroll-into-view-if-needed/-/scroll-into-view-if-needed-2.2.31.tgz"

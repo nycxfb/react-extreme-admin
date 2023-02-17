@@ -11,12 +11,14 @@ interface headerState {
 	pagePath: string[];
 	tags: tagItem[];
 	breadcrumb: string[];
+	drawerVisible: boolean;
 }
 
 const headerState: headerState = {
 	pagePath: [],
 	tags: [],
-	breadcrumb: []
+	breadcrumb: [],
+	drawerVisible: false
 };
 
 const header = (state: headerState = headerState, action: AnyAction) =>
@@ -49,6 +51,9 @@ const header = (state: headerState = headerState, action: AnyAction) =>
 			case "TOGGLE_BREADCRUMB":
 				draftSate.breadcrumb = action.breadcrumb;
 				break;
+
+			case "TOGGLE_DRAWER":
+				draftSate.drawerVisible = action.drawerVisible;
 		}
 	});
 

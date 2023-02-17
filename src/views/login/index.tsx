@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { setToken } from "@/redux/module/user/action";
@@ -6,15 +6,25 @@ import { Form, Input, Button } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import SvgIcon from "@/components/svgIcon";
 import RegistrationForm from "./component/registrationForm";
-import { http_user_login } from "@/api/system/user";
+import { http_user_login, http_user_captcha } from "@/api/system/user";
 import "./index.less";
 
 const Login = function (props: any) {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [formType, setFormType] = useState<string>("login");
+	const [test, setTest] = useState();
 	const { setToken } = props;
 	const navigate = useNavigate();
 	const [form] = Form.useForm();
+
+	useEffect(() => {
+		getCaptcha();
+	}, []);
+	const getCaptcha = () => {
+		http_user_captcha().then(res => {
+			setTest(res.data.data.data);
+		});
+	};
 	const userLogin = async () => {
 		try {
 			await form.validateFields();
@@ -59,6 +69,7 @@ const Login = function (props: any) {
 						</Form.Item>
 						<Form.Item>
 							<Input />
+							<div dangerouslySetInnerHTML={{ __html: test }}></div>
 						</Form.Item>
 						<Form.Item>
 							<Button type="primary" loading={loading} className="login-button" htmlType={"submit"}>

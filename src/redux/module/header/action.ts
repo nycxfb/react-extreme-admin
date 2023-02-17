@@ -22,3 +22,8 @@ export const toggleBreadcrumb = (breadcrumb: string[]) => ({
 	type: "TOGGLE_BREADCRUMB",
 	breadcrumb
 });
+
+export const toggleDrawer = (drawerVisible: boolean) => ({
+	type: "TOGGLE_DRAWER",
+	drawerVisible
+});

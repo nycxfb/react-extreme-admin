@@ -23,3 +23,10 @@ export function http_user_upload(params: any) {
 		data: params
 	});
 }
+
+export function http_user_captcha() {
+	return request({
+		url: "/api/system/user/captcha",
+		method: "get"
+	});
+}

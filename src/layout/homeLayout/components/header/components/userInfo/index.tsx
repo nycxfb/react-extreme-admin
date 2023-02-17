@@ -30,6 +30,30 @@ const UserInfo = (props: any) => {
 						logOut();
 					}}
 				>
+					首页
+				</span>
+			)
+		},
+		{
+			key: "2",
+			label: (
+				<span
+					onClick={() => {
+						logOut();
+					}}
+				>
+					我的主页
+				</span>
+			)
+		},
+		{
+			key: "3",
+			label: (
+				<span
+					onClick={() => {
+						logOut();
+					}}
+				>
 					退出登录
 				</span>
 			)
@@ -41,7 +65,7 @@ const UserInfo = (props: any) => {
 			<Dropdown menu={{ items }} trigger={["click"]} placement="bottom">
 				<Avatar size={40} src={avatar} />
 			</Dropdown>
-			<span>{userName}</span>
+			{/*<span>{userName}</span>*/}
 		</>
 	);
 };
