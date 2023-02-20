@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import NProgress from "nprogress";
 import "./index.less";
 
@@ -11,9 +12,10 @@ NProgress.configure({
 });
 
 const LoadingProgress: React.FC = () => {
+	const { pathname } = useLocation();
 	useEffect(() => {
 		NProgress.start();
-	}, []);
+	}, [pathname]);
 	//组件消亡时执行 nprogress.done()
 	useEffect(() => {
 		return () => {

@@ -1,6 +1,7 @@
 import React from "react";
-import { Breadcrumbs, Tags, UserInfo, SwitchButton, FullScreen, LanguageConversion, Setting } from "./components/index";
 import { Row, Col } from "antd";
+import { Breadcrumbs, Tags, User, SwitchButton, FullScreen, Setting } from "./components/index";
+import Language from "@/components/language";
 import "./index.less";
 
 const HomeHeader = () => {
@@ -13,8 +14,8 @@ const HomeHeader = () => {
 				</Col>
 				<Col span={6} className={"right-part"}>
 					<FullScreen />
-					<LanguageConversion />
-					<UserInfo />
+					<Language />
+					<User />
 					<Setting />
 				</Col>
 			</Row>

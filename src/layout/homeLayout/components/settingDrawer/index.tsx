@@ -1,26 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Divider, Drawer, Form, Switch } from "antd";
+import { useTranslation } from "react-i18next";
 import { toggleDrawer } from "@/redux/module/header/action";
 
 const SettingDrawer = (props: any) => {
 	const { toggleDrawer, drawerVisible } = props;
+	const { t } = useTranslation();
 
 	const closeDrawer = () => {
 		toggleDrawer(false);
 	};
 	return (
-		<Drawer title="系统设置" placement="right" onClose={closeDrawer} open={drawerVisible}>
-			<Divider>主题颜色</Divider>
-			<Divider>界面设置</Divider>
+		<Drawer title={t("setting.systemSetting")} placement="right" onClose={closeDrawer} open={drawerVisible}>
+			<Divider>{t("setting.themeColor")}</Divider>
+			<Divider>{t("setting.uiSetting")}</Divider>
 			<Form colon={false} labelCol={{ span: 20 }} labelAlign="left">
-				<Form.Item label={"显示标签"}>
+				<Form.Item label={t("setting.showTag")}>
 					<Switch />
 				</Form.Item>
-				<Form.Item label={"显示面包屑"}>
+				<Form.Item label={t("setting.showBreadcrumb")}>
 					<Switch />
 				</Form.Item>
-				<Form.Item label={"页脚"}>
+				<Form.Item label={t("setting.showFooter")}>
 					<Switch />
 				</Form.Item>
 				<Form.Item label={"Logo"}>

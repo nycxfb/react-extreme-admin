@@ -8,6 +8,7 @@ import user from "@/redux/module/user/reducer";
 const reducer = combineReducers({ menu, header, user });
 const middleWares = applyMiddleware(reduxThunk, reduxPromise);
 
+// 退出重置redux
 const rootReducer = (state: any, action: any) => {
 	if (action.type === "USER_LOGOUT") {
 		state = undefined;
@@ -15,6 +16,7 @@ const rootReducer = (state: any, action: any) => {
 	return reducer(state, action);
 };
 
+// 挂载redux
 const store: Store = createStore(rootReducer, middleWares);
 
 export { store };

@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import { setToken } from "@/redux/module/user/action";
 import { Form, Input, Button } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import SvgIcon from "@/components/svgIcon";
 import RegistrationForm from "./component/registrationForm";
+import Language from "@/components/language";
 import { http_user_login, http_user_captcha } from "@/api/system/user";
-import "./index.less";
+import index from "./index.module.less";
 
 const Login = function (props: any) {
 	const [loading, setLoading] = useState<boolean>(false);
@@ -16,6 +18,7 @@ const Login = function (props: any) {
 	const { setToken } = props;
 	const navigate = useNavigate();
 	const [form] = Form.useForm();
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		getCaptcha();
@@ -31,9 +34,9 @@ const Login = function (props: any) {
 			setLoading(true);
 			const params = form.getFieldsValue();
 			const res = await http_user_login(params);
-			setToken(res.data.data.token);
-			localStorage.setItem("userName", res.data.data.userInfo.userName);
-			localStorage.setItem("avatar", res.data.data.userInfo.avatarUrl);
+			setToken(res.data.token);
+			localStorage.setItem("userName", res.data.userInfo.userName);
+			localStorage.setItem("avatar", res.data.userInfo.avatarUrl);
 			navigate("/home/index");
 		} catch (e) {
 		} finally {
@@ -45,7 +48,7 @@ const Login = function (props: any) {
 		setFormType(type);
 	};
 	return (
-		<div className="login">
+		<div className={index.login}>
 			<div className="login-inset">
 				<SvgIcon iconClass="bgc2" />
 			</div>
@@ -73,21 +76,22 @@ const Login = function (props: any) {
 						</Form.Item>
 						<Form.Item>
 							<Button type="primary" loading={loading} className="login-button" htmlType={"submit"}>
-								登录
+								{t("login.login")}
 							</Button>
 						</Form.Item>
 						<span>
-							还没有账号? 点击
+							{t("login.account")}
 							<a
 								href="javascript:void(0)"
 								onClick={() => {
 									switchForm("register");
 								}}
 							>
-								注册
+								{t("login.register")}
 							</a>
 						</span>
 					</Form>
+					<Language />
 				</div>
 			) : (
 				<div className="login-form">

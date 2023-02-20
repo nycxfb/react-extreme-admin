@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { useNavigate } from "react-router-dom";
-import { config } from "webpack";
+import { message } from "antd";
 
 const ERROR_CODES: { [key: number]: string } = {
 	400: "错误请求,状态码:400",
@@ -13,7 +12,7 @@ const ERROR_CODES: { [key: number]: string } = {
 	501: "网络未实现",
 	502: "网关错误",
 	503: "服务不可用",
-	504: "网络超时",
+	504: "网关超时",
 	505: "HTTP版本不支持该请求"
 };
 
@@ -34,12 +33,32 @@ service.interceptors.request.use(
 	}
 );
 
-service.interceptors.response.use(response => {
-	if (response.headers.tokenexpired || response.headers.JsonWebTokenError) {
-		localStorage.clear();
-		window.location.href = "/";
+service.interceptors.response.use(
+	response => {
+		// 处理token错误
+		if (response.headers.tokenexpired || response.headers.JsonWebTokenError) {
+			localStorage.clear();
+			window.location.href = "/";
+		}
+		return response.data;
+	},
+	error => {
+		// 处理请求错误
+		if (error.response && error.response.status > 400 && error.response.status < 600) {
+			if (ERROR_CODES[error.response.status]) {
+				switch (error.response.status) {
+					case error.response.status:
+						return message.error(ERROR_CODES[error.response.status]);
+					default:
+						return message.error("系统异常,请稍后再试！");
+				}
+			}
+		}
+		return {
+			code: "9999",
+			msg: "系统异常，请稍后再试"
+		};
 	}
-	return response;
-});
+);
 
 export default service;

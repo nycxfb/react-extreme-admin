@@ -4,8 +4,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import asyncRoutes from "@/router/module/asyncRoutes";
 import { toggleTags, addVisitTag } from "@/redux/module/header/action";
+import SvgIcon from "@/components/svgIcon";
 import "./index.less";
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -37,6 +39,7 @@ const HomeMenu: React.FC = () => {
 	const childrenArr: any = [];
 	const { pathname } = useLocation();
 	const [selectedKeys, setSelectKeys] = useState<string[]>([pathname]);
+	const { t, i18n } = useTranslation();
 
 	useEffect(() => {
 		setSelectKeys([pathname]);
@@ -47,7 +50,7 @@ const HomeMenu: React.FC = () => {
 	useEffect(() => {
 		menuArr_.length = 0;
 		handleRoutes(asyncRoutes, "");
-	}, []);
+	}, [i18n.language]);
 
 	const clickMenu = (props: any) => {
 		const arr = props.key.split("/");
@@ -69,7 +72,7 @@ const HomeMenu: React.FC = () => {
 			if (path && !menuItem?.hidden) {
 				menuArr_.forEach((item: any) => {
 					if (item.key == path) {
-						item.children.push(getItem(menuItem.meta.title, menuItem.path));
+						item.children.push(getItem(t(`route.${menuItem.meta.title}`), menuItem.path));
 					}
 				});
 			}
@@ -77,18 +80,19 @@ const HomeMenu: React.FC = () => {
 			if (menuItem.children) {
 				if (menuItem.children.length > 1) {
 					subMenuArr.push(menuItem.path);
-					menuArr_.push(getItem(menuItem.meta.title, menuItem.path, <SettingOutlined />, []));
+					menuArr_.push(getItem(t(`route.${menuItem.meta.title}`), menuItem.path, <SettingOutlined />, []));
 					handleRoutes(menuItem.children, menuItem.path);
 				} else {
 					if (!menuItem?.hidden) {
 						const childrenItem = menuItem.children[0];
-						menuArr_.push(getItem(childrenItem.meta.title, childrenItem.path, <SettingOutlined />));
+						menuArr_.push(getItem(t(`route.${childrenItem.meta.title}`), childrenItem.path, <SettingOutlined />));
 					}
 				}
 			} else {
 			}
 		});
-		setMenuArr(menuArr_);
+		const list: any = [...menuArr_];
+		setMenuArr(list);
 		setRootSubmenuKeys(subMenuArr);
 	};
 

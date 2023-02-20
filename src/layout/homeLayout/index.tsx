@@ -9,6 +9,7 @@ import { toggleSideMenu } from "@/redux/module/menu/action";
 import { toggleBreadcrumb, addVisitTag, toggleVisitTag } from "@/redux/module/header/action";
 import asyncRoutes from "@/router/module/asyncRoutes";
 import { generateBreadcrumb, generateTagName } from "@/router/util/handleRoute";
+import { handleRouteToMenu } from "@/utils/menu";
 import "./index.less";
 
 const { Sider, Content } = Layout;
@@ -16,13 +17,17 @@ const { Sider, Content } = Layout;
 const HomeLayout: React.FC = (props: any) => {
 	const { pathname } = useLocation();
 	const { isCollapse, drawerVisible, toggleBreadcrumb, addVisitTag, toggleVisitTag } = props;
-	const breadcrumb = generateBreadcrumb(asyncRoutes, pathname);
-	const addTag = generateTagName(asyncRoutes, pathname);
+
+	useEffect(() => {}, [asyncRoutes]);
+
 	useEffect(() => {
+		const breadcrumb = generateBreadcrumb(asyncRoutes, pathname);
+		const addTag = generateTagName(asyncRoutes, pathname);
 		toggleBreadcrumb(breadcrumb);
 		addVisitTag(addTag);
 		toggleVisitTag(pathname);
 	}, [pathname]);
+
 	return (
 		<>
 			<Layout>

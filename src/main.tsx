@@ -5,7 +5,7 @@ import App from "@/app";
 import { store } from "@/redux";
 import "@/styles/common.less";
 import { StyleProvider, legacyLogicalPropertiesTransformer } from "@ant-design/cssinjs";
-
+import "@/i18n/config";
 // 引入全部svg供全局使用
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
 

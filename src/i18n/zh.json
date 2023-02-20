@@ -1,0 +1,47 @@
+{
+  "login": {
+    "login": "登录",
+    "account": "还没有账号 ? 点击",
+    "register": "注册"
+  },
+  "route": {
+    "homepage": "主页",
+    "workbench": "工作台",
+    "index": "首页",
+    "systemManagement": "系统管理",
+    "userList": "用户列表",
+    "roleList": "角色列表",
+    "dynamicComponents": "动态组件",
+    "dynamicTable": "动态表格",
+    "dynamicForm": "动态表单",
+    "largeScreenDisplay": "大屏展示",
+    "customComponents": "自定义组件",
+    "microFront": "微前端",
+    "qiankun": "Qiankun",
+    "iframe": "Iframe",
+    "designMode": "设计模式",
+    "publishSubscribePattern": "发布订阅模式",
+    "editor": "编辑器",
+    "ganttChart": "甘特图",
+    "storageScheme": "存储方案",
+    "pageScheme": "页面方案",
+    "strongRelationship": "强关联",
+    "weakRelationship": "弱关联",
+    "instantMessage": "即时通信",
+    "test": "测试"
+  },
+  "tagContextmenu": {
+    "refresh": "刷新",
+    "closeCurrent": "关闭当前",
+    "closeOthers": "关闭其它",
+    "closeAll": "关闭所有"
+  },
+  "setting": {
+    "systemSetting": "系统设置",
+    "themeColor": "主题颜色",
+    "uiSetting": "界面设置",
+    "showTag": "显示标签",
+    "showBreadcrumb": "显示面包屑",
+    "showFooter": "显示页脚"
+  }
+}

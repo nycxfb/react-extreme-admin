@@ -81,20 +81,21 @@ const User: React.FC = () => {
 	const getUserList = async () => {
 		setLoading(true);
 		const res = await http_user_list(null);
-		const userList = res.data.result;
+		const userList = res.data;
 		userList.forEach((item: any) => {
 			Object.assign(item, { key: item.userId });
 		});
 		setUserList(userList);
 		setLoading(false);
 	};
-	const newUser = (type: string, record: any) => {
+	const newUser = (type: string, record?: Object) => {
 		userFormRef.current.showModal(type, record);
 	};
 	const deleteUser = async (record: any) => {
 		await http_user_delete({ userId: record.userId });
 		getUserList();
 	};
+
 	return (
 		<>
 			<UserFormDialog ref={userFormRef} onGetUserList={getUserList} />
@@ -138,7 +139,7 @@ const User: React.FC = () => {
 						<Button
 							type="primary"
 							onClick={() => {
-								newUser("add", "");
+								newUser("add");
 							}}
 						>
 							新增

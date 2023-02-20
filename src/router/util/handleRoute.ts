@@ -26,9 +26,9 @@ const generateBreadcrumb = (routes: any, path: string, breadcrumbArr: string[] =
 		routeItem?.children.forEach((childrenItem: any) => {
 			if (childrenItem.path === path) {
 				if (routeItem.children.length > 1) {
-					breadcrumbArr.push("主页", routeItem.meta.title, childrenItem.meta.title);
+					breadcrumbArr.push("homepage", routeItem.meta.title, childrenItem.meta.title);
 				} else {
-					breadcrumbArr.push("主页", routeItem.meta.title);
+					breadcrumbArr.push("homepage", routeItem.meta.title);
 				}
 			}
 		});

@@ -3,6 +3,7 @@ import React, { LazyExoticComponent } from "react";
 export interface metaConfig {
 	title?: string;
 	name?: string;
+	icon?: string;
 }
 
 export interface baseRouter {

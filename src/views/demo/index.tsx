@@ -1,18 +1,17 @@
 import React from "react";
 import { Button, Card } from "antd";
+import SvgIcon from "@/components/svgIcon";
+import "./index.less";
 
 import { http_demo } from "@/api/demo";
 
 const Demo = () => {
 	const test = async () => {
 		const res = await http_demo({});
-		console.log(res, "测试");
 	};
 	return (
-		<Card>
-			<Button type={"primary"} onClick={test}>
-				接口测试
-			</Button>
+		<Card className={"demo-card"}>
+			<SvgIcon iconClass={"develop"}></SvgIcon>
 		</Card>
 	);
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Card } from "antd";
 import SvgIcon from "@/components/svgIcon";
 import * as echarts from "echarts";
-import "./index.less";
+import index from "./index.module.less";
 
 const cardList = [
 	{
@@ -224,30 +224,29 @@ const Home: React.FC = () => {
 		// columnChart.setOption(option1);
 	};
 	return (
-		<>
-			<div className="home-container">
-				<div className={"card-container"}>
-					{cardList.map((cardItem: any) => (
-						<Card className={"card-item"} key={cardItem.key}>
-							<div className="left-part">
-								<SvgIcon iconClass={cardItem.iconName} />
-							</div>
-							<div className="right-part">
-								<span>{cardItem.title}</span>
-								<span>{cardItem.number}</span>
-							</div>
-						</Card>
-					))}
-				</div>
-
-				<Card id="tendency" className="echarts-container" style={{ width: "90%", height: "400px" }}></Card>
+		<div className={index["home-container"]}>
+			<div className={"card-container"}>
+				{cardList.map((cardItem: any) => (
+					<Card className={"card-item"} key={cardItem.key}>
+						<div className="left-part">
+							<SvgIcon iconClass={cardItem.iconName} />
+						</div>
+						<div className="right-part">
+							<span>{cardItem.title}</span>
+							<span>{cardItem.number}</span>
+						</div>
+					</Card>
+				))}
+			</div>
+			<div className={"test"}>
+				<Card id="tendency" className="echarts-container" style={{ width: "95%", height: "500px" }}></Card>
 				<div className="chart-container">
-					<Card id="percent" style={{ width: "400px", height: "100px" }}></Card>
-					<Card id="radar" style={{ width: "400px", height: "100px" }}></Card>
+					<Card id="percent" style={{ width: "600px", height: "500px" }}></Card>
+					<Card id="radar" style={{ width: "600px", height: "500px", padding: "20px" }}></Card>
 					<Card id="column"></Card>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

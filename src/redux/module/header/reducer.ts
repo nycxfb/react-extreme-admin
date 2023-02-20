@@ -1,7 +1,7 @@
 import { produce } from "immer";
 import { AnyAction } from "redux";
 
-interface tagItem {
+export interface tagItem {
 	title: string;
 	path: string;
 	active: boolean;
@@ -27,19 +27,18 @@ const header = (state: headerState = headerState, action: AnyAction) =>
 			case "UPDATE_PATH":
 				draftSate.pagePath = action.pagePath;
 				break;
+
 			case "ADD_VISIT_TAG":
 				if (draftSate.tags.some(t => t.path == action.tags.path)) return;
 				draftSate.tags.push(action.tags);
 				break;
+
 			case "TOGGLE_VISIT_TAG":
 				draftSate.tags.forEach((item: any) => {
-					if (item.path === action.path) {
-						item.active = true;
-					} else {
-						item.active = false;
-					}
+					item.path === action.path ? (item.active = true) : (item.active = false);
 				});
 				break;
+
 			case "DELETE_VISIT_TAG":
 				for (let [i, t] of draftSate.tags.entries()) {
 					if (t.path === action.path) {
@@ -48,12 +47,22 @@ const header = (state: headerState = headerState, action: AnyAction) =>
 					}
 				}
 				break;
+
+			case "DELETE_OTHER_VISIT_TAG":
+				draftSate.tags = [action.tags];
+				break;
+
+			case "DELETE_ALL_TAGS":
+				draftSate.tags.length = 0;
+				break;
+
 			case "TOGGLE_BREADCRUMB":
 				draftSate.breadcrumb = action.breadcrumb;
 				break;
 
 			case "TOGGLE_DRAWER":
 				draftSate.drawerVisible = action.drawerVisible;
+				break;
 		}
 	});
 

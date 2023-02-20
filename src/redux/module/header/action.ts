@@ -18,6 +18,14 @@ export const deleteVisitTag = (path: string) => ({
 	path
 });
 
+export const deleteOtherVisitTag = (tags: any) => ({
+	type: "DELETE_OTHER_VISIT_TAG",
+	tags
+});
+
+export const deleteAllTags = () => ({
+	type: "DELETE_ALL_TAGS"
+});
 export const toggleBreadcrumb = (breadcrumb: string[]) => ({
 	type: "TOGGLE_BREADCRUMB",
 	breadcrumb

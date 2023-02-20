@@ -8,14 +8,31 @@ const asyncRoutes: baseRouter[] = [
 		path: "/home",
 		element: <HomeLayout />,
 		meta: {
-			title: "主页"
+			title: "index"
 		},
 		children: [
 			{
 				path: "/home/index",
 				element: lazyLoad(() => import("@/views/home")),
 				meta: {
-					title: "首页"
+					title: "index",
+					icon: ""
+				}
+			}
+		]
+	},
+	{
+		path: "/workbench",
+		element: <HomeLayout />,
+		meta: {
+			title: "workbench"
+		},
+		children: [
+			{
+				path: "/workbench/index",
+				element: lazyLoad(() => import("@/views/workbench")),
+				meta: {
+					title: "workbench"
 				}
 			}
 		]
@@ -42,21 +59,29 @@ const asyncRoutes: baseRouter[] = [
 		path: "/systemManagement",
 		element: <HomeLayout />,
 		meta: {
-			title: "系统管理"
+			title: "systemManagement"
 		},
 		children: [
 			{
 				path: "/systemManagement/user",
 				element: lazyLoad(() => import("@/views/systemManagement/user")),
 				meta: {
-					title: "用户列表"
+					title: "userList"
+				}
+			},
+			{
+				path: "/systemManagement/user/detail",
+				element: lazyLoad(() => import("@/views/systemManagement/user/detail")),
+				hidden: true,
+				meta: {
+					title: "detail"
 				}
 			},
 			{
 				path: "/systemManagement/role",
 				element: lazyLoad(() => import("@/views/systemManagement/role")),
 				meta: {
-					title: "角色列表"
+					title: "roleList"
 				}
 			}
 		]
@@ -65,21 +90,21 @@ const asyncRoutes: baseRouter[] = [
 		path: "/dynamicComponent",
 		element: <HomeLayout />,
 		meta: {
-			title: "动态组件"
+			title: "dynamicComponents"
 		},
 		children: [
 			{
 				path: "/dynamicComponent/dynamicForm",
 				element: lazyLoad(() => import("@/views/dynamicComponent/dynamicForm")),
 				meta: {
-					title: "动态表单"
+					title: "dynamicForm"
 				}
 			},
 			{
 				path: "/dynamicComponent/dynamicTable",
 				element: lazyLoad(() => import("@/views/systemManagement/role")),
 				meta: {
-					title: "动态表格"
+					title: "dynamicTable"
 				}
 			}
 		]
@@ -88,14 +113,14 @@ const asyncRoutes: baseRouter[] = [
 		path: "/largeScreenDisplay",
 		element: <HomeLayout />,
 		meta: {
-			title: "大屏展示"
+			title: "largeScreenDisplay"
 		},
 		children: [
 			{
 				path: "/largeScreenDisplay/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "大屏展示"
+					title: "largeScreenDisplay"
 				}
 			}
 		]
@@ -104,14 +129,14 @@ const asyncRoutes: baseRouter[] = [
 		path: "/customComponent",
 		element: <HomeLayout />,
 		meta: {
-			title: "自定义组件"
+			title: "customComponents"
 		},
 		children: [
 			{
 				path: "/customComponent/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "自定义组件"
+					title: "customComponents"
 				}
 			}
 		]
@@ -120,7 +145,7 @@ const asyncRoutes: baseRouter[] = [
 		path: "/microFront",
 		element: <HomeLayout />,
 		meta: {
-			title: "微前端"
+			title: "microFront"
 		},
 		children: [
 			{
@@ -143,14 +168,21 @@ const asyncRoutes: baseRouter[] = [
 		path: "/designMode",
 		element: <HomeLayout />,
 		meta: {
-			title: "设计模式"
+			title: "designMode"
 		},
 		children: [
+			{
+				path: "/designMode/publishSubscribePattern",
+				element: lazyLoad(() => import("@/views/designPattern/publishSubscribePattern")),
+				meta: {
+					title: "publishSubscribePattern"
+				}
+			},
 			{
 				path: "/designMode/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "设计模式"
+					title: "designMode"
 				}
 			}
 		]
@@ -159,14 +191,14 @@ const asyncRoutes: baseRouter[] = [
 		path: "/editor",
 		element: <HomeLayout />,
 		meta: {
-			title: "编辑器"
+			title: "editor"
 		},
 		children: [
 			{
 				path: "/editor/demo1",
 				element: lazyLoad(() => import("@/views/editor")),
 				meta: {
-					title: "编辑器"
+					title: "editor"
 				}
 			}
 		]
@@ -175,14 +207,14 @@ const asyncRoutes: baseRouter[] = [
 		path: "/ganttChart",
 		element: <HomeLayout />,
 		meta: {
-			title: "甘特图"
+			title: "ganttChart"
 		},
 		children: [
 			{
 				path: "/ganttChart/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "甘特图"
+					title: "ganttChart"
 				}
 			}
 		]
@@ -191,14 +223,14 @@ const asyncRoutes: baseRouter[] = [
 		path: "/storageScheme",
 		element: <HomeLayout />,
 		meta: {
-			title: "存储方案"
+			title: "storageScheme"
 		},
 		children: [
 			{
 				path: "/storageScheme/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "存储方案"
+					title: "storageScheme"
 				}
 			}
 		]
@@ -207,21 +239,21 @@ const asyncRoutes: baseRouter[] = [
 		path: "/pageScheme",
 		element: <HomeLayout />,
 		meta: {
-			title: "页面方案"
+			title: "pageScheme"
 		},
 		children: [
 			{
 				path: "/pageScheme/strongRelationship",
 				element: lazyLoad(() => import("@/views/pageScheme/strongRelationship")),
 				meta: {
-					title: "强关联"
+					title: "strongRelationship"
 				}
 			},
 			{
 				path: "/pageScheme/weakRelationship",
 				element: lazyLoad(() => import("@/views/pageScheme/weakRelationship")),
 				meta: {
-					title: "弱关联"
+					title: "weakRelationship"
 				}
 			}
 		]
@@ -230,14 +262,14 @@ const asyncRoutes: baseRouter[] = [
 		path: "/instantMessage",
 		element: <HomeLayout />,
 		meta: {
-			title: "即时通信"
+			title: "instantMessage"
 		},
 		children: [
 			{
 				path: "/instantMessage/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "即时通信"
+					title: "instantMessage"
 				}
 			}
 		]
@@ -246,14 +278,14 @@ const asyncRoutes: baseRouter[] = [
 		path: "/demo",
 		element: <HomeLayout />,
 		meta: {
-			title: "测试"
+			title: "test"
 		},
 		children: [
 			{
 				path: "/demo/demo1",
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
-					title: "接口测试"
+					title: "test"
 				}
 			}
 		]

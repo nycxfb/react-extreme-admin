@@ -1,0 +1,47 @@
+{
+  "login": {
+    "login": "login",
+    "account": "Don't have an account yet ? Click to",
+    "register": "register"
+  },
+  "route": {
+    "homepage": "Homepage",
+    "workbench": "Workbench",
+    "index": "Index",
+    "systemManagement": "System Management",
+    "userList": "User List",
+    "roleList": "Role List",
+    "dynamicComponents": "Dynamic Components",
+    "dynamicTable": "Dynamic Table",
+    "dynamicForm": "Dynamic Form",
+    "largeScreenDisplay": "Large Screen Display",
+    "customComponents": "Custom Components",
+    "microFront": "Micro Front",
+    "qiankun": "Qiankun",
+    "iframe": "Iframe",
+    "designMode": "Design Mode",
+    "publishSubscribePattern": "Publish Subscribe Pattern",
+    "editor": "Editor",
+    "ganttChart": "Gantt Chart",
+    "storageScheme": "Storage Scheme",
+    "pageScheme": "Page Scheme",
+    "strongRelationship": "Strong Relationship",
+    "weakRelationship": "Weak Relationship",
+    "instantMessage": "Instant Message",
+    "test": "Test"
+  },
+  "tagContextmenu": {
+    "refresh": "Refresh",
+    "closeCurrent": "Close Current",
+    "closeOthers": "Close Others",
+    "closeAll": "Close All"
+  },
+  "setting": {
+    "systemSetting": "System Setting",
+    "themeColor": "Theme Color",
+    "uiSetting": "UI Setting",
+    "showTag": "Show Tag",
+    "showBreadcrumb": "Show Breadcrumb",
+    "showFooter": "Show Footer"
+  }
+}
