@@ -33,7 +33,7 @@ const User = (props: any) => {
 			label: (
 				<span
 					onClick={() => {
-						logOut();
+						navigate("/home/index");
 					}}
 				>
 					首页

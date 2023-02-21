@@ -45,7 +45,7 @@ const Language = () => {
 	return (
 		<Dropdown menu={{ items }} trigger={["click"]} placement="bottom">
 			<div className={"language"}>
-				<SvgIcon iconClass={"zhen"} />
+				<SvgIcon iconClass={"zhen"} width={25} height={25} cursor={"pointer"} />
 			</div>
 		</Dropdown>
 	);

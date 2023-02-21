@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SvgIcon = (props: { iconClass: any }) => {
-	const { iconClass } = props;
+interface svgProps {
+	iconClass: number | string;
+	width?: number | string;
+	height?: number | string;
+	cursor?: string;
+}
+
+const SvgIcon = (props: svgProps) => {
+	const { iconClass, width, height, cursor } = props;
 	return (
-		<svg aria-hidden="true" className="svg-icon">
+		<svg aria-hidden="true" className="svg-icon" style={{ width: width, height: height, cursor: cursor }}>
 			<use xlinkHref={"#icon-" + iconClass} />
 		</svg>
 	);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { setToken } from "@/redux/module/user/action";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Row, Col } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import SvgIcon from "@/components/svgIcon";
@@ -14,7 +14,7 @@ import index from "./index.module.less";
 const Login = function (props: any) {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [formType, setFormType] = useState<string>("login");
-	const [test, setTest] = useState();
+	const [captcha, setCaptcha] = useState();
 	const { setToken } = props;
 	const navigate = useNavigate();
 	const [form] = Form.useForm();
@@ -25,7 +25,7 @@ const Login = function (props: any) {
 	}, []);
 	const getCaptcha = () => {
 		http_user_captcha().then(res => {
-			setTest(res.data.data.data);
+			setCaptcha(res.data.data);
 		});
 	};
 	const userLogin = async () => {
@@ -71,8 +71,14 @@ const Login = function (props: any) {
 							<Input.Password prefix={<LockOutlined />} autoComplete="false" type="password" placeholder="Password" />
 						</Form.Item>
 						<Form.Item>
-							<Input />
-							<div dangerouslySetInnerHTML={{ __html: test }}></div>
+							<Row gutter={4}>
+								<Col span={18}>
+									<Input prefix={<SvgIcon width={15} height={15} iconClass={"verifyCode"} />} placeholder="Verify code" />
+								</Col>
+								<Col span={5}>
+									<div dangerouslySetInnerHTML={{ __html: captcha }} onClick={getCaptcha}></div>
+								</Col>
+							</Row>
 						</Form.Item>
 						<Form.Item>
 							<Button type="primary" loading={loading} className="login-button" htmlType={"submit"}>

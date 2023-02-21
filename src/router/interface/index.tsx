@@ -7,8 +7,9 @@ export interface metaConfig {
 }
 
 export interface baseRouter {
-	path?: string;
+	path?: any;
 	element?: React.ReactNode | LazyExoticComponent<any>;
+	component?: React.ReactNode | LazyExoticComponent<any> | any;
 	meta?: metaConfig;
 	children?: baseRouter[];
 	hidden?: boolean;

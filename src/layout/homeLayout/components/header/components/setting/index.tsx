@@ -11,7 +11,7 @@ const Setting = (props: any) => {
 
 	return (
 		<div onClick={onOpenDrawer}>
-			<SvgIcon iconClass={"setting"} />
+			<SvgIcon iconClass={"setting"} width={25} height={25} cursor={"pointer"} />
 		</div>
 	);
 };

@@ -7,7 +7,7 @@ import { SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import asyncRoutes from "@/router/module/asyncRoutes";
 import { toggleTags, addVisitTag } from "@/redux/module/header/action";
-import SvgIcon from "@/components/svgIcon";
+import { baseRouter } from "@/router/interface";
 import "./index.less";
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -19,81 +19,75 @@ function getItem(
 	children?: MenuItem[],
 	type?: "group"
 ): MenuItem {
-	const menuItem = {};
-	label && Object.assign(menuItem, { label });
-	key && Object.assign(menuItem, { key });
-	icon && Object.assign(menuItem, { icon });
-	children && Object.assign(menuItem, { children });
-	type && Object.assign(menuItem, { type });
-	return menuItem as MenuItem;
+	const routeItem = {};
+	label && Object.assign(routeItem, { label });
+	key && Object.assign(routeItem, { key });
+	icon && Object.assign(routeItem, { icon });
+	children && Object.assign(routeItem, { children });
+	type && Object.assign(routeItem, { type });
+	return routeItem as MenuItem;
 }
 
-const menuArr_: any = [];
-const subMenuArr: any = [];
-
 const HomeMenu: React.FC = () => {
-	const navigate = useNavigate();
-	const [menuArr, setMenuArr] = useState([]);
+	const [menuData, setMenuData] = useState<MenuItem[]>([]);
 	const [openKeys, setOpenKeys] = useState([""]);
 	const [rootSubmenuKeys, setRootSubmenuKeys] = useState<string[]>([]);
-	const childrenArr: any = [];
+
 	const { pathname } = useLocation();
-	const [selectedKeys, setSelectKeys] = useState<string[]>([pathname]);
+	const navigate = useNavigate();
 	const { t, i18n } = useTranslation();
 
+	const [selectedKeys, setSelectKeys] = useState<string[]>([pathname]);
+
+	//根据路径展开菜单
 	useEffect(() => {
 		setSelectKeys([pathname]);
-		const pathArr = pathname.split("/");
-		const openKeys = `/${pathArr[1]}`;
-		setOpenKeys([openKeys]);
+		setOpenKeys([`/${pathname.split("/")[1]}`]);
 	}, [pathname]);
-	useEffect(() => {
-		menuArr_.length = 0;
-		handleRoutes(asyncRoutes, "");
-	}, [i18n.language]);
 
+	//切换菜单语言
+	useEffect(() => {
+		generateMenuData(asyncRoutes);
+	}, [i18n.language, asyncRoutes]);
+
+	//菜单点击
 	const clickMenu = (props: any) => {
-		const arr = props.key.split("/");
-		arr.shift();
 		navigate(props.key);
-		childrenArr.length = 0;
-		menuArr_.forEach((item: any) => {
-			if (item.children) {
-				item.children.forEach((item_: any) => {
-					childrenArr.push(item_);
-				});
-			}
-		});
 	};
 
 	//将路由处理成 ant-menu 需要的数据格式
-	const handleRoutes = (menuArr: any, path: string) => {
-		menuArr.forEach((menuItem: any) => {
-			if (path && !menuItem?.hidden) {
-				menuArr_.forEach((item: any) => {
-					if (item.key == path) {
-						item.children.push(getItem(t(`route.${menuItem.meta.title}`), menuItem.path));
-					}
-				});
-			}
-
-			if (menuItem.children) {
-				if (menuItem.children.length > 1) {
-					subMenuArr.push(menuItem.path);
-					menuArr_.push(getItem(t(`route.${menuItem.meta.title}`), menuItem.path, <SettingOutlined />, []));
-					handleRoutes(menuItem.children, menuItem.path);
-				} else {
-					if (!menuItem?.hidden) {
-						const childrenItem = menuItem.children[0];
-						menuArr_.push(getItem(t(`route.${childrenItem.meta.title}`), childrenItem.path, <SettingOutlined />));
+	const generateMenuData = (
+		routeArray: baseRouter[],
+		path?: string,
+		tempMenuData: MenuItem[] = [],
+		tempRootSubmenuKeys: Array<any> = []
+	) => {
+		routeArray.forEach((routeItem: baseRouter) => {
+			if (path && !routeItem?.hidden) {
+				for (const [index, tempMenuItem] of tempMenuData.entries()) {
+					if (tempMenuItem?.key === path) {
+						// @ts-ignore
+						tempMenuItem?.children.push(getItem(t(`route.${routeItem.meta.title}`), routeItem.path));
+						break;
 					}
 				}
-			} else {
+			}
+
+			if (routeItem.children) {
+				if (routeItem.children.length > 1) {
+					tempRootSubmenuKeys.push(routeItem.path);
+					tempMenuData.push(getItem(t(`route.${routeItem?.meta?.title}`), routeItem?.path, <SettingOutlined />, []));
+					generateMenuData(routeItem.children, routeItem.path, tempMenuData);
+				} else {
+					if (!routeItem?.hidden) {
+						const childrenItem = routeItem.children[0];
+						tempMenuData.push(getItem(t(`route.${childrenItem?.meta?.title}`), childrenItem.path, <SettingOutlined />));
+					}
+				}
 			}
 		});
-		const list: any = [...menuArr_];
-		setMenuArr(list);
-		setRootSubmenuKeys(subMenuArr);
+		setMenuData(tempMenuData);
+		setRootSubmenuKeys(tempRootSubmenuKeys);
 	};
 
 	//处理菜单展开逻辑,只展开一项
@@ -105,12 +99,13 @@ const HomeMenu: React.FC = () => {
 			setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
 		}
 	};
+
 	return (
 		<section className="menu">
 			<Menu
 				mode="inline"
 				theme="dark"
-				items={menuArr}
+				items={menuData}
 				triggerSubMenuAction="click"
 				onClick={clickMenu}
 				openKeys={openKeys}

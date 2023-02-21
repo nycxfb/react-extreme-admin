@@ -2,12 +2,15 @@ import React from "react";
 import { HashRouter } from "react-router-dom";
 import Router from "@/router/index";
 import AuthRoute from "@/router/auth";
+import { AliveScope } from "react-activation";
 
 const App = () => {
 	return (
 		<HashRouter>
 			<AuthRoute>
-				<Router />
+				<AliveScope>
+					<Router />
+				</AliveScope>
 			</AuthRoute>
 		</HashRouter>
 	);

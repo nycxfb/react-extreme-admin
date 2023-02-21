@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card } from "antd";
 import Event from "@/utils/event";
 
-const Subscribe = () => {
+const SubscribeA = () => {
 	const [message, setMessage] = useState("");
 	useEffect(() => {
 		Event.listen("message", (msg: any) => {
@@ -14,10 +14,10 @@ const Subscribe = () => {
 		};
 	});
 	return (
-		<Card title={"订阅者"} style={{ width: 500, height: 400 }}>
+		<Card title={"订阅者A"} style={{ width: 500, height: 190 }}>
 			{message}
 		</Card>
 	);
 };
 
-export default Subscribe;
+export default SubscribeA;

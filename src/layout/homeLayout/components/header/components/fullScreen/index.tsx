@@ -29,7 +29,11 @@ const FullScreen = () => {
 	};
 	return (
 		<div onClick={toggleScreenFull}>
-			{fullscreen ? <SvgIcon iconClass={"fullScreenOut"} /> : <SvgIcon iconClass={"fullScreen"} />}
+			{fullscreen ? (
+				<SvgIcon iconClass={"fullScreenOut"} width={25} height={25} cursor={"pointer"} />
+			) : (
+				<SvgIcon iconClass={"fullScreen"} width={25} height={25} cursor={"pointer"} />
+			)}
 		</div>
 	);
 };
