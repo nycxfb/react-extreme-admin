@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
+import { connect } from "react-redux";
 import { Row, Col } from "antd";
 import { Breadcrumbs, Tags, User, SwitchButton, FullScreen, Setting } from "./components/index";
 import Language from "@/components/language";
 import "./index.less";
 
-const HomeHeader = () => {
+const HomeHeader = (props: any) => {
+	const { isShowTag, isShowBreadcrumb } = props;
 	const scrollRef = useRef<any>(null);
 
 	const handleScrollBar = (e: React.WheelEvent<HTMLDivElement>) => {
@@ -17,7 +19,7 @@ const HomeHeader = () => {
 			<Row className="header-A">
 				<Col span={18} className={"left-part"}>
 					<SwitchButton />
-					<Breadcrumbs />
+					{isShowBreadcrumb ? <Breadcrumbs /> : <></>}
 				</Col>
 				<Col span={6} className={"right-part"}>
 					<FullScreen />
@@ -26,17 +28,25 @@ const HomeHeader = () => {
 					<Setting />
 				</Col>
 			</Row>
-			<Row
-				ref={scrollRef}
-				className="header-B"
-				onWheel={e => {
-					handleScrollBar(e);
-				}}
-			>
-				<Tags />
-			</Row>
+			{isShowTag ? (
+				<Row
+					ref={scrollRef}
+					className="header-B"
+					onWheel={e => {
+						handleScrollBar(e);
+					}}
+				>
+					<Tags />
+				</Row>
+			) : (
+				<></>
+			)}
 		</div>
 	);
 };
 
-export default HomeHeader;
+const mapStatusToProps = (state: any) => {
+	return state.system;
+};
+
+export default connect(mapStatusToProps, {})(HomeHeader);

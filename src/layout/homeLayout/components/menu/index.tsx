@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import type { MenuProps } from "antd";
 import { Menu } from "antd";
+import type { MenuProps } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import asyncRoutes from "@/router/module/asyncRoutes";
@@ -30,7 +30,7 @@ function getItem(
 
 const HomeMenu: React.FC = () => {
 	const [menuData, setMenuData] = useState<MenuItem[]>([]);
-	const [openKeys, setOpenKeys] = useState([""]);
+	const [openKeys, setOpenKeys] = useState<string[]>([""]);
 	const [rootSubmenuKeys, setRootSubmenuKeys] = useState<string[]>([]);
 
 	const { pathname } = useLocation();

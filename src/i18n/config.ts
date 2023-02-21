@@ -12,12 +12,17 @@ const resources = {
 	}
 };
 
-i18n.use(initReactI18next).init({
-	resources,
-	lng: "zh",
-	interpolation: {
-		escapeValue: false
-	}
-});
+i18n
+	.use(initReactI18next)
+	.init({
+		resources,
+		lng: navigator.language === "zh-CN" ? "zh" : "en",
+		interpolation: {
+			escapeValue: false
+		}
+	})
+	.catch(err => {
+		console.log(err);
+	});
 
 export default i18n;

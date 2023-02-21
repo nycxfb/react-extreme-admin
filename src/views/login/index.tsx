@@ -18,16 +18,19 @@ const Login = function (props: any) {
 	const { setToken } = props;
 	const navigate = useNavigate();
 	const [form] = Form.useForm();
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
 
 	useEffect(() => {
 		getCaptcha();
 	}, []);
+
+	// 获取验证码
 	const getCaptcha = () => {
 		http_user_captcha().then(res => {
 			setCaptcha(res.data.data);
 		});
 	};
+	// 用户登录
 	const userLogin = async () => {
 		try {
 			await form.validateFields();

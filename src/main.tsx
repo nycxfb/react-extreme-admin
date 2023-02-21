@@ -6,6 +6,8 @@ import { store } from "@/redux";
 import "@/styles/common.less";
 import { StyleProvider, legacyLogicalPropertiesTransformer } from "@ant-design/cssinjs";
 import "@/i18n/config";
+import { ThemeProvider, ColorModeProvider } from "@chakra-ui/react";
+
 // 引入全部svg供全局使用
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
 

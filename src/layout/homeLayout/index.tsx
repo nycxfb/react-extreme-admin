@@ -14,11 +14,7 @@ const { Sider, Content } = Layout;
 
 const HomeLayout: React.FC = (props: any) => {
 	const { pathname } = useLocation();
-	const { isCollapse, toggleBreadcrumb, addVisitTag, toggleVisitTag } = props;
-
-	useEffect(() => {
-		// generateRoutesToMenu()
-	}, [asyncRoutes]);
+	const { isCollapse, toggleBreadcrumb, addVisitTag, toggleVisitTag, isShowLogo } = props;
 
 	//根据路径变化处理面包屑、标签等配置
 	useEffect(() => {
@@ -33,7 +29,7 @@ const HomeLayout: React.FC = (props: any) => {
 		<>
 			<Layout>
 				<Sider trigger={null} collapsible collapsed={isCollapse}>
-					<Logo />
+					{isShowLogo ? <Logo /> : <></>}
 					<HomeMenu />
 				</Sider>
 				<Layout>
@@ -49,7 +45,7 @@ const HomeLayout: React.FC = (props: any) => {
 };
 
 const mapStateToProps = (state: any) => {
-	return state.menu;
+	return { ...state.menu, ...state.system };
 };
 
 const mapDispatchToProps = {
