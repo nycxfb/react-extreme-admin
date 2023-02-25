@@ -1,6 +1,7 @@
 const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 
 const APP_PATH = path.resolve(__dirname, '../src')
 const ROOT_PATH = path.resolve(__dirname)
@@ -16,12 +17,7 @@ module.exports = {
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },
-  plugins: [
-    new htmlWebpackPlugin({
-      title: "react-extreme-admin",
-      template: path.resolve(__dirname, '../public/index.html')
-    })
-  ],
+
   module: {
     rules: [
       {
@@ -33,14 +29,29 @@ module.exports = {
         test: /\.css$|\.less$/i,
         // exclude: /node_modules/,
         use: [
+          MiniCssExtractPlugin.loader,
           {
-            loader: "style-loader"
+            loader: "css-loader",
+            options: {
+              esModule: false,
+              importLoaders: 2,
+              url: false
+            }
+          },
+          'postcss-loader',
+          {
+            loader: "less-loader",
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+              }
+            }
           },
           {
-            loader: "css-loader"
-          },
-          {
-            loader: "less-loader"
+            loader: "style-resources-loader",
+            options: {
+              patterns: [path.resolve(__dirname, '../src/styles/global.less')]
+            }
           }
         ]
 
@@ -54,5 +65,19 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new htmlWebpackPlugin({
+      favicon: path.resolve(__dirname, '../favicon.ico'),
+      title: "react-extreme-admin",
+      template: path.resolve(__dirname, '../public/index.html')
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'assets/css/[name].[contenthash:8].css',
+      chunkFilename: 'assets/css/[name].[contenthash:8].css'
+    }),
+    // new BundleAnalyzerPlugin({
+    //   generateStatsFile:false
+    // })
+  ],
 }

@@ -27,8 +27,8 @@ const doneLog = function (info) {
 
 const statsLog = function (stats, options) {
   if (!stats) return
-  const spliter = new Array(20).join('-')
-  let log = chalk.yellow.bold(`\n${spliter} Compiler Process ${spliter} \n\n`)
+  const splitter = new Array(20).join('-')
+  let log = chalk.yellow.bold(`\n${splitter} Compiler Process ${splitter} \n\n`)
   const statsString = stats.toString(options ? options : DEFAULT_STATS_OPTION)
   statsString.split(/\r?\n/).forEach(line => {
     log += `${line}\n`

@@ -17,18 +17,18 @@ const HomeHeader = (props: any) => {
 	return (
 		<div className="header-wrapper">
 			<Row className="header-A">
-				<Col span={18} className={"left-part"}>
+				<Col span={19} className={"left-part"}>
 					<SwitchButton />
-					{isShowBreadcrumb ? <Breadcrumbs /> : <></>}
+					{isShowBreadcrumb && <Breadcrumbs />}
 				</Col>
-				<Col span={6} className={"right-part"}>
+				<Col span={5} className={"right-part"}>
 					<FullScreen />
 					<Language />
 					<User />
 					<Setting />
 				</Col>
 			</Row>
-			{isShowTag ? (
+			{isShowTag && (
 				<Row
 					ref={scrollRef}
 					className="header-B"
@@ -38,8 +38,6 @@ const HomeHeader = (props: any) => {
 				>
 					<Tags />
 				</Row>
-			) : (
-				<></>
 			)}
 		</div>
 	);

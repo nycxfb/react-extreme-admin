@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Card } from "antd";
-import "./index.less";
+import "./index.module.less";
 
 const Workbench = () => {
 	return (

@@ -31,6 +31,7 @@ const Tags = (props: any) => {
 		},
 		{
 			key: "2",
+			disabled: contextTag.path == "/home/index",
 			label: (
 				<span
 					onClick={() => {
@@ -98,7 +99,7 @@ const Tags = (props: any) => {
 								setContextTag(tagItem);
 								e.preventDefault();
 							}}
-							closable
+							closable={!(tagItem.path == "/home/index")}
 							color={tagItem.active ? "rgba(132,65,216,0.74)" : ""}
 							key={tagItem.path}
 							onClick={() => {

@@ -9,7 +9,7 @@ interface List {
 }
 
 class Event implements event {
-	list: List;
+	public list: List;
 
 	constructor() {
 		this.list = {};

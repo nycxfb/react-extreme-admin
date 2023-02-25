@@ -18,7 +18,7 @@ const Publish = () => {
 		<Card title={"发布者"} style={{ width: 500, height: 400 }}>
 			<Row gutter={24}>
 				<Col span={16}>
-					<Input ref={messageRef}></Input>
+					<Input ref={messageRef} />
 				</Col>
 				<Col span={8}>
 					<Button type={"primary"} onClick={publishMessage}>

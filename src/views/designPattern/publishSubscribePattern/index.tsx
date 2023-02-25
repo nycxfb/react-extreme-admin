@@ -2,15 +2,17 @@ import React from "react";
 import SubscribeA from "./components/subscribeA";
 import SubscribeB from "./components/subscribeB";
 import Publish from "./components/publish";
-import "./index.less";
+import "./index.module.less";
 
 const PublishSubscribePattern = () => {
 	return (
 		<div className={"design-container"}>
-			<Publish />
-			<div className={"subscribe-wrapper"}>
-				<SubscribeA />
-				<SubscribeB />
+			<div>
+				<Publish />
+				<div className={"subscribe-wrapper"}>
+					<SubscribeA />
+					<SubscribeB />
+				</div>
 			</div>
 		</div>
 	);

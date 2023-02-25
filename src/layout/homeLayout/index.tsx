@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { Layout, theme, Drawer, Divider, Form, Switch } from "antd";
-import { HomeMenu, HomeHeader, Logo, SettingDrawer } from "./components";
+import { HomeMenu, HomeHeader, Logo, SettingDrawer, Footer } from "./components";
 import SvgIcon from "@/components/svgIcon";
 import { toggleSideMenu } from "@/redux/module/menu/action";
 import { toggleBreadcrumb, addVisitTag, toggleVisitTag } from "@/redux/module/header/action";
@@ -14,7 +14,7 @@ const { Sider, Content } = Layout;
 
 const HomeLayout: React.FC = (props: any) => {
 	const { pathname } = useLocation();
-	const { isCollapse, toggleBreadcrumb, addVisitTag, toggleVisitTag, isShowLogo } = props;
+	const { isCollapse, toggleBreadcrumb, addVisitTag, toggleVisitTag, isShowLogo, isShowFooter } = props;
 
 	//根据路径变化处理面包屑、标签等配置
 	useEffect(() => {
@@ -29,7 +29,7 @@ const HomeLayout: React.FC = (props: any) => {
 		<>
 			<Layout>
 				<Sider trigger={null} collapsible collapsed={isCollapse}>
-					{isShowLogo ? <Logo /> : <></>}
+					{isShowLogo && <Logo />}
 					<HomeMenu />
 				</Sider>
 				<Layout>
@@ -37,6 +37,7 @@ const HomeLayout: React.FC = (props: any) => {
 					<Content>
 						<Outlet />
 					</Content>
+					{isShowFooter && <Footer />}
 				</Layout>
 			</Layout>
 			<SettingDrawer />

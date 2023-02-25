@@ -69,7 +69,7 @@ const User = (props: any) => {
 	return (
 		<>
 			<Dropdown menu={{ items }} trigger={["click"]} placement="bottom">
-				<Avatar size={35} src={avatar} />
+				<Avatar size={30} src={avatar} />
 			</Dropdown>
 			<Modal
 				title="温馨提示"

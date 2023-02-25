@@ -2,7 +2,12 @@
   "login": {
     "login": "登录",
     "account": "还没有账号 ? 点击",
-    "register": "注册"
+    "register": "注册",
+    "userPhone": "请输入您的手机号",
+    "userPassword": "请输入您的密码",
+    "captcha": "请输入您的验证码",
+    "slogan": "一款通用中后台管理系统",
+    "welcome": "欢迎登录！"
   },
   "route": {
     "homepage": "主页",
@@ -39,6 +44,7 @@
   "setting": {
     "systemSetting": "系统设置",
     "themeColor": "主题颜色",
+    "menuColor": "菜单颜色",
     "uiSetting": "界面设置",
     "showTag": "显示标签",
     "showBreadcrumb": "显示面包屑",

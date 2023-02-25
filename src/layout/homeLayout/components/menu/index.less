@@ -1,8 +1,28 @@
 .menu {
   height: calc(100% - 80px);
   overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .menu::-webkit-scrollbar {
-  display: none;
+  width: 10px;
+}
+
+.menu::-webkit-scrollbar-track {
+  border-radius: 8px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 10px;
+}
+
+.menu::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 10px;
+}
+
+.menu::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 10px;
 }

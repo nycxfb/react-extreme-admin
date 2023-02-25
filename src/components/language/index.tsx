@@ -37,9 +37,9 @@ const Language = () => {
 	const toggleLanguage = async () => {
 		await i18n.changeLanguage(i18n.language == "en" ? "zh" : "en");
 		if (i18n.language == "en") {
-			message.success("Switch to English mode！");
+			message.success("English mode！");
 		} else {
-			message.success("切换为中文模式！");
+			message.success("中文模式！");
 		}
 	};
 	return (

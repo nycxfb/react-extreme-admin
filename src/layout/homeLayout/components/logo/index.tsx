@@ -7,7 +7,7 @@ const Logo = (props: any) => {
 	return (
 		<div className="side">
 			<SvgIcon iconClass="logo" />
-			{isCollapse ? <></> : <span className="title">ExtremeAdmin</span>}
+			{!isCollapse && <span className="title">ExtremeAdmin</span>}
 		</div>
 	);
 };

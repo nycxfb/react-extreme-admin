@@ -2,7 +2,12 @@
   "login": {
     "login": "login",
     "account": "Don't have an account yet ? Click to",
-    "register": "register"
+    "register": "register",
+    "userPhone": "Please input your phone!",
+    "userPassword": "Please input your password!",
+    "captcha": "Please input your captcha!",
+    "slogan": "A general backstage management system",
+    "welcome": "Welcome ！"
   },
   "route": {
     "homepage": "Homepage",
@@ -39,6 +44,7 @@
   "setting": {
     "systemSetting": "System Setting",
     "themeColor": "Theme Color",
+    "menuColor": "Menu Color",
     "uiSetting": "UI Setting",
     "showTag": "Show Tag",
     "showBreadcrumb": "Show Breadcrumb",

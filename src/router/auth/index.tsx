@@ -27,7 +27,6 @@ const AuthRoute = (props: { children: JSX.Element }) => {
 			return <Navigate to="/login" replace />;
 		}
 	}
-	return props.children;
 };
 
 export default AuthRoute;
