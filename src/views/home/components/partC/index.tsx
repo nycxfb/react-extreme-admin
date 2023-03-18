@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import * as echarts from "echarts";
 import { Card } from "antd";
+import { useMount, useUnmount } from "ahooks";
 
 const option1 = {
 	xAxis: {
@@ -66,9 +67,6 @@ const option2 = {
 	]
 };
 const option3 = {
-	title: {
-		text: "Basic Radar Chart"
-	},
 	legend: {
 		data: ["Allocated Budget", "Actual Spending"]
 	},
@@ -101,22 +99,29 @@ const option3 = {
 	]
 };
 const PartC = () => {
-	useEffect(() => {
+	useMount(() => {
 		initEcharts();
 	});
+
+	useUnmount(() => {
+		window.removeEventListener("resize", initEcharts);
+	});
+
 	const initEcharts = () => {
 		const percentChart = echarts.init(document.getElementById("percent") as HTMLDivElement);
 		const radarChart = echarts.init(document.getElementById("radar") as HTMLElement);
-		const columnChart = echarts.init(document.getElementById("column") as HTMLElement);
 		percentChart.setOption(option2);
 		radarChart.setOption(option3);
-		columnChart.setOption(option1);
+
+		window.addEventListener("resize", () => {
+			percentChart.resize();
+			radarChart.resize();
+		});
 	};
 	return (
 		<>
-			<Card id="percent" style={{ width: "400px", height: "400px" }} />
-			<Card id="radar" style={{ width: "400px", height: "400px" }} />
-			<Card id="column" style={{ width: "400px", height: "400px" }} />
+			<Card id="percent" style={{ width: "630px", height: "400px" }} />
+			<Card id="radar" style={{ width: "630px", height: "400px" }} />
 		</>
 	);
 };

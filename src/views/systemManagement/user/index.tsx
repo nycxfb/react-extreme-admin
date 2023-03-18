@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Card, Form, Input, Row, Col, Space, Table, Tag, Button, Avatar } from "antd";
+import { Card, Form, Input, Row, Col, Space, Table, Tag, Button, Avatar, Select } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { http_user_list, http_user_delete } from "@/api/systemManagement/user";
 import UserFormDialog from "./components/userFormDialog";
+import { useMount } from "ahooks";
+import "./index.less";
+
+import SearchFormCard from "@/components/SearchFormCard";
 
 interface DataType {
 	key: string;
@@ -16,15 +20,9 @@ interface DataType {
 const User: React.FC = () => {
 	const columns: ColumnsType<DataType> = [
 		{
-			title: "姓名",
-			dataIndex: "userName",
-			key: "userName",
-			align: "center"
-		},
-		{
-			title: "年龄",
-			dataIndex: "age",
-			key: "age",
+			title: "昵称",
+			dataIndex: "nickname",
+			key: "nickname",
 			align: "center"
 		},
 		{
@@ -40,10 +38,24 @@ const User: React.FC = () => {
 			align: "center"
 		},
 		{
+			title: "角色",
+			dataIndex: "role",
+			key: "role",
+			align: "center"
+		},
+		{
 			title: "用户头像",
 			key: "avatarUrl",
 			align: "center",
-			render: (_, record: DataType) => <>{record?.avatarUrl && <Avatar shape="square" size="large" src={record.avatarUrl} />}</>
+			render: (_, record: DataType) => (
+				<>{record?.avatarUrl && <Avatar shape="square" size="large" src={record.avatarUrl} />}</>
+			)
+		},
+		{
+			title: "创建时间",
+			dataIndex: "createdAt",
+			key: "createdAt",
+			align: "center"
 		},
 		{
 			title: "操作",
@@ -74,9 +86,10 @@ const User: React.FC = () => {
 	const userFormRef = useRef<any>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [userList, setUserList] = useState<DataType[]>([]);
-	useEffect(() => {
+
+	useMount(() => {
 		getUserList();
-	}, []);
+	});
 
 	const getUserList = async () => {
 		setLoading(true);
@@ -96,41 +109,51 @@ const User: React.FC = () => {
 		getUserList();
 	};
 
+	const handleChange = () => {};
+
+	const [form] = Form.useForm();
+
+	const resetForm = () => {
+		form.resetFields();
+	};
+
 	return (
 		<>
 			<UserFormDialog ref={userFormRef} onGetUserList={getUserList} />
 			<div className="base-container">
-				<Card className="base-form-card">
-					<Form>
-						<Row gutter={24}>
-							<Col span={7}>
-								<Form.Item label="姓名">
-									<Input></Input>
-								</Form.Item>
-							</Col>
-							<Col span={7}>
-								<Form.Item label="手机">
-									<Input></Input>
-								</Form.Item>
-							</Col>
-							<Col span={7}>
-								<Form.Item label="状态">
-									<Input></Input>
-								</Form.Item>
-							</Col>
-						</Row>
-					</Form>
-					<Row>
-						<Col span={3}>
-							<Button type="primary" onClick={getUserList}>
+				<SearchFormCard
+					extra={
+						<>
+							<Button style={{ margin: "0 20px 0 40px" }} type="primary" onClick={getUserList}>
 								查询
 							</Button>
-						</Col>
-						<Col span={3}>
-							<Button>重置</Button>
-						</Col>
-					</Row>
-				</Card>
+							<Button onClick={resetForm}>重置</Button>
+						</>
+					}
+				>
+					<Form labelCol={{ span: 7 }} form={form}>
+						<Form.Item label="昵称" name={"nickname"}>
+							<Input></Input>
+						</Form.Item>
+						<Form.Item label="手机" name={"phone"}>
+							<Input></Input>
+						</Form.Item>
+						<Form.Item label="状态">
+							<Input></Input>
+						</Form.Item>
+						<Form.Item label="角色">
+							<Select
+								defaultValue=""
+								onChange={handleChange}
+								options={[
+									{ value: "super", label: "超级管理员" },
+									{ value: "middle", label: "管理员" },
+									{ value: "primary", label: "普通用户" }
+								]}
+							/>
+						</Form.Item>
+					</Form>
+				</SearchFormCard>
 
 				<Card
 					className="base-table-card"
@@ -146,7 +169,7 @@ const User: React.FC = () => {
 						</Button>
 					}
 				>
-					<Table columns={columns} dataSource={userList} loading={loading} />
+					<Table columns={columns} dataSource={userList} bordered loading={loading} />
 				</Card>
 			</div>
 		</>

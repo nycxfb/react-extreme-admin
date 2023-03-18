@@ -1,7 +1,10 @@
 .header-wrapper {
-  width: 100%;
+  width: calc(100vw - 210px);
   background-color: #fff;
-  margin-bottom: 5px;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  height: 110px;
 
   .header-A {
     align-items: center;
@@ -37,8 +40,6 @@
     scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
-      //width: 4px;
-      //height: 4px;
     }
   }
 }

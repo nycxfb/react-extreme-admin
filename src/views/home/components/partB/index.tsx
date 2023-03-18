@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useMount, useUnmount } from "ahooks";
 import * as echarts from "echarts";
+import { Card, Radio, Tabs } from "antd";
+import type { TabsProps } from "antd";
+
+const items: TabsProps["items"] = [
+	{
+		key: "1",
+		label: `流量趋势`
+	},
+	{
+		key: "2",
+		label: `访问量`
+	}
+];
 const option1 = {
 	title: {
 		text: "Stacked Area Chart"
@@ -98,16 +112,27 @@ const option1 = {
 };
 const PartB = () => {
 	const [option, setOption] = useState({});
+	useMount(() => {
+		initEcharts();
+	});
 
-	useEffect(() => {
-		initChart();
-	}, []);
+	useUnmount(() => {
+		window.removeEventListener("resize", initEcharts);
+	});
 
-	const initChart = () => {
+	const initEcharts = () => {
 		const tendencyChart = echarts.init(document.getElementById("tendency") as HTMLDivElement);
 		tendencyChart.setOption(option1);
+		window.onresize = () => {
+			tendencyChart.resize();
+		};
 	};
-	return <div id={"tendency"} style={{ width: "1200px", height: "500px" }} />;
+	return (
+		<Card className={"part-B"}>
+			<Tabs defaultActiveKey="1" items={items} />
+			<div id={"tendency"} style={{ width: "1200px", height: "500px" }} />
+		</Card>
+	);
 };
 
 export default PartB;

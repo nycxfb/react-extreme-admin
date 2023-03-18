@@ -6,18 +6,24 @@ interface systemState {
 	isShowBreadcrumb: boolean;
 	isShowFooter: boolean;
 	isShowLogo: boolean;
+	menuTheme: string;
 }
 
 const systemState: systemState = {
 	isShowTag: true,
 	isShowBreadcrumb: true,
 	isShowFooter: true,
-	isShowLogo: true
+	isShowLogo: true,
+	menuTheme: "dark"
 };
 
 const system = (state: systemState = systemState, action: AnyAction) =>
 	produce(state, draftState => {
 		switch (action.type) {
+			case "TOGGLE_MENU_THEME":
+				draftState.menuTheme = action.menuTheme;
+				break;
+
 			case "TOGGLE_TAG_PART":
 				draftState.isShowTag = action.status;
 				break;

@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { message } from "antd";
 
 const ERROR_CODES: { [key: number]: string } = {
@@ -34,21 +34,27 @@ service.interceptors.request.use(
 );
 
 service.interceptors.response.use(
-	response => {
+	(response: any) => {
 		// 处理token异常
-		if (response.headers.tokenexpired || response.headers.JsonWebTokenError) {
-			localStorage.clear();
-			window.location.href = "/";
+		const { tokenexpired, JsonWebTokenError, tokenError } = response.headers;
+
+		if (tokenexpired || JsonWebTokenError || tokenError) {
+			setTimeout(() => {
+				localStorage.clear();
+				window.location.href = "/";
+			}, 1000);
+			return message.error(response.data.message);
 		}
 		return response.data;
 	},
 	error => {
 		// 处理请求异常
-		if (error.response && error.response.status > 400 && error.response.status < 600) {
-			if (ERROR_CODES[error.response.status]) {
-				switch (error.response.status) {
-					case error.response.status:
-						return message.error(ERROR_CODES[error.response.status]);
+		const { status } = error.response;
+		if (error.response && status > 400 && status < 600) {
+			if (ERROR_CODES[status]) {
+				switch (status) {
+					case status:
+						return message.error(ERROR_CODES[status]);
 					default:
 						return message.error("系统异常,请稍后再试！");
 				}

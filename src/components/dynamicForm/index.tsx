@@ -1,6 +1,9 @@
 import React from "react";
 import { DatePicker, Form, Input, Select } from "antd";
 
+const { TextArea } = Input;
+const { RangePicker } = DatePicker;
+
 interface formConfig {
 	formList: Array<any>;
 	column?: number;
@@ -15,11 +18,15 @@ const DynamicForm = (props: formConfig) => {
 	const renderForm = (item: any) => {
 		switch (item.type) {
 			case "input":
-				return <Input></Input>;
+				return <Input />;
+			case "textArea":
+				return <TextArea />;
 			case "select":
-				return <Select></Select>;
+				return <Select />;
 			case "date":
-				return <DatePicker></DatePicker>;
+				return <DatePicker />;
+			case "rangePicker":
+				return <RangePicker />;
 			default:
 				return <></>;
 		}

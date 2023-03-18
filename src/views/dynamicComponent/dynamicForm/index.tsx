@@ -21,6 +21,7 @@ const Index = () => {
 						"当前动态表单可适用于简单大量重复的业务场景,比如搜索场景如有复杂场景,可选用专业表单组件，或者需要根据业务需求去进一步封装表单组件"
 					}
 					type={"info"}
+					showIcon
 				/>
 
 				<Row className={"dynamic-form"}>

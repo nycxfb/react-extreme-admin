@@ -8,6 +8,9 @@ const AuthRoute = (props: { children: JSX.Element }) => {
 	const routePath = generateRoutePath(asyncRoutes);
 	const token = localStorage.getItem("token");
 
+	//路由白名单
+	const whiteList = ["/login", "/test"];
+
 	if (token) {
 		if (routePath.includes(pathname)) {
 			return props.children;
@@ -21,10 +24,10 @@ const AuthRoute = (props: { children: JSX.Element }) => {
 			}
 		}
 	} else {
-		if (pathname == "/login") {
+		if (whiteList.includes(pathname)) {
 			return props.children;
 		} else {
-			return <Navigate to="/login" replace />;
+			return <Navigate to={"/login"} replace />;
 		}
 	}
 };

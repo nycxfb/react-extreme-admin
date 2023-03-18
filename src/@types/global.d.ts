@@ -1,5 +1,3 @@
-import React from "react";
-
-export interface componentProps {
+interface componentProps {
 	children: React.ReactNode;
 }

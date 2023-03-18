@@ -1,15 +1,28 @@
 import React from "react";
-import { Card } from "antd";
-import "./index.module.less";
+import { Card, Col, Row } from "antd";
+import style from "./index.module.less";
 
-interface Props {
-	children: React.ReactNode;
+interface Props extends componentProps {
+	extra?: React.ReactNode;
 }
 
-const BaseFormCard = (props: Props) => {
-	const { children } = props;
+const SearchFormCard = (props: Props) => {
+	const { children, extra } = props;
 
-	return <Card>{children}</Card>;
+	return (
+		<section className={style["search-form"]}>
+			<Card>
+				<Row>
+					<Col span={18} className={"search-form-item"}>
+						{children}
+					</Col>
+					<Col className={"search-form-button"} span={6}>
+						{extra}
+					</Col>
+				</Row>
+			</Card>
+		</section>
+	);
 };
 
-export default BaseFormCard;
+export default SearchFormCard;

@@ -1,7 +1,7 @@
 const list = [
 	{
 		key: "name",
-		label: "黎明",
+		label: "姓名",
 		type: "input",
 		checked: false
 	},

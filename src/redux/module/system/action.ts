@@ -3,6 +3,11 @@ export const toggleLanguage = (language: string) => ({
 	language
 });
 
+export const toggleMenuTheme = (menuTheme: string) => ({
+	type: "TOGGLE_MENU_THEME",
+	menuTheme
+});
+
 export const toggleTagPart = (status: boolean) => ({
 	type: "TOGGLE_TAG_PART",
 	status

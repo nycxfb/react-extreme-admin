@@ -1,6 +1,7 @@
 import React from "react";
 import { GithubOutlined } from "@ant-design/icons";
 import "./index.module.less";
+import { Layout } from "antd";
 
 const Footer = () => {
 	return (

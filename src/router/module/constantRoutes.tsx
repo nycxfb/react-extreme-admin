@@ -1,7 +1,7 @@
+import React from "react";
 import { baseRouter } from "@/router/interface";
 import { Navigate } from "react-router-dom";
 import Login from "@/views/login";
-import React from "react";
 
 const constantRouter: baseRouter[] = [
 	{

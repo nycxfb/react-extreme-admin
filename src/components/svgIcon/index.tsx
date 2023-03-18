@@ -9,9 +9,14 @@ interface svgProps {
 }
 
 const SvgIcon = (props: svgProps) => {
-	const { iconClass, width, height, cursor } = props;
+	const { iconClass, cursor, width, height } = props;
+
 	return (
-		<svg aria-hidden="true" className="svg-icon" style={{ width: width, height: height, cursor: cursor }}>
+		<svg
+			aria-hidden="true"
+			className="svg-icon"
+			style={{ width: width, height: height, cursor: cursor }}
+		>
 			<use xlinkHref={"#icon-" + iconClass} />
 		</svg>
 	);

@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "antd";
 import SvgIcon from "@/components/svgIcon";
+import "./index.module.less";
 
 const cardList = [
 	{
@@ -34,13 +35,13 @@ const PartA = () => {
 	return (
 		<>
 			{cardList.map(cardItem => (
-				<Card>
+				<div className={"card-item"} key={cardItem.key}>
 					<SvgIcon width={80} height={80} iconClass={cardItem.iconName} />
 					<div className={"right-part"}>
-						<span>{cardItem.title}</span>
-						<span>{cardItem.number}</span>
+						<span className={"title"}>{cardItem.title}</span>
+						<span className={"number"}>{cardItem.number}</span>
 					</div>
-				</Card>
+				</div>
 			))}
 		</>
 	);

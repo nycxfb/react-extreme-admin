@@ -53,7 +53,7 @@ const header = (state: headerState = headerState, action: AnyAction) =>
 				break;
 
 			case "DELETE_ALL_TAGS":
-				draftSate.tags.length = 0;
+				draftSate.tags.splice(1, draftSate.tags.length - 1);
 				break;
 
 			case "TOGGLE_BREADCRUMB":

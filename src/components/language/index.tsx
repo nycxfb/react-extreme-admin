@@ -9,7 +9,7 @@ const Language = () => {
 	const items: MenuProps["items"] = [
 		{
 			key: "1",
-			disabled: i18n.language === "en" ? false : true,
+			disabled: i18n.language !== "en",
 			label: (
 				<span
 					onClick={async () => {
@@ -22,7 +22,7 @@ const Language = () => {
 		},
 		{
 			key: "2",
-			disabled: i18n.language === "zh" ? false : true,
+			disabled: i18n.language !== "zh",
 			label: (
 				<span
 					onClick={async () => {

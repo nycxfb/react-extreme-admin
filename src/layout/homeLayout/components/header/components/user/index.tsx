@@ -4,7 +4,9 @@ import { Avatar, Dropdown, Modal, Button } from "antd";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { userLogOut } from "@/redux/module/user/action";
-import "./index.less";
+import Cookies from "js-cookie";
+import owl from "@/assets/image/owl.png";
+import "./index.module.less";
 
 const User = (props: any) => {
 	const [avatar, setAvatar] = useState<string>("");
@@ -15,7 +17,8 @@ const User = (props: any) => {
 	const { userLogOut } = props;
 
 	useEffect(() => {
-		setAvatar(localStorage.getItem("avatar") || "");
+		// setAvatar(localStorage.getItem("avatar") || owl);
+		setAvatar(owl);
 		setUserName(localStorage.getItem("userName") || "");
 	}, []);
 
@@ -23,6 +26,7 @@ const User = (props: any) => {
 		setVisible(true);
 		sessionStorage.clear();
 		localStorage.clear();
+		Cookies.remove("sidebarStatus");
 		userLogOut();
 		navigate("/login");
 	};
@@ -69,7 +73,7 @@ const User = (props: any) => {
 	return (
 		<>
 			<Dropdown menu={{ items }} trigger={["click"]} placement="bottom">
-				<Avatar size={30} src={avatar} />
+				<Avatar size={25} src={avatar} />
 			</Dropdown>
 			<Modal
 				title="温馨提示"

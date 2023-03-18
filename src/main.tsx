@@ -6,10 +6,15 @@ import { store } from "@/redux";
 import "@/styles/common.less";
 import { StyleProvider, legacyLogicalPropertiesTransformer } from "@ant-design/cssinjs";
 import "@/i18n/config";
-import { ThemeProvider, ColorModeProvider } from "@chakra-ui/react";
+import "@/styles/transition.less";
+
+import microApp from "@micro-zoe/micro-app";
+
+microApp.start();
 
 // 引入全部svg供全局使用
-let importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
+let importAll = (requireContext: __WebpackModuleApi.RequireContext) =>
+	requireContext.keys().forEach(requireContext);
 
 try {
 	importAll(require.context("./assets/svg", true, /\.svg$/));

@@ -6,7 +6,7 @@ const Publish = () => {
 	const messageRef = useRef<any>(null);
 
 	useEffect(() => {
-		messageRef.current.input.value = "你是清风上的明月，枫林间的鸟雀!";
+		messageRef.current.input.value = "愿我如星君如月,夜夜流光相皎洁。";
 	}, []);
 
 	const publishMessage = () => {

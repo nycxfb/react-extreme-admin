@@ -60,7 +60,6 @@ const Tags = (props: any) => {
 				<span
 					onClick={() => {
 						deleteAll();
-						navigate("/home/index");
 					}}
 				>
 					{t("tagContextmenu.closeAll")}
@@ -83,6 +82,7 @@ const Tags = (props: any) => {
 
 	const deleteAll = () => {
 		deleteAllTags();
+		navigate("/home/index");
 	};
 
 	const toTargetPage = (tagItem: tagItem) => {
@@ -93,7 +93,12 @@ const Tags = (props: any) => {
 		<>
 			{tags.map((tagItem: tagItem) => {
 				return (
-					<Dropdown menu={{ items }} trigger={["contextMenu"]} placement="bottom" key={tagItem.path}>
+					<Dropdown
+						menu={{ items }}
+						trigger={["contextMenu"]}
+						placement="bottom"
+						key={tagItem.path}
+					>
 						<Tag
 							onContextMenu={e => {
 								setContextTag(tagItem);

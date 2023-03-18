@@ -1,10 +1,15 @@
 import React from "react";
-import { Card } from "antd";
+import { Alert, Card } from "antd";
 
 const StrongRelationship = () => {
 	return (
 		<Card>
-			<span>当页面内容联系较强时,页面操作内容应该尽量展示在同一个页面内</span>
+			<Alert
+				closable
+				message={
+					"当页面内容联系较强时,页面操作内容较少,应该以弹窗形式展示在同一个页面内完成操作，避免用户视觉焦点离开！"
+				}
+			/>
 		</Card>
 	);
 };

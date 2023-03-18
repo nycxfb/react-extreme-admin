@@ -58,4 +58,20 @@ const generateTagName = (routes: any, path: string, tag: {} = {}) => {
 	return tag;
 };
 
-export { generateRoutePath, generateBreadcrumb, generateTagName };
+/**
+ * @author nycxfb
+ * @date 2023-02-27 14:38:43
+ * @description:生成父级菜单路径数组
+ */
+
+const generateSubmenuPath = (routes: any, submenuArr: any = []) => {
+	routes.forEach((routeItem: any) => {
+		if (routeItem.children && routeItem.children.length > 1) {
+			submenuArr.push(routeItem.path);
+		}
+	});
+
+	return submenuArr;
+};
+
+export { generateRoutePath, generateBreadcrumb, generateTagName, generateSubmenuPath };

@@ -9,12 +9,21 @@ import { toggleBreadcrumb, addVisitTag, toggleVisitTag } from "@/redux/module/he
 import asyncRoutes from "@/router/module/asyncRoutes";
 import { generateBreadcrumb, generateTagName } from "@/router/util/handleRoute";
 import "./index.less";
+import { CSSTransition, TransitionGroup, SwitchTransition } from "react-transition-group";
 
 const { Sider, Content } = Layout;
 
 const HomeLayout: React.FC = (props: any) => {
 	const { pathname } = useLocation();
-	const { isCollapse, toggleBreadcrumb, addVisitTag, toggleVisitTag, isShowLogo, isShowFooter } = props;
+	const {
+		isCollapse,
+		menuTheme,
+		toggleBreadcrumb,
+		addVisitTag,
+		toggleVisitTag,
+		isShowLogo,
+		isShowFooter
+	} = props;
 
 	//根据路径变化处理面包屑、标签等配置
 	useEffect(() => {
@@ -27,15 +36,34 @@ const HomeLayout: React.FC = (props: any) => {
 
 	return (
 		<>
-			<Layout>
-				<Sider trigger={null} collapsible collapsed={isCollapse}>
+			<Layout
+				style={{
+					height: "100vh",
+					left: 0,
+					top: 0,
+					bottom: 0
+				}}
+			>
+				<Sider
+					trigger={null}
+					collapsible
+					collapsed={isCollapse}
+					className={menuTheme == "light" ? "light-theme" : ""}
+					width={210}
+				>
 					{isShowLogo && <Logo />}
 					<HomeMenu />
 				</Sider>
 				<Layout>
 					<HomeHeader />
 					<Content>
+						{/*<TransitionGroup>*/}
+						{/*	<SwitchTransition mode="out-in">*/}
+						{/*		<CSSTransition key={pathname} timeout={300} classNames="fade" nodeRef={null}>*/}
 						<Outlet />
+						{/*		</CSSTransition>*/}
+						{/*	</SwitchTransition>*/}
+						{/*</TransitionGroup>*/}
 					</Content>
 					{isShowFooter && <Footer />}
 				</Layout>

@@ -80,7 +80,7 @@ const UserFormDialog = forwardRef((props: any, ref) => {
 		if (type === "edit") {
 			setImageUrl(record.avatarUrl);
 			formRef.current.setFieldsValue({
-				userName: record.userName,
+				nickname: record.nickname,
 				phone: record.phone,
 				address: record.address,
 				age: record.age
@@ -128,7 +128,7 @@ const UserFormDialog = forwardRef((props: any, ref) => {
 			]}
 		>
 			<Form ref={formRef} form={form} labelCol={{ span: 4 }}>
-				<Form.Item label="姓名" name="userName">
+				<Form.Item label="昵称" name="nickname">
 					<Input></Input>
 				</Form.Item>
 				<Form.Item label="手机" name="phone">
@@ -149,7 +149,11 @@ const UserFormDialog = forwardRef((props: any, ref) => {
 						beforeUpload={beforeUpload}
 						onChange={handleChange}
 					>
-						{imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: "100%" }} /> : uploadButton}
+						{imageUrl ? (
+							<img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+						) : (
+							uploadButton
+						)}
 					</Upload>
 				</Form.Item>
 			</Form>
