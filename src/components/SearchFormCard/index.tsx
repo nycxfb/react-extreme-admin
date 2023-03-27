@@ -13,12 +13,17 @@ const SearchFormCard = (props: Props) => {
 		<section className={style["search-form"]}>
 			<Card>
 				<Row>
-					<Col span={18} className={"search-form-item"}>
+					<Col
+						span={extra ? 18 : 24}
+						className={extra ? "search-form-item-3" : "search-form-item-4"}
+					>
 						{children}
 					</Col>
-					<Col className={"search-form-button"} span={6}>
-						{extra}
-					</Col>
+					{extra && (
+						<Col className={"search-form-button"} span={6}>
+							{extra}
+						</Col>
+					)}
 				</Row>
 			</Card>
 		</section>

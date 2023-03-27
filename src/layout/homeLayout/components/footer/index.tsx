@@ -1,11 +1,10 @@
 import React from "react";
 import { GithubOutlined } from "@ant-design/icons";
-import "./index.module.less";
-import { Layout } from "antd";
+import style from "./index.module.less";
 
 const Footer = () => {
 	return (
-		<div className={"footer"}>
+		<div className={style.footer}>
 			<a href={"https://github.com/nycxfb/react-extreme-admin"}>
 				<GithubOutlined />
 			</a>

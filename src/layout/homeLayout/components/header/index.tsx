@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Row, Col } from "antd";
 import { Breadcrumbs, Tags, User, SwitchButton, FullScreen, Setting } from "./components/index";
 import Language from "@/components/language";
-import "./index.less";
+import style from "./index.module.less";
 
 const HomeHeader = (props: any) => {
 	const { isShowTag, isShowBreadcrumb } = props;
@@ -15,7 +15,7 @@ const HomeHeader = (props: any) => {
 	};
 
 	return (
-		<div className="header-wrapper">
+		<div className={style["header-wrapper"]}>
 			<Row className="header-A">
 				<Col span={19} className={"left-part"}>
 					<SwitchButton />

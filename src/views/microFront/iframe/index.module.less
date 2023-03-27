@@ -13,9 +13,25 @@
 			display: flex;
 			.left-base {
 				flex: 1;
+				min-height: 490px;
+				max-height: 500px;
+				overflow-y: scroll;
+				.classification_wrapper{
+					.classification_item{
+						display: inline-block;
+						padding: 10px;
+						cursor: pointer;
+					}
+				}
+				.news_wrapper{
+					.news_item{
+						margin-bottom: 10px;
+					}
+				}
 			}
 			iframe {
 				flex: 1;
+
 			}
 		}
 	}

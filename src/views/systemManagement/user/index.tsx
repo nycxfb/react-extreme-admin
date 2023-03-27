@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Card, Form, Input, Row, Col, Space, Table, Tag, Button, Avatar, Select } from "antd";
+import { SearchOutlined, RedoOutlined } from "@ant-design/icons";
 import type { ColumnsType } from "antd/es/table";
 import { http_user_list, http_user_delete } from "@/api/systemManagement/user";
 import UserFormDialog from "./components/userFormDialog";
@@ -93,7 +94,7 @@ const User: React.FC = () => {
 
 	const getUserList = async () => {
 		setLoading(true);
-		const res = await http_user_list(null);
+		const res = await http_user_list(form.getFieldsValue());
 		const userList = res.data;
 		userList.forEach((item: any) => {
 			Object.assign(item, { key: item.userId });
@@ -115,6 +116,7 @@ const User: React.FC = () => {
 
 	const resetForm = () => {
 		form.resetFields();
+		getUserList();
 	};
 
 	return (
@@ -124,22 +126,29 @@ const User: React.FC = () => {
 				<SearchFormCard
 					extra={
 						<>
-							<Button style={{ margin: "0 20px 0 40px" }} type="primary" onClick={getUserList}>
+							<Button
+								icon={<SearchOutlined />}
+								style={{ margin: "0 20px 0 40px" }}
+								type="primary"
+								onClick={getUserList}
+							>
 								查询
 							</Button>
-							<Button onClick={resetForm}>重置</Button>
+							<Button icon={<RedoOutlined />} onClick={resetForm}>
+								重置
+							</Button>
 						</>
 					}
 				>
 					<Form labelCol={{ span: 7 }} form={form}>
 						<Form.Item label="昵称" name={"nickname"}>
-							<Input></Input>
+							<Input allowClear></Input>
 						</Form.Item>
 						<Form.Item label="手机" name={"phone"}>
-							<Input></Input>
+							<Input allowClear></Input>
 						</Form.Item>
 						<Form.Item label="状态">
-							<Input></Input>
+							<Input allowClear></Input>
 						</Form.Item>
 						<Form.Item label="角色">
 							<Select

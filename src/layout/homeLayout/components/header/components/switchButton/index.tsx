@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { toggleSideMenu } from "@/redux/module/menu/action";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import "./index.less";
+import style from "./index.module.less";
 
 const SwitchButton = (props: any) => {
 	const { isCollapse, toggleSideMenu } = props;
@@ -10,7 +10,7 @@ const SwitchButton = (props: any) => {
 		toggleSideMenu(!isCollapse);
 	};
 	return (
-		<div className="switch-button" onClick={ontoggle}>
+		<div className={style["switch-button"]} onClick={ontoggle}>
 			{props.isCollapse ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
 		</div>
 	);

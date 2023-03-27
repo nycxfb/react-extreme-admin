@@ -3,7 +3,6 @@ import { merge } from "webpack-merge";
 import { oraPromise } from "ora";
 import baseConfig from "../config/webpack.common.cjs";
 import prodConfig from "../config/webapck.prod.cjs";
-
 import {errLog} from './utils/log.cjs'
 
 const compilesTasks = Promise.all([

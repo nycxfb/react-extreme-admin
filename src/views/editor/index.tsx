@@ -1,4 +1,4 @@
-import "@wangeditor/editor/dist/css/style.css"; // 引入 css
+// import "@wangeditor/editor/dist/css/style.css"; // 引入 css
 
 import React, { useState, useEffect } from "react";
 import { Editor, Toolbar } from "@wangeditor/editor-for-react";
@@ -42,7 +42,12 @@ function MyEditor() {
 	return (
 		<>
 			<div style={{ border: "1px solid #ccc", zIndex: 100 }}>
-				<Toolbar editor={editor} defaultConfig={toolbarConfig} mode="default" style={{ borderBottom: "1px solid #ccc" }} />
+				<Toolbar
+					editor={editor}
+					defaultConfig={toolbarConfig}
+					mode="default"
+					style={{ borderBottom: "1px solid #ccc" }}
+				/>
 				<Editor
 					defaultConfig={editorConfig}
 					value={html}

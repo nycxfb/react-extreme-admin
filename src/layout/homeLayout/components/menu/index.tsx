@@ -3,18 +3,13 @@ import { connect } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Menu } from "antd";
 import type { MenuProps } from "antd";
-import { SettingOutlined, BankOutlined } from "@ant-design/icons";
+import * as Icons from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import asyncRoutes from "@/router/module/asyncRoutes";
 import { toggleTags, addVisitTag } from "@/redux/module/header/action";
 import { generateSubmenuPath } from "@/router/util/handleRoute";
-import { baseRouter } from "@/router/interface";
 import SvgIcon from "@/components/svgIcon";
-import Icon from "@ant-design/icons";
-import "./index.module.less";
-import * as Icons from "@ant-design/icons";
-import NProgress from "nprogress";
-import { log } from "echarts/types/src/util/log";
+import style from "./index.module.less";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -109,7 +104,7 @@ const HomeMenu: React.FC = (props: any) => {
 		});
 
 	return (
-		<section className="menu">
+		<section className={style.menu}>
 			<Menu
 				mode="inline"
 				theme={menuTheme}

@@ -8,8 +8,8 @@ import request from "@/utils/request";
 export function http_user_list(params: any) {
 	return request({
 		url: "/api/system/user/list",
-		method: "get",
-		params
+		method: "post",
+		data: params
 	});
 }
 

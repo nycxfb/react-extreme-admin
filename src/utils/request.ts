@@ -50,6 +50,7 @@ service.interceptors.response.use(
 	error => {
 		// 处理请求异常
 		const { status } = error.response;
+		0;
 		if (error.response && status > 400 && status < 600) {
 			if (ERROR_CODES[status]) {
 				switch (status) {

@@ -78,7 +78,7 @@ export function validateEmail(value: string) {
  * @date 2023-03-05 22:41:04
  * @description:验证非零的正实数,保留两位小数
  */
-export function validatIntegral(value: string) {
+export function validateIntegral(value: string) {
 	const reg = /^([+ \-]?(([1-9]\d*)|(0)))([.]\d{0,2})?$/;
 	const result = reg.test(value);
 	return result;

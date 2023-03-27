@@ -3,22 +3,17 @@ import devServer from 'webpack-dev-server'
 import {merge} from 'webpack-merge'
 import baseConfig from '../config/webpack.common.cjs'
 import devConfig from "../config/webpack.dev.cjs"
+import proxyConfig from '../config/proxy.config.mjs'
 import chalk from 'chalk'
 
 import {infoLog, errLog, doneLog, statsLog} from "./utils/log.cjs"
 
+
 infoLog('>本地开发服务启动中')
+
+
 const compiler = webpack(merge(baseConfig, devConfig))
-const server = new devServer({
-  proxy: {
-    '/api': {
-      target: 'http://localhost:3000',
-      pathRewrite: {"/api": ""},
-      changeOrigin: true,
-      open: true,
-    }
-  }
-}, compiler)
+const server = new devServer(proxyConfig,compiler)
 
 compiler.hooks.watchRun.tap('serve', () => {
   infoLog('>代码编译中')
@@ -37,7 +32,7 @@ compiler.hooks.done.tap('serve', stats => {
   doneLog(`本地开发服务准备就绪
   -本地访问地址: ${chalk.cyan(`http://localhost:8080/`)}
   -网络访问地址:${chalk.cyan(`http://172.31.134.187:8080/`)}`
-    )
+  )
 
 })
 

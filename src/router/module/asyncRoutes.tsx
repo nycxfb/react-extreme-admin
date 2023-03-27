@@ -21,23 +21,23 @@ const asyncRoutes: baseRouter[] = [
 			}
 		]
 	},
-	{
-		path: "/workbench",
-		element: <HomeLayout />,
-		meta: {
-			title: "workbench"
-		},
-		children: [
-			{
-				path: "/workbench/index",
-				element: lazyLoad(() => import("@/views/workbench")),
-				meta: {
-					title: "workbench",
-					icon: "RobotOutlined"
-				}
-			}
-		]
-	},
+	// {
+	// 	path: "/workbench",
+	// 	element: <HomeLayout />,
+	// 	meta: {
+	// 		title: "workbench"
+	// 	},
+	// 	children: [
+	// 		{
+	// 			path: "/workbench/index",
+	// 			element: lazyLoad(() => import("@/views/workbench")),
+	// 			meta: {
+	// 				title: "workbench",
+	// 				icon: "RobotOutlined"
+	// 			}
+	// 		}
+	// 	]
+	// },
 	{
 		path: "/systemManagement",
 		element: <HomeLayout />,
@@ -214,13 +214,13 @@ const asyncRoutes: baseRouter[] = [
 					title: "iframe"
 				}
 			},
-			{
-				path: "/microFront/qiankun",
-				element: lazyLoad(() => import("@/views/microFront/qiankun")),
-				meta: {
-					title: "qiankun"
-				}
-			},
+			// {
+			// 	path: "/microFront/qiankun",
+			// 	element: lazyLoad(() => import("@/views/microFront/qiankun")),
+			// 	meta: {
+			// 		title: "qiankun"
+			// 	}
+			// },
 			{
 				path: "/microFront/microApp",
 				element: lazyLoad(() => import("@/views/microFront/microApp")),
@@ -243,6 +243,24 @@ const asyncRoutes: baseRouter[] = [
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
 					title: "largeScreenDisplay",
+					icon: "FundOutlined"
+				}
+			}
+		]
+	},
+
+	{
+		path: "/formatCheck",
+		element: <HomeLayout />,
+		meta: {
+			title: "formatCheck"
+		},
+		children: [
+			{
+				path: "/formatCheck/index",
+				element: lazyLoad(() => import("@/views/demo")),
+				meta: {
+					title: "formatCheck",
 					icon: "FundOutlined"
 				}
 			}
