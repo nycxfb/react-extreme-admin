@@ -88,8 +88,6 @@ const User: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [userList, setUserList] = useState<DataType[]>([]);
 
-	const eeeeeeeeeeeee = "666666";
-
 	useMount(() => {
 		getUserList();
 	});

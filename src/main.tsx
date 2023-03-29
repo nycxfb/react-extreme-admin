@@ -12,6 +12,7 @@ import microApp from "@micro-zoe/micro-app";
 
 microApp.start();
 
+const a = 1111;
 // 引入全部svg供全局使用
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) =>
 	requireContext.keys().forEach(requireContext);
