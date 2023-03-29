@@ -2,6 +2,7 @@ import React, { forwardRef, useImperativeHandle, useRef, useState } from "react"
 import { Alert, Button, Card, Col, Divider, Form, Row, Select } from "antd";
 import DynamicForm from "@/components/dynamicForm";
 import ConfigDialog from "./components/configDialog";
+import Tips from "@/components/tips";
 import "./index.module.less";
 
 const Index = () => {
@@ -15,15 +16,12 @@ const Index = () => {
 	};
 	return (
 		<div className={"dynamic-container"}>
+			<Tips
+				message={
+					"当前动态表单可适用于简单大量重复的业务场景,比如搜索场景如有复杂场景,可选用专业表单组件，或者需要根据业务需求去进一步封装表单组件"
+				}
+			/>
 			<Card title={"动态表单"}>
-				<Alert
-					message={
-						"当前动态表单可适用于简单大量重复的业务场景,比如搜索场景如有复杂场景,可选用专业表单组件，或者需要根据业务需求去进一步封装表单组件"
-					}
-					type={"info"}
-					showIcon
-				/>
-
 				<Row className={"dynamic-form"}>
 					<Col span={17}>
 						<DynamicForm formList={formList} />

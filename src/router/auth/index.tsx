@@ -1,9 +1,9 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import asyncRoutes from "@/router/module/asyncRoutes";
 import { generateRoutePath } from "@/router/util/handleRoute";
 
-const AuthRoute = (props: { children: JSX.Element }) => {
+const AuthRoute = (props: { children: ReactElement }) => {
 	const { pathname } = useLocation();
 	const routePath = generateRoutePath(asyncRoutes);
 	const token = localStorage.getItem("token");

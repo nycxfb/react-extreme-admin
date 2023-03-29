@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Card, Form, Input, Row, Col, Space, Table, Tag, Button, Avatar, Select } from "antd";
-import { SearchOutlined, RedoOutlined } from "@ant-design/icons";
+import { SearchOutlined, SyncOutlined } from "@ant-design/icons";
 import type { ColumnsType } from "antd/es/table";
 import { http_user_list, http_user_delete } from "@/api/systemManagement/user";
 import UserFormDialog from "./components/userFormDialog";
@@ -134,7 +134,7 @@ const User: React.FC = () => {
 							>
 								查询
 							</Button>
-							<Button icon={<RedoOutlined />} onClick={resetForm}>
+							<Button icon={<SyncOutlined />} onClick={resetForm}>
 								重置
 							</Button>
 						</>

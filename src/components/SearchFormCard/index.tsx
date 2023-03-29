@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Col, Row } from "antd";
 import style from "./index.module.less";
+import { componentProps } from "@/@types/global";
 
 interface Props extends componentProps {
 	extra?: React.ReactNode;

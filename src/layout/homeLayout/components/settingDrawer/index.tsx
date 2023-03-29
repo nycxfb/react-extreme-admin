@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Button, Checkbox, Divider, Drawer, Form, Switch } from "antd";
+import { Divider, Drawer, Form, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { toggleDrawer } from "@/redux/module/header/action";
+import { store } from "@/redux";
+import { CheckOutlined } from "@ant-design/icons";
+
 import {
 	toggleBreadcrumbPart,
 	toggleTagPart,
@@ -10,13 +13,8 @@ import {
 	toggleFooterPart,
 	toggleMenuTheme
 } from "@/redux/module/system/action";
-import type { CheckboxChangeEvent } from "antd/es/checkbox";
-import type { CheckboxValueType } from "antd/es/checkbox/Group";
 
-const CheckboxGroup = Checkbox.Group;
-
-const plainOptions = ["Apple", "Pear", "Orange"];
-const defaultCheckedList = ["Apple", "Orange"];
+import style from "./index.module.less";
 
 const SettingDrawer = (props: any) => {
 	const {
@@ -32,6 +30,8 @@ const SettingDrawer = (props: any) => {
 		isShowFooter,
 		toggleMenuTheme
 	} = props;
+
+	const [theme, setTheme] = useState(store.getState().system.menuTheme);
 	const { t } = useTranslation();
 
 	const closeDrawer = () => {
@@ -55,22 +55,7 @@ const SettingDrawer = (props: any) => {
 
 	const changeColor = (theme: string) => {
 		toggleMenuTheme(theme);
-	};
-
-	const [checkedList, setCheckedList] = useState<CheckboxValueType[]>(defaultCheckedList);
-	const [indeterminate, setIndeterminate] = useState(true);
-	const [checkAll, setCheckAll] = useState(false);
-
-	const onChange = (list: CheckboxValueType[]) => {
-		setCheckedList(list);
-		setIndeterminate(!!list.length && list.length < plainOptions.length);
-		setCheckAll(list.length === plainOptions.length);
-	};
-
-	const onCheckAllChange = (e: CheckboxChangeEvent) => {
-		setCheckedList(e.target.checked ? plainOptions : []);
-		setIndeterminate(false);
-		setCheckAll(e.target.checked);
+		setTheme(theme);
 	};
 
 	return (
@@ -81,33 +66,24 @@ const SettingDrawer = (props: any) => {
 			open={drawerVisible}
 		>
 			<Divider>{t("setting.menuColor")}</Divider>
-
-			<Button
-				type={"text"}
-				onClick={() => {
-					changeColor("light");
-				}}
-			>
-				白色
-			</Button>
-			<Button
-				type={"text"}
-				onClick={() => {
-					changeColor("dark");
-				}}
-			>
-				黑色
-			</Button>
-			{/*<Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>*/}
-			{/*	Check all*/}
-			{/*</Checkbox>*/}
-			{/*<Divider />*/}
-			{/*<CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} />*/}
-			{/*<Divider />*/}
-
-			{/*<CheckboxGroup options={plainOptions1} value={checkedList} onChange={onChange} />*/}
-			{/*<CheckboxGroup options={plainOptions2} value={checkedList} onChange={onChange} />*/}
-
+			<div className={style["menu-color"]}>
+				<div
+					className={["white", theme == "light" ? "\n border" : null].join("")}
+					onClick={() => {
+						changeColor("light");
+					}}
+				>
+					{theme === "light" && <CheckOutlined />}
+				</div>
+				<div
+					className={"black"}
+					onClick={() => {
+						changeColor("dark");
+					}}
+				>
+					{theme === "dark" && <CheckOutlined />}
+				</div>
+			</div>
 			<Divider>{t("setting.uiSetting")}</Divider>
 			<Form colon={false} labelCol={{ span: 20 }} labelAlign="left">
 				<Form.Item label={t("setting.showTag")}>

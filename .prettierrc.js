@@ -1,5 +1,3 @@
-// @see: https://www.prettier.cn
-
 module.exports = {
 	printWidth: 100,
 	tabWidth: 2,

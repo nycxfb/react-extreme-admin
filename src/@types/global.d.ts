@@ -1,3 +1,5 @@
+import React from "react";
+
 interface componentProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 }

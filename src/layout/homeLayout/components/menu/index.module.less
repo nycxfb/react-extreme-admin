@@ -1,32 +1,30 @@
+.menu {
+	height: calc(100% - 80px);
+	overflow-y: scroll;
+	scrollbar-width: none;
+}
 
-  .menu {
-    height: calc(100% - 80px);
-    overflow-y: scroll;
-    scrollbar-width: none;
-  }
+.menu::-webkit-scrollbar {
+	width: 5px;
+}
 
-  .menu::-webkit-scrollbar {
-    width: 5px;
-  }
+.menu::-webkit-scrollbar-track {
+	border-radius: 8px;
+}
 
-  .menu::-webkit-scrollbar-track {
-    border-radius: 8px;
-  }
+.menu::-webkit-scrollbar-thumb {
+	background: rgba(200, 201, 203, 0.75);
 
-  .menu::-webkit-scrollbar-thumb {
-    background: rgba(200, 201, 203, 0.75);
+	border-radius: 10px;
+}
 
-    border-radius: 10px;
-  }
+.menu::-webkit-scrollbar-thumb:hover {
+	background: rgba(200, 201, 203, 0.75);
 
-  .menu::-webkit-scrollbar-thumb:hover {
-    background: rgba(200, 201, 203, 0.75);
+	border-radius: 10px;
+}
 
-    border-radius: 10px;
-  }
-
-  .menu::-webkit-scrollbar-thumb:active {
-    background: rgba(200, 201, 203, 0.75);
-    border-radius: 10px;
-  }
-
+.menu::-webkit-scrollbar-thumb:active {
+	background: rgba(200, 201, 203, 0.75);
+	border-radius: 10px;
+}

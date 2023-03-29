@@ -11,18 +11,15 @@ import { generateSubmenuPath } from "@/router/util/handleRoute";
 import SvgIcon from "@/components/svgIcon";
 import style from "./index.module.less";
 
-type MenuItem = Required<MenuProps>["items"][number];
-
 const HomeMenu: React.FC = (props: any) => {
-	const [menuData, setMenuData] = useState<MenuItem[]>([]);
+	const { menuTheme } = props;
+
 	const [openKeys, setOpenKeys] = useState<string[]>([""]);
 	const [rootSubmenuKeys, setRootSubmenuKeys] = useState<string[]>([]);
 
-	const { menuTheme } = props;
-
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 
 	const [selectedKeys, setSelectKeys] = useState<string[]>([pathname]);
 

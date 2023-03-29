@@ -21,23 +21,6 @@ const asyncRoutes: baseRouter[] = [
 			}
 		]
 	},
-	// {
-	// 	path: "/workbench",
-	// 	element: <HomeLayout />,
-	// 	meta: {
-	// 		title: "workbench"
-	// 	},
-	// 	children: [
-	// 		{
-	// 			path: "/workbench/index",
-	// 			element: lazyLoad(() => import("@/views/workbench")),
-	// 			meta: {
-	// 				title: "workbench",
-	// 				icon: "RobotOutlined"
-	// 			}
-	// 		}
-	// 	]
-	// },
 	{
 		path: "/systemManagement",
 		element: <HomeLayout />,
@@ -160,6 +143,63 @@ const asyncRoutes: baseRouter[] = [
 		]
 	},
 	{
+		path: "/microFront",
+		element: <HomeLayout />,
+		meta: {
+			title: "microFront",
+			icon: "PicRightOutlined"
+		},
+		children: [
+			{
+				path: "/microFront/iframe",
+				element: lazyLoad(() => import("@/views/microFront/iframe")),
+				meta: {
+					title: "iframe"
+				}
+			},
+			// {
+			// 	path: "/microFront/qiankun",
+			// 	element: lazyLoad(() => import("@/views/microFront/qiankun")),
+			// 	meta: {
+			// 		title: "qiankun"
+			// 	}
+			// },
+			{
+				path: "/microFront/microApp",
+				element: lazyLoad(() => import("@/views/microFront/microApp")),
+				meta: {
+					title: "microApp"
+				}
+			}
+		]
+	},
+	{
+		path: "/frontUtils",
+		element: <HomeLayout />,
+		meta: {
+			title: "frontUtils",
+			icon: "PicRightOutlined"
+		},
+		children: [
+			{
+				path: "/frontUtils/formatCheck",
+				element: lazyLoad(() => import("@/views/frontUtils/formatCheck")),
+				meta: {
+					title: "formatCheck",
+					icon: "FundOutlined"
+				}
+			},
+			{
+				path: "/frontUtils/dataMask",
+				element: lazyLoad(() => import("@/views/frontUtils/dataMask")),
+				meta: {
+					title: "dataMask",
+					icon: "FundOutlined"
+				}
+			}
+		]
+	},
+	{
 		path: "/multiMenu",
 		element: <HomeLayout />,
 		meta: {
@@ -198,39 +238,6 @@ const asyncRoutes: baseRouter[] = [
 			}
 		]
 	},
-
-	{
-		path: "/microFront",
-		element: <HomeLayout />,
-		meta: {
-			title: "microFront",
-			icon: "PicRightOutlined"
-		},
-		children: [
-			{
-				path: "/microFront/iframe",
-				element: lazyLoad(() => import("@/views/microFront/iframe")),
-				meta: {
-					title: "iframe"
-				}
-			},
-			// {
-			// 	path: "/microFront/qiankun",
-			// 	element: lazyLoad(() => import("@/views/microFront/qiankun")),
-			// 	meta: {
-			// 		title: "qiankun"
-			// 	}
-			// },
-			{
-				path: "/microFront/microApp",
-				element: lazyLoad(() => import("@/views/microFront/microApp")),
-				meta: {
-					title: "microApp"
-				}
-			}
-		]
-	},
-
 	{
 		path: "/largeScreenDisplay",
 		element: <HomeLayout />,
@@ -243,24 +250,6 @@ const asyncRoutes: baseRouter[] = [
 				element: lazyLoad(() => import("@/views/demo")),
 				meta: {
 					title: "largeScreenDisplay",
-					icon: "FundOutlined"
-				}
-			}
-		]
-	},
-
-	{
-		path: "/formatCheck",
-		element: <HomeLayout />,
-		meta: {
-			title: "formatCheck"
-		},
-		children: [
-			{
-				path: "/formatCheck/index",
-				element: lazyLoad(() => import("@/views/demo")),
-				meta: {
-					title: "formatCheck",
 					icon: "FundOutlined"
 				}
 			}

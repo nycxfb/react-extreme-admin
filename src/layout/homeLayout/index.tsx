@@ -9,7 +9,6 @@ import { toggleBreadcrumb, addVisitTag, toggleVisitTag } from "@/redux/module/he
 import asyncRoutes from "@/router/module/asyncRoutes";
 import { generateBreadcrumb, generateTagName } from "@/router/util/handleRoute";
 import "./index.less";
-import { CSSTransition, TransitionGroup, SwitchTransition } from "react-transition-group";
 
 const { Sider, Content } = Layout;
 
@@ -57,13 +56,7 @@ const HomeLayout: React.FC = (props: any) => {
 				<Layout>
 					<HomeHeader />
 					<Content>
-						{/*<TransitionGroup>*/}
-						{/*	<SwitchTransition mode="out-in">*/}
-						{/*		<CSSTransition key={pathname} timeout={300} classNames="fade" nodeRef={null}>*/}
 						<Outlet />
-						{/*		</CSSTransition>*/}
-						{/*	</SwitchTransition>*/}
-						{/*</TransitionGroup>*/}
 					</Content>
 					{isShowFooter && <Footer />}
 				</Layout>

@@ -1,0 +1,42 @@
+@import "../../../../styles/global";
+
+.menu-color {
+	display: flex;
+	justify-content: center;
+
+	& > div {
+		width: 20px;
+		height: 20px;
+		border-radius: 5px;
+		border: 1px solid #efefef;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	:global {
+		.white {
+			background-color: #ffffff;
+			margin-right: 5px;
+			svg {
+				color: @themePurple;
+				font-weight: bold;
+			}
+		}
+
+		.black {
+			margin-left: 5px;
+			background-color: #001529;
+
+			svg {
+				color: white;
+				font-weight: bold;
+			}
+		}
+
+		.border {
+			border: 1px solid @themePurple;
+		}
+	}
+}

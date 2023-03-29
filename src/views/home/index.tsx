@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 import { SettingOutlined, CodeOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import Weather from "./components/weather";
 import PageSetting from "./components/pageSetting";
@@ -31,7 +31,7 @@ const componentsArray = [
 
 const Home: React.FC = () => {
 	return (
-		<>
+		<Spin spinning={false}>
 			<div className={style["home-container"]}>
 				<Row>
 					<Col span={16} className={"part-A"}>
@@ -51,7 +51,7 @@ const Home: React.FC = () => {
 					</Col>
 				</Row>
 			</div>
-		</>
+		</Spin>
 	);
 };
 

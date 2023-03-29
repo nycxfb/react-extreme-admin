@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SearchFormCard from "@/components/SearchFormCard";
 import type { ColumnsType } from "antd/es/table";
 import { UserOutlined, RightCircleOutlined } from "@ant-design/icons";
+import Tips from "@/components/tips";
 
 interface DataType {
 	startTime: string | number;
@@ -98,10 +99,7 @@ const WeakRelationship = () => {
 
 	return (
 		<>
-			<Alert
-				style={{ width: "80%", marginBottom: "10px" }}
-				showIcon
-				closable
+			<Tips
 				message={
 					"当页面关系联系度不高时,且需要展现的内容较多时,应该新开页面，避免造成用户视觉混乱！"
 				}

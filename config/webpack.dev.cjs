@@ -1,3 +1,4 @@
+const path = require('path')
 module.exports = {
   mode: "development",
   stats: "none",
@@ -6,7 +7,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$|\.less$/i,
-        exclude: /node_modules/,
+        exclude: path.resolve(__dirname, "../node_modules"),
         use: [
           'style-loader',
           {
