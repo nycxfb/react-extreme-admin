@@ -1,7 +1,6 @@
 const path = require('path')
 module.exports = {
   mode: "development",
-  stats: "none",
   devtool: "eval-cheap-module-source-map",
   module: {
     rules: [

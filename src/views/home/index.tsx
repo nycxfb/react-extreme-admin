@@ -30,6 +30,7 @@ const componentsArray = [
 ];
 
 const Home: React.FC = () => {
+	const b = 345;
 	return (
 		<Spin spinning={false}>
 			<div className={style["home-container"]}>

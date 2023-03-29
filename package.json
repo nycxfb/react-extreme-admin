@@ -7,10 +7,8 @@
     "build:production": "cross-env NODE_ENV=PRODUCTION  node scripts/build.mjs",
     "build:analyse": "cross-env NODE_ENV=ANALYSE  node scripts/build.mjs",
     "lint:eslint": "eslint --fix --ext .js,.ts,.tsx ./src",
-    "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,scss,html,md}\"",
-    "report": "",
-    "commit": "git-cz",
-    "test": ""
+    "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,html,md}\"",
+    "commit": "git-cz"
   },
   "keywords": [
     "react",
@@ -118,7 +116,7 @@
       "git add"
     ],
     "src/**/*.{htm,html,css,less}": [
-      "stylelint --fix",
+      "prettier --fix",
       "git add"
     ]
   }

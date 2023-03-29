@@ -24,6 +24,7 @@ const configs = {
   infrastructureLogging: {
     level: "error"
   },
+  stats: "none",
   cache: {
     type: "filesystem",     // 持久化缓存,将缓存类型设置为文件系统
     buildDependencies: {
