@@ -112,9 +112,8 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,json,vue,less}": [
-      "npm run lint:eslint",
-      "npm run lint:prettier",
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
       "git add"
     ]
   }
