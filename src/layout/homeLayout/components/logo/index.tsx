@@ -1,22 +1,20 @@
-import React from "react";
-import { connect } from "react-redux";
-import SvgIcon from "@/components/svgIcon";
+import React from 'react';
+import { connect } from 'react-redux';
+import SvgIcon from '@/components/svgIcon';
 
 const Logo = (props: any) => {
-	const { isCollapse, menuTheme } = props;
-	return (
-		<div className="side">
-			<SvgIcon iconClass="logo-new" width={35} height={35} />
-			{!isCollapse && (
-				<span className={["title-dark", menuTheme === "light" ? "\n title-white" : null].join("")}>
-					Extreme Admin
-				</span>
-			)}
-		</div>
-	);
+  const { isCollapse, menuTheme } = props;
+  return (
+    <div className="side">
+      <SvgIcon iconClass="logo-new" width={35} height={35} />
+      {!isCollapse && (
+        <span className={['title-dark', menuTheme === 'light' ? '\n title-white' : null].join('')}>Extreme Admin</span>
+      )}
+    </div>
+  );
 };
 
 const mapStateToProps = (state: any) => {
-	return { ...state.menu, ...state.system };
+  return { ...state.menu, ...state.system };
 };
 export default connect(mapStateToProps, {})(Logo);

@@ -1,9 +1,9 @@
 {
   "name": "react-extreme-admin",
   "version": "1.0.0",
-  "description": "基于 react-antd-webpack 开发的一款后台管理系统",
+  "description": "基于 react antd webpack 开发的一款后台管理系统模板",
   "scripts": {
-    "start": "cross-env NODE_ENV=DEVELOPMENT node scripts/devServer.mjs",
+    "start": "cross-env NODE_ENV=DEVELOPMENT noder  qae scripts/devServer.mjs",
     "build:production": "cross-env NODE_ENV=PRODUCTION  node scripts/build.mjs",
     "build:analyse": "cross-env NODE_ENV=ANALYSE  node scripts/build.mjs",
     "lint:eslint": "eslint --fix --ext .js,.ts,.tsx ./src",
@@ -116,7 +116,7 @@
       "git add"
     ],
     "src/**/*.{htm,html,css,less}": [
-      "prettier --fix",
+      "stylelint --fix",
       "git add"
     ]
   }

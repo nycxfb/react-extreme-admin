@@ -1,26 +1,29 @@
 .search-form {
-	:global {
-		.ant-card {
-			margin-bottom: 10px;
-			.ant-card-body {
-				padding: 15px 10px 10px 10px;
-				.search-form-item-3 {
-					.ant-form {
-						display: grid;
-						grid-template-columns: repeat(3, 1fr);
-					}
-				}
-				.search-form-item-4 {
-					.ant-form {
-						display: grid;
-						grid-template-columns: repeat(4, 1fr);
-					}
-				}
-				.search-form-button {
-					display: flex;
-					justify-content: center;
-				}
-			}
-		}
-	}
+  :global {
+    .ant-card {
+      margin-bottom: 10px;
+      .ant-card-body {
+        padding: 15px 10px 10px 10px;
+        .search-form-item-3 {
+          .ant-form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+        .search-form-item-4 {
+          .ant-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            .ant-form-item-control-input{
+              width: 85%;
+            }
+          }
+        }
+        .search-form-button {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
 }

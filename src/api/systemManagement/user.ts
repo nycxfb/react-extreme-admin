@@ -1,4 +1,4 @@
-import request from "@/utils/request";
+import request from '@/utils/request';
 
 /**
  * @author nycxfb
@@ -6,11 +6,11 @@ import request from "@/utils/request";
  * @description:用户列表
  */
 export function http_user_list(params: any) {
-	return request({
-		url: "/api/system/user/list",
-		method: "post",
-		data: params
-	});
+  return request({
+    url: '/api/system/user/list',
+    method: 'post',
+    data: params,
+  });
 }
 
 /**
@@ -19,11 +19,11 @@ export function http_user_list(params: any) {
  * @description:添加用户
  */
 export function http_user_add(params: any) {
-	return request({
-		url: "/api/system/user/add",
-		method: "post",
-		data: params
-	});
+  return request({
+    url: '/api/system/user/add',
+    method: 'post',
+    data: params,
+  });
 }
 
 /**
@@ -33,11 +33,11 @@ export function http_user_add(params: any) {
  */
 
 export function http_user_edit(params: any) {
-	return request({
-		url: "/api/system/user/update",
-		method: "put",
-		data: params
-	});
+  return request({
+    url: '/api/system/user/update',
+    method: 'put',
+    data: params,
+  });
 }
 
 /**
@@ -46,9 +46,9 @@ export function http_user_edit(params: any) {
  * @description:删除用户
  */
 export function http_user_delete(params: any) {
-	return request({
-		url: "/api/system/user/delete",
-		method: "delete",
-		params
-	});
+  return request({
+    url: '/api/system/user/delete',
+    method: 'delete',
+    params,
+  });
 }

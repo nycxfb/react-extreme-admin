@@ -4,16 +4,16 @@
  * @description:生成路径数组，用于路由权限判断
  */
 const generateRoutePath = (routes: any, newArr: string[] = []) => {
-	routes.forEach((routeItem: any) => {
-		if (routeItem.children) {
-			newArr.push(routeItem.path);
-			generateRoutePath(routeItem.children, newArr);
-		} else {
-			newArr.push(routeItem.path);
-		}
-	});
+  routes.forEach((routeItem: any) => {
+    if (routeItem.children) {
+      newArr.push(routeItem.path);
+      generateRoutePath(routeItem.children, newArr);
+    } else {
+      newArr.push(routeItem.path);
+    }
+  });
 
-	return newArr;
+  return newArr;
 };
 
 /**
@@ -22,18 +22,18 @@ const generateRoutePath = (routes: any, newArr: string[] = []) => {
  * @description:生成面包屑
  */
 const generateBreadcrumb = (routes: any, path: string, breadcrumbArr: string[] = []) => {
-	routes.forEach((routeItem: any) => {
-		routeItem?.children.forEach((childrenItem: any) => {
-			if (childrenItem.path === path) {
-				if (routeItem.children.length > 1) {
-					breadcrumbArr.push("homepage", routeItem.meta.title, childrenItem.meta.title);
-				} else {
-					breadcrumbArr.push("homepage", routeItem.meta.title);
-				}
-			}
-		});
-	});
-	return breadcrumbArr;
+  routes.forEach((routeItem: any) => {
+    routeItem?.children.forEach((childrenItem: any) => {
+      if (childrenItem.path === path) {
+        if (routeItem.children.length > 1) {
+          breadcrumbArr.push('homepage', routeItem.meta.title, childrenItem.meta.title);
+        } else {
+          breadcrumbArr.push('homepage', routeItem.meta.title);
+        }
+      }
+    });
+  });
+  return breadcrumbArr;
 };
 
 /**
@@ -43,19 +43,19 @@ const generateBreadcrumb = (routes: any, path: string, breadcrumbArr: string[] =
  */
 
 const generateTagName = (routes: any, path: string, tag: {} = {}) => {
-	routes.forEach((routeItem: any) => {
-		routeItem.children.forEach((childrenItem: any) => {
-			if (childrenItem.path === path) {
-				tag = {
-					path: childrenItem.path,
-					title: childrenItem.meta.title,
-					active: false
-				};
-			}
-		});
-	});
+  routes.forEach((routeItem: any) => {
+    routeItem.children.forEach((childrenItem: any) => {
+      if (childrenItem.path === path) {
+        tag = {
+          path: childrenItem.path,
+          title: childrenItem.meta.title,
+          active: false,
+        };
+      }
+    });
+  });
 
-	return tag;
+  return tag;
 };
 
 /**
@@ -65,13 +65,13 @@ const generateTagName = (routes: any, path: string, tag: {} = {}) => {
  */
 
 const generateSubmenuPath = (routes: any, submenuArr: any = []) => {
-	routes.forEach((routeItem: any) => {
-		if (routeItem.children && routeItem.children.length > 1) {
-			submenuArr.push(routeItem.path);
-		}
-	});
+  routes.forEach((routeItem: any) => {
+    if (routeItem.children && routeItem.children.length > 1) {
+      submenuArr.push(routeItem.path);
+    }
+  });
 
-	return submenuArr;
+  return submenuArr;
 };
 
 export { generateRoutePath, generateBreadcrumb, generateTagName, generateSubmenuPath };

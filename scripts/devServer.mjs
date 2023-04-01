@@ -28,7 +28,7 @@ compiler.hooks.done.tap('serve', stats => {
     return
   }
   console.clear()
-  statsLog(stats)
+  // statsLog(stats)
   doneLog(`本地开发服务准备就绪
   -本地访问地址: ${chalk.cyan(`http://localhost:8080/`)}
   -网络访问地址:${chalk.cyan(`http://172.31.134.187:8080/`)}`

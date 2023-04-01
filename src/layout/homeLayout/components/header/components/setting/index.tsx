@@ -1,27 +1,27 @@
-import React from "react";
-import { connect } from "react-redux";
-import SvgIcon from "@/components/svgIcon";
-import { toggleDrawer } from "@/redux/module/header/action";
+import React from 'react';
+import { connect } from 'react-redux';
+import SvgIcon from '@/components/svgIcon';
+import { toggleDrawer } from '@/redux/module/header/action';
 
 const Setting = (props: any) => {
-	const { toggleDrawer } = props;
-	const onOpenDrawer = () => {
-		toggleDrawer(true);
-	};
+  const { toggleDrawer } = props;
+  const onOpenDrawer = () => {
+    toggleDrawer(true);
+  };
 
-	return (
-		<div onClick={onOpenDrawer}>
-			<SvgIcon iconClass={"setting"} width={25} height={25} cursor={"pointer"} />
-		</div>
-	);
+  return (
+    <div onClick={onOpenDrawer}>
+      <SvgIcon iconClass={'setting'} width={25} height={25} cursor={'pointer'} />
+    </div>
+  );
 };
 
 const mapStateToProps = (state: any) => {
-	return state;
+  return state;
 };
 
 const mapDispatchToProps = {
-	toggleDrawer
+  toggleDrawer,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Setting);

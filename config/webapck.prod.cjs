@@ -22,48 +22,59 @@ module.exports = {
     clean: true,
     publicPath: "./"
   },
-  performance: {
-    maxEntrypointSize: 400000,
-    maxAssetSize: 800000
-  },
+  // performance: {
+  //   maxEntrypointSize: 400000,
+  //   maxAssetSize: 800000
+  // },
   optimization: {
-    runtimeChunk: true,
+    // runtimeChunk: 'single',
     splitChunks: {
-      chunks: "async", //all 全部 chunk
+      chunks: "initial", //all 全部 chunk
       //initial 入口 chunk, 对于异步导入的文件不处理
       //async 异步chunk, 只对异步导入文件处理
-      minSize: 20000, //起步多少字节才开始做代码分割
+      minSize: 100 * 1024, //起步多少字节才开始做代码分割
+      maxSize: 1024,
       minRemainingSize: 0, //通过确保拆分后剩余的最小 chunk 体积超过限制来避免大小为零的模块
-      minChunks: 1, // 当模块至少被引用多少次才会做代码分割
-      maxAsyncRequests: 30, //最大同时加载的模块数
-      maxInitialRequests: 30, //入口文件,同时加载的模块数
-      enforceSizeThreshold: 50000, // 强制执行拆分的体积阈值
+      // minChunks: 1, // 当模块至少被引用多少次才会做代码分割
+      maxAsyncRequests: 6, //最大同时加载的模块数
+      maxInitialRequests: 4, //入口文件,同时加载的模块数
+      automaticNameDelimiter: "~",
+      enforceSizeThreshold: 700*1024, // 强制执行拆分的体积阈值
       cacheGroups: {
-        //cacheGroups 可以理解成分离chunks时的规则
-        defaultVendors: {
-          // defaultVendors 用于提取符合规则的所有node_modules
-          test: /[\\/]node_modules[\\/]/, // 对node_modules的依赖起作用
-          priority: -10, // 权限更高,优先分离,重要!!
-          reuseExistingChunk: true //如果这个模块已经被打包过了,可忽略,不在打包
-          // filename: 'vendors.js' //新增项, 分割代码命名
+        vendors: {
+          name: `vendors`,
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          chunks: 'initial',
+          minChunks: 1
+          // name (module) {
+          //   // get the name. E.g. node_modules/packageName/not/this/part.js
+          //   // or node_modules/packageName
+          //   const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+          //   // npm package names are URL-safe, but some servers don't like @ symbols
+          //   return `chunk-vendor-${packageName.replace('@', '')}`
+          // }
         },
-        default: {
-          //default 用于被多次引用的模块
-          minChunks: 2, // 公共模块最少复用过几次
-          priority: -20, // -10优先级别大于-20
-          reuseExistingChunk: true, //如果这个模块已经被打包过了,可忽略,不在打包
-          filename: "common.js" //新增项, 分割代码命名
+        app: {
+          name: `app`,
+          test: /[\\/]src[\\/]/,
+          priority: -15,
+          minChunks: 2,
+          chunks: 'initial'
+        },
+        common: {
+          name: `common`,
+          minChunks: 2,
+          priority: -20,
+          chunks: "all",
+          reuseExistingChunk: true
         }
       }
     },
     minimizer: [
       new TerserPlugin({
         parallel: true,
-        terserOptions: {
-          compress: {
-            drop_console: true
-          }
-        }
+        extractComments: false
       })
     ]
   },

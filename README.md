@@ -68,14 +68,22 @@ git clone https://github.com/nycxfb/react-extreme-admin.git
 
 #### 项目启动
 
+```bash
 yarn install & npm install
+```
 
+```bash
 npm run start
+```
+
+
 
 
 #### 项目打包
-
+```bash
 npm run build:production
+```
+
 
 
 
