@@ -4,12 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import SvgIcon from '@/components/svgIcon';
 import { http_user_register } from '@/api/system/user';
+import { validateMobile } from '@/utils/validate';
 
 const SignupForm = (props: any) => {
   const { onToggleForm } = props;
   const [form] = Form.useForm();
   const { t } = useTranslation();
 
+  //用户注册
   const userSignup = async () => {
     try {
       await form.validateFields();
@@ -35,7 +37,17 @@ const SignupForm = (props: any) => {
       <Form.Item name="nickname" rules={[{ required: true, message: t('login.userNickname')! }]}>
         <Input prefix={<UserOutlined />} placeholder={t('login.nickname')!} />
       </Form.Item>
-      <Form.Item name="phone" rules={[{ required: true, message: t('login.userPhone')! }]}>
+      <Form.Item
+        name="phone"
+        rules={[
+          { required: true, message: t('login.userPhone')! },
+          { max: 11, message: '手机长度不合格!' },
+          {
+            pattern: new RegExp(validateMobile.rule(), 'g'),
+            message: '请输入正确格式的手机号码!'
+          }
+        ]}
+      >
         <Input prefix={<SvgIcon iconClass={'phone'} width={15} height={15} />} placeholder={t('login.phoneHolder')!} />
       </Form.Item>
       <Form.Item name="password" rules={[{ required: true, message: t('login.userPassword')! }]}>

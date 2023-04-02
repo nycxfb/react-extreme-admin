@@ -1,3 +1,7 @@
+/**
+ * @author nycxfb
+ * @description:发布订阅模式，常用于无关联页面之间的信息交互
+ */
 interface event {
   listen: (eventName: string, callback: Function) => void;
   trigger: (eventName: string, args: any) => void;

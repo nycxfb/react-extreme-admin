@@ -20,6 +20,6 @@ const mapStateToProps = (state: any) => {
   return state.menu;
 };
 const mapDispatchToProps = {
-  toggleSideMenu,
+  toggleSideMenu
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SwitchButton);

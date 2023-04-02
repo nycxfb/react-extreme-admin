@@ -5,11 +5,11 @@ import translation_zh from './zh.json';
 
 const resources = {
   en: {
-    translation: translation_en,
+    translation: translation_en
   },
   zh: {
-    translation: translation_zh,
-  },
+    translation: translation_zh
+  }
 };
 
 i18n
@@ -18,8 +18,8 @@ i18n
     resources,
     lng: navigator.language === 'zh-CN' ? 'zh' : 'en',
     interpolation: {
-      escapeValue: false,
-    },
+      escapeValue: false
+    }
   })
   .catch((err) => {
     console.log(err);

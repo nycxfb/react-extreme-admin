@@ -1,3 +1,5 @@
+@import "@/styles/global.less";
+
 .tech-card {
   display: flex;
   justify-content: space-between;
@@ -11,6 +13,10 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    &:hover{
+      color: @themePurple;
+      text-decoration: underline;
+    }
 
     & > span {
       font-weight: bold;

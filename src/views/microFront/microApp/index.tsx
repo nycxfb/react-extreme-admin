@@ -2,6 +2,7 @@ import React from 'react';
 import microApp from '@micro-zoe/micro-app';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from 'antd';
+import SvgIcon from '@/components/svgIcon';
 const Index = () => {
   const { pathname } = useLocation();
   const sendData = () => {
@@ -9,9 +10,7 @@ const Index = () => {
   };
   return (
     <div>
-      <div className={'base-application'}>主应用</div>
-      <Button onClick={sendData}>发送</Button>
-      <micro-app name="app1" url="http://localhost:8082/" baseroute={'/'} />
+      <SvgIcon iconClass={'develop'} />;
     </div>
   );
 };

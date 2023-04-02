@@ -114,7 +114,7 @@ const configs = {
   plugins: [
     new WebpackBar(),
     new htmlWebpackPlugin({
-      favicon: path.resolve(__dirname, "../favicon.ico"),
+      favicon: path.resolve(__dirname, "../public/favicon.ico"),
       title: _DEV_ ? "dev-react-extreme-admin" : 'react-extreme-admin',
       template: path.resolve(__dirname, "../public/index.html"),
       minify: {

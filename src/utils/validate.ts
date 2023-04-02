@@ -1,17 +1,17 @@
 /**
  * @author nycxfb
- * @date 2023-03-05 22:38:17
- * @description:校验合法url
+ * @description:策略模式用于校验合法url
  */
 export const validateURL = {
   urlRegex:
     /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/,
+
   rule: function () {
     return this.urlRegex;
   },
   validate: function (url: string) {
     return this.urlRegex.test(url);
-  },
+  }
 };
 
 /**
@@ -26,7 +26,7 @@ export const validateMobile = {
   },
   validate: function (phone: string) {
     return this.phoneRegex.test(phone);
-  },
+  }
 };
 
 /**
@@ -41,7 +41,7 @@ export const validateCard = {
   },
   validate: function (idCard: string) {
     return this.idCardRegex.test(idCard);
-  },
+  }
 };
 
 /**
@@ -56,7 +56,7 @@ export const validateEmail = {
   },
   validate: function (mail: string) {
     return this.mailRegex.test(mail);
-  },
+  }
 };
 
 /**
@@ -72,7 +72,7 @@ export const validatePlateNumber = {
   },
   validate: function (val: string) {
     return this.plateRegex.test(val);
-  },
+  }
 };
 
 /**
@@ -87,7 +87,7 @@ export const validateIntegral = {
   },
   validate: function (val: string) {
     return this.integralRegex.test(val);
-  },
+  }
 };
 
 /**
@@ -102,7 +102,7 @@ export const validateLowerCase = {
   },
   validate: function (val: string) {
     return this.lowerRegex.test(val);
-  },
+  }
 };
 
 /**
@@ -117,7 +117,7 @@ export const validateUpperCase = {
   },
   validate: function (val: string) {
     return this.uppercaseRegex.test(val);
-  },
+  }
 };
 
 /**
@@ -132,5 +132,5 @@ export const validateAlphabets = {
   },
   validate: function (val: string) {
     return this.alphabetsRegex.test(val);
-  },
+  }
 };

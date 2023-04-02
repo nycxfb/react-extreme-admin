@@ -27,7 +27,7 @@ const Tags = (props: any) => {
         >
           {t('tagContextmenu.refresh')}
         </span>
-      ),
+      )
     },
     {
       key: '2',
@@ -40,7 +40,7 @@ const Tags = (props: any) => {
         >
           {t('tagContextmenu.closeCurrent')}
         </span>
-      ),
+      )
     },
     {
       key: '3',
@@ -52,7 +52,7 @@ const Tags = (props: any) => {
         >
           {t('tagContextmenu.closeOthers')}
         </span>
-      ),
+      )
     },
     {
       key: '4',
@@ -64,8 +64,8 @@ const Tags = (props: any) => {
         >
           {t('tagContextmenu.closeAll')}
         </span>
-      ),
-    },
+      )
+    }
   ];
 
   const closeCurrent = (removedTag: tagItem) => {
@@ -125,7 +125,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = {
   deleteVisitTag,
   deleteOtherVisitTag,
-  deleteAllTags,
+  deleteAllTags
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tags);

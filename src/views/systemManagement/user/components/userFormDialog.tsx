@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react';
-import { Col, Form, Input, Modal, Row, Button, Upload, message } from 'antd';
+import { Form, Input, Modal, Button, Upload, message as Message } from 'antd';
 import { http_user_add, http_user_edit } from '@/api/systemManagement/user';
 import { http_user_upload } from '@/api/system/user';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -15,11 +15,11 @@ const getBase64 = (img: RcFile, callback: (url: string) => void) => {
 const beforeUpload = (file: RcFile) => {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
   if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
+    Message.error('You can only upload JPG/PNG file!');
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
+    Message.error('Image must smaller than 2MB!');
   }
   return isJpgOrPng && isLt2M;
 };
@@ -28,13 +28,37 @@ const UserFormDialog = forwardRef((props: any, ref) => {
   useImperativeHandle(ref, () => ({ showModal }));
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [type, setType] = useState('');
+  const [type, setType] = useState<string>('');
   const [column, setColumn] = useState<any>({});
   const formRef = useRef<any>(null);
 
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
+
+  //上传图片
+  const customUpload = async (file: any) => {
+    const fd = new FormData();
+    fd.append('file', file.originFileObj);
+    fd.append('userId', column.userId);
+    await http_user_upload(fd);
+  };
+
+  // 展示弹窗
+  const showModal = async (type: string, record: any) => {
+    setType(type);
+    setColumn(record);
+    await setIsModalOpen(true);
+    if (type === 'edit') {
+      setImageUrl(record.avatarUrl);
+      formRef.current.setFieldsValue({
+        nickname: record.nickname,
+        phone: record.phone,
+        address: record.address,
+        age: record.age
+      });
+    }
+  };
 
   const handleChange: UploadProps['onChange'] = async (info: UploadChangeParam<UploadFile>) => {
     if (info.file.status === 'uploading') {
@@ -58,35 +82,12 @@ const UserFormDialog = forwardRef((props: any, ref) => {
     }
   };
 
-  const customUpload = async (file: any) => {
-    const fd = new FormData();
-    fd.append('file', file.originFileObj);
-    fd.append('userId', column.userId);
-    await http_user_upload(fd);
-  };
-
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-
-  // 展示弹窗
-  const showModal = async (type: string, record: any) => {
-    setType(type);
-    setColumn(record);
-    await setIsModalOpen(true);
-    if (type === 'edit') {
-      setImageUrl(record.avatarUrl);
-      formRef.current.setFieldsValue({
-        nickname: record.nickname,
-        phone: record.phone,
-        address: record.address,
-        age: record.age,
-      });
-    }
-  };
 
   // 提交表单项
   const handleOk = async () => {
@@ -124,21 +125,21 @@ const UserFormDialog = forwardRef((props: any, ref) => {
         </Button>,
         <Button key="back" size={'middle'} onClick={handleCancel}>
           取消
-        </Button>,
+        </Button>
       ]}
     >
       <Form ref={formRef} form={form} labelCol={{ span: 4 }}>
         <Form.Item label="昵称" name="nickname">
-          <Input></Input>
+          <Input />
         </Form.Item>
         <Form.Item label="手机" name="phone">
-          <Input></Input>
+          <Input />
         </Form.Item>
         <Form.Item label="年龄" name="age">
-          <Input></Input>
+          <Input />
         </Form.Item>
         <Form.Item label="地址" name="address">
-          <Input></Input>
+          <Input />
         </Form.Item>
         <Form.Item label="头像">
           <Upload

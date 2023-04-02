@@ -8,7 +8,7 @@ const asyncRoutes: baseRouter[] = [
     path: '/home',
     element: <HomeLayout />,
     meta: {
-      title: 'index',
+      title: 'index'
     },
     children: [
       {
@@ -16,17 +16,17 @@ const asyncRoutes: baseRouter[] = [
         element: lazyLoad(() => import('@/views/home')),
         meta: {
           title: 'index',
-          icon: 'BankOutlined',
-        },
-      },
-    ],
+          icon: 'BankOutlined'
+        }
+      }
+    ]
   },
   {
     path: '/systemManagement',
     element: <HomeLayout />,
     meta: {
       title: 'systemManagement',
-      icon: 'SettingOutlined',
+      icon: 'SettingOutlined'
     },
     children: [
       {
@@ -34,33 +34,25 @@ const asyncRoutes: baseRouter[] = [
         element: lazyLoad(() => import('@/views/systemManagement/user')),
         meta: {
           title: 'userList',
-          icon: 'UsergroupDeleteOutlined',
-        },
-      },
-      {
-        path: '/systemManagement/user/detail',
-        element: lazyLoad(() => import('@/views/systemManagement/user/detail')),
-        hidden: true,
-        meta: {
-          title: 'detail',
-        },
+          icon: 'UsergroupDeleteOutlined'
+        }
       },
       {
         path: '/systemManagement/role',
         element: lazyLoad(() => import('@/views/systemManagement/role')),
         meta: {
           title: 'roleList',
-          icon: 'UserOutlined',
-        },
-      },
-    ],
+          icon: 'UserOutlined'
+        }
+      }
+    ]
   },
   {
     path: '/dynamicComponent',
     element: <HomeLayout />,
     meta: {
       title: 'dynamicComponents',
-      icon: 'BlockOutlined',
+      icon: 'BlockOutlined'
     },
     children: [
       {
@@ -68,18 +60,18 @@ const asyncRoutes: baseRouter[] = [
         element: lazyLoad(() => import('@/views/dynamicComponent/dynamicForm')),
         meta: {
           title: 'dynamicForm',
-          icon: 'ProjectOutlined',
-        },
+          icon: 'ProjectOutlined'
+        }
       },
       {
         path: '/dynamicComponent/dynamicTable',
-        element: lazyLoad(() => import('@/views/systemManagement/role')),
+        element: lazyLoad(() => import('@/views/develop')),
         meta: {
           title: 'dynamicTable',
-          icon: 'TableOutlined',
-        },
-      },
-    ],
+          icon: 'TableOutlined'
+        }
+      }
+    ]
   },
 
   {
@@ -87,7 +79,7 @@ const asyncRoutes: baseRouter[] = [
     element: <HomeLayout />,
     meta: {
       title: 'pageScheme',
-      icon: 'ProfileOutlined',
+      icon: 'ProfileOutlined'
     },
     children: [
       {
@@ -95,33 +87,33 @@ const asyncRoutes: baseRouter[] = [
         element: lazyLoad(() => import('@/views/pageScheme/strongRelationship')),
         meta: {
           title: 'strongRelationship',
-          icon: 'RiseOutlined',
-        },
+          icon: 'RiseOutlined'
+        }
       },
       {
         path: '/pageScheme/weakRelationship',
         element: lazyLoad(() => import('@/views/pageScheme/weakRelationship')),
         meta: {
           title: 'weakRelationship',
-          icon: 'FallOutlined',
-        },
+          icon: 'FallOutlined'
+        }
       },
       {
         path: '/pageScheme/weakRelationship/detail',
         element: lazyLoad(() => import('@/views/pageScheme/weakRelationship/detail')),
         hidden: true,
         meta: {
-          title: 'weakRelationshipDetail',
-        },
-      },
-    ],
+          title: 'weakRelationshipDetail'
+        }
+      }
+    ]
   },
   {
     path: '/designPattern',
     element: <HomeLayout />,
     meta: {
       title: 'designPattern',
-      icon: 'ClusterOutlined',
+      icon: 'ClusterOutlined'
     },
     children: [
       {
@@ -129,56 +121,56 @@ const asyncRoutes: baseRouter[] = [
         element: lazyLoad(() => import('@/views/designPattern/publishSubscribePattern')),
         meta: {
           title: 'publishSubscribePattern',
-          icon: 'NotificationOutlined',
-        },
+          icon: 'NotificationOutlined'
+        }
       },
       {
         path: '/designPattern/strategyPattern',
         element: lazyLoad(() => import('@/views/designPattern/strategyPattern')),
         meta: {
           title: 'strategyPattern',
-          icon: 'PartitionOutlined',
-        },
-      },
-    ],
+          icon: 'PartitionOutlined'
+        }
+      }
+    ]
   },
   {
     path: '/microFront',
     element: <HomeLayout />,
     meta: {
       title: 'microFront',
-      icon: 'PicRightOutlined',
+      icon: 'PicRightOutlined'
     },
     children: [
       {
         path: '/microFront/iframe',
         element: lazyLoad(() => import('@/views/microFront/iframe')),
         meta: {
-          title: 'iframe',
-        },
+          title: 'iframe'
+        }
       },
-      // {
-      // 	path: "/microFront/qiankun",
-      // 	element: lazyLoad(() => import("@/views/microFront/qiankun")),
-      // 	meta: {
-      // 		title: "qiankun"
-      // 	}
-      // },
+      {
+        path: '/microFront/qiankun',
+        element: lazyLoad(() => import('@/views/develop')),
+        meta: {
+          title: 'qiankun'
+        }
+      },
       {
         path: '/microFront/microApp',
-        element: lazyLoad(() => import('@/views/microFront/microApp')),
+        element: lazyLoad(() => import('@/views/develop')),
         meta: {
-          title: 'microApp',
-        },
-      },
-    ],
+          title: 'microApp'
+        }
+      }
+    ]
   },
   {
     path: '/frontUtils',
     element: <HomeLayout />,
     meta: {
       title: 'frontUtils',
-      icon: 'PicRightOutlined',
+      icon: 'FunctionOutlined'
     },
     children: [
       {
@@ -186,80 +178,63 @@ const asyncRoutes: baseRouter[] = [
         element: lazyLoad(() => import('@/views/frontUtils/formatCheck')),
         meta: {
           title: 'formatCheck',
-          icon: 'FundOutlined',
-        },
+          icon: 'FundOutlined'
+        }
       },
       {
         path: '/frontUtils/dataMask',
-        element: lazyLoad(() => import('@/views/frontUtils/dataMask')),
+        element: lazyLoad(() => import('@/views/develop')),
         meta: {
           title: 'dataMask',
-          icon: 'FundOutlined',
-        },
-      },
-    ],
+          icon: 'FundOutlined'
+        }
+      }
+    ]
   },
   {
     path: '/multiMenu',
     element: <HomeLayout />,
     meta: {
       title: 'multiMenu',
-      icon: 'UnorderedListOutlined',
+      icon: 'UnorderedListOutlined'
     },
     children: [
       {
         path: '/multiMenu/secondLevel',
         meta: {
-          title: 'secondLevel',
+          title: 'secondLevel'
         },
         children: [
           {
             path: '/multiMenu/secondLevel/thirdLevel',
-            element: lazyLoad(() => import('@/views/demo')),
+            element: lazyLoad(() => import('@/views/develop')),
             meta: {
-              title: 'instantMessage',
-            },
+              title: 'instantMessage'
+            }
           },
           {
             path: '/multiMenu/secondLevel/thirdLevel3',
-            element: lazyLoad(() => import('@/views/demo')),
+            element: lazyLoad(() => import('@/views/develop')),
             meta: {
-              title: 'instantMessage',
-            },
-          },
-        ],
+              title: 'instantMessage'
+            }
+          }
+        ]
       },
       {
         path: '/multiMenu/secondLevel1',
-        element: lazyLoad(() => import('@/views/demo')),
+        element: lazyLoad(() => import('@/views/develop')),
         meta: {
-          title: 'instantMessage',
-        },
-      },
-    ],
-  },
-  {
-    path: '/largeScreenDisplay',
-    element: <HomeLayout />,
-    meta: {
-      title: 'largeScreenDisplay',
-    },
-    children: [
-      {
-        path: '/largeScreenDisplay/demo1',
-        element: lazyLoad(() => import('@/views/demo')),
-        meta: {
-          title: 'largeScreenDisplay',
-          icon: 'FundOutlined',
-        },
-      },
-    ],
+          title: 'instantMessage'
+        }
+      }
+    ]
   },
   {
     path: '/map',
     element: <HomeLayout />,
     meta: {
-      title: 'map',
+      title: 'map'
     },
     children: [
       {
@@ -267,113 +242,81 @@ const asyncRoutes: baseRouter[] = [
         element: lazyLoad(() => import('@/views/map')),
         meta: {
           title: 'map',
-          icon: 'DribbbleOutlined',
-        },
-      },
-    ],
+          icon: 'DribbbleOutlined'
+        }
+      }
+    ]
+  },
+  {
+    path: '/largeScreenDisplay',
+    element: <HomeLayout />,
+    meta: {
+      title: 'largeScreenDisplay'
+    },
+    children: [
+      {
+        path: '/largeScreenDisplay/index',
+        element: lazyLoad(() => import('@/views/develop')),
+        meta: {
+          title: 'largeScreenDisplay',
+          icon: 'FundOutlined'
+        }
+      }
+    ]
   },
 
   {
     path: '/editor',
     element: <HomeLayout />,
     meta: {
-      title: 'editor',
+      title: 'editor'
     },
     children: [
       {
-        path: '/editor/demo1',
-        element: lazyLoad(() => import('@/views/editor')),
+        path: '/editor/index',
+        element: lazyLoad(() => import('@/views/develop')),
         meta: {
           title: 'editor',
-          icon: 'FormOutlined',
-        },
-      },
-    ],
+          icon: 'FormOutlined'
+        }
+      }
+    ]
   },
 
   {
     path: '/instantMessage',
     element: <HomeLayout />,
     meta: {
-      title: 'instantMessage',
+      title: 'instantMessage'
     },
     children: [
       {
         path: '/instantMessage/demo1',
-        element: lazyLoad(() => import('@/views/demo')),
+        element: lazyLoad(() => import('@/views/develop')),
         meta: {
           title: 'instantMessage',
-          icon: 'CommentOutlined',
-        },
-      },
-    ],
+          icon: 'CommentOutlined'
+        }
+      }
+    ]
   },
   {
     path: '/storageScheme',
     element: <HomeLayout />,
     meta: {
-      title: 'storageScheme',
+      title: 'storageScheme'
     },
     children: [
       {
         path: '/storageScheme/demo1',
-        element: lazyLoad(() => import('@/views/demo')),
+        element: lazyLoad(() => import('@/views/develop')),
         meta: {
           title: 'storageScheme',
-        },
-      },
-    ],
-  },
-  {
-    path: '/customComponent',
-    element: <HomeLayout />,
-    meta: {
-      title: 'customComponents',
-    },
-    children: [
-      {
-        path: '/customComponent/demo1',
-        element: lazyLoad(() => import('@/views/demo')),
-        meta: {
-          title: 'customComponents',
-        },
-      },
-    ],
-  },
-  {
-    path: '/error',
-    element: <HomeLayout />,
-    hidden: true,
-    meta: {
-      title: '测试',
-    },
-    children: [
-      {
-        path: '/error/404',
-        element: lazyLoad(() => import('@/views/errorPage')),
-        hidden: true,
-        meta: {
-          title: '错误页面',
-        },
-      },
-    ],
-  },
-  {
-    path: '/demo',
-    element: <HomeLayout />,
-    meta: {
-      title: 'test',
-    },
-    children: [
-      {
-        path: '/demo/demo1',
-        element: lazyLoad(() => import(/* webpackChunkName: "user" */ '@/views/demo')),
-        meta: {
-          title: 'test',
-        },
-      },
-    ],
-  },
+          icon: 'CloudServerOutlined'
+        }
+      }
+    ]
+  }
 ];
 
 export default asyncRoutes;

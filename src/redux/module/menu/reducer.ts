@@ -9,7 +9,7 @@ interface menuState {
 
 const menuState: menuState = {
   isCollapse: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus')! : false,
-  menu: [],
+  menu: []
 };
 
 const menu = (state: menuState = menuState, action: AnyAction) =>

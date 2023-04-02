@@ -1,5 +1,7 @@
 import { produce } from 'immer';
 import { AnyAction } from 'redux';
+import asyncRoutes from '@/router/module/asyncRoutes';
+import { generateTagName } from '@/router/util/handleRoute';
 
 export interface tagItem {
   title: string;
@@ -16,15 +18,9 @@ interface headerState {
 
 const headerState: headerState = {
   pagePath: [],
-  tags: [
-    {
-      title: 'index',
-      path: '/home/index',
-      active: false,
-    },
-  ],
+  tags: [],
   breadcrumb: [],
-  drawerVisible: false,
+  drawerVisible: false
 };
 
 const header = (state: headerState = headerState, action: AnyAction) =>
@@ -35,6 +31,10 @@ const header = (state: headerState = headerState, action: AnyAction) =>
         break;
 
       case 'ADD_VISIT_TAG':
+        if (draftSate.tags.length == 0) {
+          const tag = generateTagName(asyncRoutes, '/home/index');
+          draftSate.tags.push(tag as tagItem);
+        }
         if (draftSate.tags.some((t) => t?.path == action.tags.path)) return;
         draftSate.tags.push(action.tags);
         break;

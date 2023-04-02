@@ -122,7 +122,7 @@ const mapStateToProps = (state: any) => {
 };
 const mapDispatchToProps = {
   toggleTags,
-  addVisitTag,
+  addVisitTag
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeMenu);

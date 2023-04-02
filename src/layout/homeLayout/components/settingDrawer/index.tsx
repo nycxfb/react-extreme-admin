@@ -11,7 +11,7 @@ import {
   toggleTagPart,
   toggleLogoPart,
   toggleFooterPart,
-  toggleMenuTheme,
+  toggleMenuTheme
 } from '@/redux/module/system/action';
 
 import style from './index.module.less';
@@ -28,7 +28,7 @@ const SettingDrawer = (props: any) => {
     isShowBreadcrumb,
     isShowLogo,
     isShowFooter,
-    toggleMenuTheme,
+    toggleMenuTheme
   } = props;
 
   const [theme, setTheme] = useState(store.getState().system.menuTheme);
@@ -107,7 +107,7 @@ const mapDispatchToProps = {
   toggleTagPart,
   toggleLogoPart,
   toggleFooterPart,
-  toggleMenuTheme,
+  toggleMenuTheme
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingDrawer);

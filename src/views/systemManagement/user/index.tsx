@@ -5,7 +5,6 @@ import type { ColumnsType } from 'antd/es/table';
 import { http_user_list, http_user_delete } from '@/api/systemManagement/user';
 import UserFormDialog from './components/userFormDialog';
 import { useMount } from 'ahooks';
-import './index.less';
 
 import SearchFormCard from '@/components/SearchFormCard';
 
@@ -16,85 +15,27 @@ interface DataType {
   address: string;
   tags: string[];
   avatarUrl: string;
+  roleType: string;
 }
 
+const getTag = (type: string) => {
+  switch (type) {
+    case '0':
+      return <Tag color={'#87d068'}>超级管理员</Tag>;
+    case '1':
+      return <Tag color={'#108ee9'}>管理员</Tag>;
+    case '2':
+      return <Tag color={'#2db7f5'}>普通用户</Tag>;
+    default:
+      return <></>;
+  }
+};
+
 const User: React.FC = () => {
-  const columns: ColumnsType<DataType> = [
-    {
-      title: '昵称',
-      dataIndex: 'nickname',
-      key: 'nickname',
-      align: 'center',
-    },
-    {
-      title: '手机号码',
-      dataIndex: 'phone',
-      key: 'phone',
-      align: 'center',
-    },
-    {
-      title: '地址',
-      dataIndex: 'address',
-      key: 'address',
-      align: 'center',
-    },
-    {
-      title: '角色',
-      dataIndex: 'role',
-      key: 'role',
-      align: 'center',
-    },
-    {
-      title: '用户头像',
-      key: 'avatarUrl',
-      align: 'center',
-      render: (_, record: DataType) => (
-        <>{record?.avatarUrl && <Avatar shape="square" size="large" src={record.avatarUrl} />}</>
-      ),
-    },
-    {
-      title: '创建时间',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-      align: 'center',
-    },
-    {
-      title: '操作',
-      key: 'action',
-      align: 'center',
-      render: (_, record: DataType) => (
-        <>
-          <Button
-            type="link"
-            onClick={() => {
-              newUser('edit', record);
-            }}
-          >
-            编辑
-          </Button>
-          <Button
-            type="link"
-            onClick={() => {
-              deleteUser(record);
-            }}
-          >
-            删除
-          </Button>
-          <Button
-            type="link"
-            onClick={() => {
-              deleteUser(record);
-            }}
-          >
-            查看
-          </Button>
-        </>
-      ),
-    },
-  ];
   const userFormRef = useRef<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [userList, setUserList] = useState<DataType[]>([]);
+  const [roleType, setRoleType] = useState(localStorage.getItem('roleType'));
 
   useMount(() => {
     getUserList();
@@ -127,6 +68,78 @@ const User: React.FC = () => {
     getUserList();
   };
 
+  const columns: ColumnsType<DataType> = [
+    {
+      title: '昵称',
+      dataIndex: 'nickname',
+      key: 'nickname',
+      align: 'center'
+    },
+    {
+      title: '手机号码',
+      dataIndex: 'phone',
+      key: 'phone',
+      align: 'center'
+    },
+    {
+      title: '地址',
+      dataIndex: 'address',
+      key: 'address',
+      align: 'center'
+    },
+    {
+      title: '角色',
+      dataIndex: 'role',
+      key: 'role',
+      align: 'center',
+      render: (_, record: DataType) => getTag(record.roleType)
+    },
+    {
+      title: '用户头像',
+      key: 'avatarUrl',
+      align: 'center',
+      render: (_, record: DataType) => (
+        <>{record?.avatarUrl && <Avatar shape="square" size="large" src={record.avatarUrl} />}</>
+      )
+    },
+    {
+      title: '创建时间',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      align: 'center'
+    },
+    {
+      title: '操作',
+      key: 'action',
+      align: 'center',
+      render: (_, record: DataType) => (
+        <>
+          <Button
+            type="link"
+            disabled={roleType != '0'}
+            onClick={() => {
+              newUser('edit', record);
+            }}
+          >
+            编辑
+          </Button>
+          <Button
+            type="link"
+            disabled={roleType != '0'}
+            onClick={() => {
+              deleteUser(record);
+            }}
+          >
+            删除
+          </Button>
+          <Button type="link" onClick={() => {}}>
+            查看
+          </Button>
+        </>
+      )
+    }
+  ];
+
   return (
     <>
       <UserFormDialog ref={userFormRef} onGetUserList={getUserList} />
@@ -155,17 +168,14 @@ const User: React.FC = () => {
             <Form.Item label="手机" name={'phone'}>
               <Input allowClear></Input>
             </Form.Item>
-            <Form.Item label="状态">
-              <Input allowClear></Input>
-            </Form.Item>
-            <Form.Item label="角色">
+            <Form.Item label="角色" name={'roleType'}>
               <Select
                 defaultValue=""
                 onChange={handleChange}
                 options={[
-                  { value: 'super', label: '超级管理员' },
-                  { value: 'middle', label: '管理员' },
-                  { value: 'primary', label: '普通用户' },
+                  { value: '0', label: '超级管理员' },
+                  { value: '1', label: '管理员' },
+                  { value: '2', label: '普通用户' }
                 ]}
               />
             </Form.Item>
@@ -178,6 +188,7 @@ const User: React.FC = () => {
           extra={
             <Button
               type="primary"
+              disabled={roleType != '0'}
               onClick={() => {
                 newUser('add');
               }}
@@ -186,7 +197,7 @@ const User: React.FC = () => {
             </Button>
           }
         >
-          <Table columns={columns} dataSource={userList} bordered loading={loading} />
+          <Table columns={columns} dataSource={userList} loading={loading} />
         </Card>
       </div>
     </>

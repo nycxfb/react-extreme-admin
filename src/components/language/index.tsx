@@ -18,7 +18,7 @@ const Language = () => {
         >
           简体中文
         </span>
-      ),
+      )
     },
     {
       key: '2',
@@ -31,8 +31,8 @@ const Language = () => {
         >
           English
         </span>
-      ),
-    },
+      )
+    }
   ];
   const toggleLanguage = async () => {
     await i18n.changeLanguage(i18n.language == 'en' ? 'zh' : 'en');

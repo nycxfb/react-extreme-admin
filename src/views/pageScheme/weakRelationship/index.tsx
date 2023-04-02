@@ -3,7 +3,7 @@ import { Alert, Avatar, Button, Card, Col, Form, Input, Row, Table } from 'antd'
 import { useNavigate } from 'react-router-dom';
 import SearchFormCard from '@/components/SearchFormCard';
 import type { ColumnsType } from 'antd/es/table';
-import { UserOutlined, RightCircleOutlined } from '@ant-design/icons';
+import { UserOutlined, RightCircleOutlined, SearchOutlined, SyncOutlined } from '@ant-design/icons';
 import Tips from '@/components/tips';
 
 interface DataType {
@@ -23,27 +23,27 @@ const WeakRelationship = () => {
     {
       title: '开始时间',
       dataIndex: 'startTime',
-      align: 'center',
+      align: 'center'
     },
     {
       title: '任务描述',
       dataIndex: 'taskDescription',
-      align: 'center',
+      align: 'center'
     },
     {
       title: '发起人员',
       dataIndex: 'initiatePerson',
-      align: 'center',
+      align: 'center'
     },
     {
       title: '任务状态',
       dataIndex: 'taskStatus',
-      align: 'center',
+      align: 'center'
     },
     {
       title: '任务类型',
       dataIndex: 'taskType',
-      align: 'center',
+      align: 'center'
     },
     {
       title: '处理人员',
@@ -53,12 +53,12 @@ const WeakRelationship = () => {
         <>
           <Avatar size={'small'} icon={<UserOutlined />} /> {record.handlePerson}
         </>
-      ),
+      )
     },
     {
       title: '处理意见',
       dataIndex: 'handleSuggestion',
-      align: 'center',
+      align: 'center'
     },
     {
       title: '操作',
@@ -68,8 +68,8 @@ const WeakRelationship = () => {
         <Button size={'small'} onClick={toDetail} icon={<RightCircleOutlined />}>
           详情
         </Button>
-      ),
-    },
+      )
+    }
   ];
 
   const toDetail = () => {
@@ -82,25 +82,72 @@ const WeakRelationship = () => {
       taskDescription: '测试',
       initiatePerson: '张三',
       taskStatus: '失败',
-      taskType: '一',
+      taskType: '折扣模块',
       handlePerson: '李四',
-      handleSuggestion: '同意',
+      handleSuggestion: '同意'
     },
     {
       startTime: 2021,
       taskDescription: '测试',
       initiatePerson: '张三',
       taskStatus: '失败',
-      taskType: '一',
+      taskType: '会员模块',
       handlePerson: '李四',
-      handleSuggestion: '同意',
+      handleSuggestion: '同意'
     },
+    {
+      startTime: 2021,
+      taskDescription: '测试',
+      initiatePerson: '张三',
+      taskStatus: '失败',
+      taskType: '会员模块',
+      handlePerson: '李四',
+      handleSuggestion: '同意'
+    },
+    {
+      startTime: 2021,
+      taskDescription: '测试',
+      initiatePerson: '张三',
+      taskStatus: '失败',
+      taskType: '会员模块',
+      handlePerson: '李四',
+      handleSuggestion: '同意'
+    },
+    {
+      startTime: 2021,
+      taskDescription: '测试',
+      initiatePerson: '张三',
+      taskStatus: '失败',
+      taskType: '会员模块',
+      handlePerson: '李四',
+      handleSuggestion: '同意'
+    },
+    {
+      startTime: 2021,
+      taskDescription: '测试',
+      initiatePerson: '张三',
+      taskStatus: '失败',
+      taskType: '会员模块',
+      handlePerson: '李四',
+      handleSuggestion: '同意'
+    }
   ];
 
   return (
     <>
       <Tips message={'当页面关系联系度不高时,且需要展现的内容较多时,应该新开页面，避免造成用户视觉混乱！'} />
-      <SearchFormCard>
+      <SearchFormCard
+        extra={
+          <>
+            <Button disabled icon={<SearchOutlined />} style={{ margin: '0 20px 0 40px' }} type="primary">
+              查询
+            </Button>
+            <Button disabled icon={<SyncOutlined />}>
+              重置
+            </Button>
+          </>
+        }
+      >
         <Form labelCol={{ span: 8 }}>
           <Form.Item label={'任务描述'}>
             <Input />

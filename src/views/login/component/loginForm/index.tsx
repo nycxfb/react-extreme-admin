@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { Button, Col, Form, Input, message, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +8,7 @@ import { http_user_captcha, http_user_login } from '@/api/system/user';
 import { connect } from 'react-redux';
 import { setToken } from '@/redux/module/user/action';
 import { useMount } from 'ahooks';
+import { validateMobile } from '@/utils/validate';
 
 const LoginForm = (props: any) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -18,10 +19,16 @@ const LoginForm = (props: any) => {
   const navigate = useNavigate();
 
   const { t } = useTranslation();
+  const formRef = useRef<any>(null);
+
   const [form] = Form.useForm();
 
   useMount(async () => {
     await getCaptcha();
+    formRef.current.setFieldsValue({
+      phone: '18888888888',
+      password: '123456'
+    });
   });
 
   // 获取验证码
@@ -38,9 +45,13 @@ const LoginForm = (props: any) => {
       const params = form.getFieldsValue();
       const res: any = await http_user_login(params);
       if (res.code == 200) {
-        setToken(res.data.token);
-        localStorage.setItem('userName', res.data.userInfo.userName);
-        localStorage.setItem('avatar', res.data.userInfo.avatarUrl);
+        const { token, userInfo } = res.data;
+        const { phone, nickname, avatarUrl, roleType } = userInfo;
+        setToken(token);
+        localStorage.setItem('phone', phone);
+        localStorage.setItem('nickname', nickname);
+        localStorage.setItem('avatar', avatarUrl);
+        localStorage.setItem('roleType', roleType);
         navigate('/home/index');
       } else {
         await getCaptcha();
@@ -53,8 +64,18 @@ const LoginForm = (props: any) => {
   };
 
   return (
-    <Form form={form} onFinish={userLogin}>
-      <Form.Item name="phone" rules={[{ required: true, message: t('login.userPhone')! }]}>
+    <Form form={form} ref={formRef} onFinish={userLogin}>
+      <Form.Item
+        name="phone"
+        rules={[
+          { required: true, message: t('login.userPhone')! },
+          { max: 11, message: '手机长度不合格!' },
+          {
+            pattern: new RegExp(validateMobile.rule(), 'g'),
+            message: '请输入正确格式的手机号码!'
+          }
+        ]}
+      >
         <Input prefix={<UserOutlined />} placeholder={t('login.phoneHolder')!} />
       </Form.Item>
 
@@ -75,12 +96,11 @@ const LoginForm = (props: any) => {
               placeholder={t('login.captchaHolder')!}
             />
           </Col>
-          <Col className={'captcha'} span={5}>
+          <Col className={'captcha'} span={6}>
             <div dangerouslySetInnerHTML={{ __html: captcha }} onClick={getCaptcha} />
           </Col>
         </Row>
       </Form.Item>
-
       <Form.Item>
         <Button type="primary" loading={loading} className="login-button" htmlType={'submit'}>
           {t('login.login')}

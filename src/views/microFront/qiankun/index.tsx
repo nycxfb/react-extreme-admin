@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import SvgIcon from '@/components/svgIcon';
 
 class QianKun extends Component {
   render() {
-    return <div></div>;
+    return <div>开发中！</div>;
   }
 }
 

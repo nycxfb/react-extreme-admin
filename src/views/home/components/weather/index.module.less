@@ -1,4 +1,7 @@
 .weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 10px 10px 10px 20px;
   min-height: 160px;
@@ -19,9 +22,9 @@
     }
 
     .thermometer-info {
-      margin-bottom: 10px;
       display: flex;
       width: 50%;
+      margin-top: 10px;
 
       & > div {
         flex: 1;
@@ -29,12 +32,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        color: #999999;
+        color: #f9a826;
         font-size: 12px;
-      }
-
-      .thermometer {
-        font-size: 18px;
       }
     }
 

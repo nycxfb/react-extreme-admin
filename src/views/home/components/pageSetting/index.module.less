@@ -1,3 +1,5 @@
+@import "@/styles/global.less";
+
 .card-wrapper {
   //padding-right: 50px;
   display: grid;
@@ -9,6 +11,7 @@
     .setting-item {
       height: 80px;
       border-radius: 10px;
+
       .left-part {
         display: flex !important;
         flex-direction: column;
@@ -22,6 +25,37 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        .ant-switch {
+          .ant-switch-inner {
+            background-color: #fff;
+          }
+        }
+
+        .tag {
+          .ant-switch-handle::before {
+            background-color: @themePurple;
+          }
+        }
+
+        .logo {
+          .ant-switch-handle::before {
+            background-color: @themeYellow;
+          }
+        }
+
+        .footer {
+          .ant-switch-handle::before {
+            background-color: @themeOrange;
+          }
+        }
+
+        .breadcrumb {
+          .ant-switch-handle::before {
+            background-color: @themeBlue;
+          }
+        }
+
       }
 
       span {
@@ -35,20 +69,28 @@
       }
 
       &:nth-child(1) {
-        background-color: #a472e2;
+        background-color: @themePurple;
       }
 
       &:nth-child(2) {
-        background-color: #f1c429;
+        background-color: @themeYellow;
       }
 
       &:nth-child(3) {
-        background-color: #ff9160;
+        background-color: @themeOrange;
       }
 
       &:nth-child(4) {
-        background-color: #3acbe8;
+        background-color: @themeBlue;
       }
     }
+    .close {
+      .ant-switch-inner {
+        background: transparent !important;
+      }
+
+    }
   }
+
+
 }

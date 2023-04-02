@@ -14,38 +14,42 @@ const PageSetting = (props: any) => {
     isShowTag,
     isShowBreadcrumb,
     isShowLogo,
-    isShowFooter,
+    isShowFooter
   } = props;
 
   const settingArray = [
     {
       id: 1,
       icon: 'tag',
+      class: 'tag',
       name: '标签',
       checked: isShowTag,
-      event: 'onTagChange',
+      event: 'onTagChange'
     },
     {
       id: 2,
       icon: 'logo-white',
+      class: 'logo',
       name: 'Logo',
       checked: isShowLogo,
-      event: 'onLogoChange',
+      event: 'onLogoChange'
     },
     {
       id: 3,
       icon: 'footer',
+      class: 'footer',
       name: '页脚',
       checked: isShowFooter,
-      event: 'onFooterChange',
+      event: 'onFooterChange'
     },
     {
       id: 4,
       icon: 'breadcrumb',
+      class: 'breadcrumb',
       name: '面包屑',
       checked: isShowBreadcrumb,
-      event: 'onBreadcrumbChange',
-    },
+      event: 'onBreadcrumbChange'
+    }
   ];
 
   const eventChange = (checked: boolean, event: string) => {
@@ -76,6 +80,7 @@ const PageSetting = (props: any) => {
             </Col>
             <Col span={12} className={'right-part'}>
               <Switch
+                className={[item.class, item.checked ? null : ' \n close'].join('')}
                 onChange={(checked: boolean) => {
                   eventChange(checked, item.event);
                 }}
@@ -96,7 +101,7 @@ const mapDispatchToProps = {
   toggleBreadcrumbPart,
   toggleTagPart,
   toggleLogoPart,
-  toggleFooterPart,
+  toggleFooterPart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PageSetting);

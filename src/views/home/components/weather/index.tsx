@@ -5,35 +5,36 @@ import { useMount } from 'ahooks';
 import { http_weather } from '@/api/external';
 import style from './index.module.less';
 
-const Weather = () => {
+const Weather = (props: any) => {
   const [weatherInfo, setWeatherInfo] = useState<any>({});
   useMount(async () => {
     await getWeatherInfo();
   });
 
   const getWeatherInfo = async () => {
-    const res = await http_weather('');
-    setWeatherInfo(res.data);
+    try {
+      const res = await http_weather('');
+      setWeatherInfo(res.data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      props.changeLoading();
+    }
   };
 
   return (
     <div className={style.weather}>
       <Row>
         <Col span={16}>
-          <h2>Hello,13952150639!</h2>
+          <h2>Hello,{localStorage.getItem('phone') || localStorage.getItem('nickname')}!</h2>
           <p>Welcome to Extreme Admin, it's a clean and compact system,wish you enjoy it !</p>
           <div className={'thermometer-info'}>
-            {/*<SvgIcon width={15} height={15} iconClass={"thermometer"} />*/}
-
-            {/*<SvgIcon width={15} height={15} iconClass={"humidity"} />*/}
-            {/*<span>{weatherInfo.humidity}</span>*/}
-            {/*<span>{weatherInfo.reportTime}</span>*/}
-
-            {/*<span>{weatherInfo.windDirection}</span>*/}
-            {/*<span>{weatherInfo.windPower}</span>*/}
-            {/*<span>{weatherInfo.address}</span>*/}
             <div>
-              <span className={'thermometer'}>{weatherInfo?.temp}</span>
+              <span>上海</span>
+              <span>城市</span>
+            </div>
+            <div>
+              <span>{weatherInfo?.temp}</span>
               <span>{weatherInfo?.weather}</span>
             </div>
             <div>

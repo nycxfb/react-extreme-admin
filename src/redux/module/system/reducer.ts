@@ -14,7 +14,7 @@ const systemState: systemState = {
   isShowBreadcrumb: true,
   isShowFooter: true,
   isShowLogo: true,
-  menuTheme: 'dark',
+  menuTheme: 'dark'
 };
 
 const system = (state: systemState = systemState, action: AnyAction) =>

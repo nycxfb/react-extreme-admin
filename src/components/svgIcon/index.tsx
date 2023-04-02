@@ -19,7 +19,7 @@ const SvgIcon = (props: svgProps) => {
 };
 
 SvgIcon.propTypes = {
-  iconClass: PropTypes.string.isRequired,
+  iconClass: PropTypes.string.isRequired
 };
 
 export default SvgIcon;

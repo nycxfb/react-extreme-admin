@@ -6,7 +6,6 @@ import App from '@/app';
 import { store } from '@/redux';
 import '@/styles/common.less';
 import '@/i18n/config';
-import '@/styles/transition.less';
 
 import microApp from '@micro-zoe/micro-app';
 
@@ -29,5 +28,5 @@ root.render(
     <StyleProvider hashPriority="high" transformers={[legacyLogicalPropertiesTransformer]}>
       <App />
     </StyleProvider>
-  </Provider>,
+  </Provider>
 );

@@ -8,7 +8,8 @@ import SvgIcon from '@/components/svgIcon';
 import Language from '@/components/language';
 import LoginForm from './component/loginForm';
 import SignupForm from './component/signupForm';
-import './index.module.less';
+import style from './index.module.less';
+import Tips from '@/components/tips';
 
 const Login = function (props: any) {
   const [formType, setFormType] = useState<string>('login');
@@ -22,7 +23,7 @@ const Login = function (props: any) {
   };
 
   return (
-    <div className={'login-container'}>
+    <div className={style['login-container']}>
       <div className={'left-part'}>
         <SvgIcon iconClass={'logo_react'} width={270} height={270} />
         <h1>{t('login.slogan')}</h1>

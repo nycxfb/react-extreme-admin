@@ -49,7 +49,7 @@ const generateTagName = (routes: any, path: string, tag: {} = {}) => {
         tag = {
           path: childrenItem.path,
           title: childrenItem.meta.title,
-          active: false,
+          active: false
         };
       }
     });

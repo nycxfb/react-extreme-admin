@@ -6,12 +6,12 @@ import Login from '@/views/login';
 const constantRouter: baseRouter[] = [
   {
     path: '/',
-    element: <Navigate to="/login" />,
+    element: <Navigate to="/login" />
   },
   {
     path: '/login',
-    element: <Login />,
-  },
+    element: <Login />
+  }
 ];
 
 export default constantRouter;

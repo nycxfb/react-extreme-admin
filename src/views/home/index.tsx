@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Row, Spin } from 'antd';
 import { SettingOutlined, CodeOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import Weather from './components/weather';
@@ -13,30 +13,34 @@ const componentsArray = [
     id: 1,
     title: '页面设置',
     icon: SettingOutlined,
-    component: PageSetting,
+    component: PageSetting
   },
   {
     id: 2,
     title: '技术栈',
     icon: CodeOutlined,
-    component: TechnologyStack,
+    component: TechnologyStack
   },
   {
     id: 3,
     title: '开发进度',
     icon: ClockCircleOutlined,
-    component: DevelopProgress,
-  },
+    component: DevelopProgress
+  }
 ];
 
 const Home: React.FC = () => {
-  const b = 345;
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const changeLoading = () => {
+    setLoading(false);
+  };
   return (
-    <Spin spinning={false}>
+    <Spin spinning={loading}>
       <div className={style['home-container']}>
         <Row>
           <Col span={16} className={'part-A'}>
-            <Weather />
+            <Weather changeLoading={changeLoading} />
             <Trend />
           </Col>
           <Col span={8} className={'part-B'}>

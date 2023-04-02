@@ -10,7 +10,7 @@ import {
   validateEmail,
   validateLowerCase,
   validateUpperCase,
-  validatePlateNumber,
+  validatePlateNumber
 } from '@/utils/validate';
 
 const FormatCheck = () => {
@@ -21,65 +21,65 @@ const FormatCheck = () => {
       { max: 11, message: '手机长度不合格' },
       {
         pattern: new RegExp(validateMobile.rule(), 'g') /* 以数字、大小写字母开头，至少有一位*/,
-        message: '请输入正确格式的手机号码',
-      },
+        message: '请输入正确格式的手机号码'
+      }
     ],
     idCard: [
       { required: true, message: '请输入身份证号码' },
       {
         pattern: new RegExp(validateCard.rule(), 'g'),
-        message: '请输入正确格式的身份证',
-      },
+        message: '请输入正确格式的身份证'
+      }
     ],
     email: [
       { required: true, message: '请输入邮箱' },
       {
         pattern: new RegExp(validateEmail.rule(), 'g'),
-        message: '请输入正确格式的邮箱',
-      },
+        message: '请输入正确格式的邮箱'
+      }
     ],
     plateNumber: [
       { required: true, message: '请输入车牌号' },
       {
         pattern: new RegExp(validatePlateNumber.rule(), 'g'),
-        message: '请输入正确格式的车牌号',
-      },
+        message: '请输入正确格式的车牌号'
+      }
     ],
     url: [
       { required: true, message: '请输入URL' },
       {
         pattern: new RegExp(validateURL.rule(), 'g'),
-        message: '请输入正确格式的URL',
-      },
+        message: '请输入正确格式的URL'
+      }
     ],
     uppercase: [
       { required: true, message: '请输入' },
       {
         pattern: new RegExp(validateUpperCase.rule(), 'g'),
-        message: '请输入大写字母',
-      },
+        message: '请输入大写字母'
+      }
     ],
     lowercase: [
       { required: true, message: '请输入' },
       {
         pattern: new RegExp(validateLowerCase.rule(), 'g'),
-        message: '请输入小写字母',
-      },
+        message: '请输入小写字母'
+      }
     ],
     alphabets: [
       { required: true, message: '请输入' },
       {
         pattern: new RegExp(validateAlphabets.rule(), 'g'),
-        message: '请输入大小写字母',
-      },
+        message: '请输入大小写字母'
+      }
     ],
     integral: [
       { required: true, message: '请输入' },
       {
         pattern: new RegExp(validateIntegral.rule(), 'g'),
-        message: '请输入非零正实数',
-      },
-    ],
+        message: '请输入非零正实数'
+      }
+    ]
   };
 
   const checkForm = async () => {
@@ -91,7 +91,7 @@ const FormatCheck = () => {
   };
 
   return (
-    <SearchFormCard>
+    <SearchFormCard height={'600px'}>
       <Form labelCol={{ span: 7 }} onFinish={checkForm} form={form}>
         <Form.Item label="手机" rules={formRules.phone} name={'phone'}>
           <Input allowClear />

@@ -6,7 +6,7 @@ interface userState {
 }
 
 const userState: userState = {
-  token: '',
+  token: ''
 };
 
 const user = (state: userState = userState, action: AnyAction) =>

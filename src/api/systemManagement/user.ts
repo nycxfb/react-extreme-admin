@@ -9,7 +9,7 @@ export function http_user_list(params: any) {
   return request({
     url: '/api/system/user/list',
     method: 'post',
-    data: params,
+    data: params
   });
 }
 
@@ -22,7 +22,7 @@ export function http_user_add(params: any) {
   return request({
     url: '/api/system/user/add',
     method: 'post',
-    data: params,
+    data: params
   });
 }
 
@@ -36,7 +36,7 @@ export function http_user_edit(params: any) {
   return request({
     url: '/api/system/user/update',
     method: 'put',
-    data: params,
+    data: params
   });
 }
 
@@ -49,6 +49,6 @@ export function http_user_delete(params: any) {
   return request({
     url: '/api/system/user/delete',
     method: 'delete',
-    params,
+    params
   });
 }

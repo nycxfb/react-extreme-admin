@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Card, Col, Input, Row, message } from 'antd';
+import { SyncOutlined } from '@ant-design/icons';
 import { useMount } from 'ahooks';
 import Event from '@/utils/event';
 import { http_dailyWord } from '@/api/external';
@@ -18,14 +19,19 @@ const Publish = () => {
   };
 
   const getDailyWord = async () => {
-    setLoading(true);
-    const res = await http_dailyWord();
-    if (res.code == '200') {
-      setInputVal(res.data[0].content);
-    } else {
-      message.error(res.message);
+    try {
+      setLoading(true);
+      const res = await http_dailyWord();
+      if (res.code == '200') {
+        setInputVal(res.data[0].content);
+      } else {
+        message.error(res.message);
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const publishMessage = () => {
@@ -34,7 +40,12 @@ const Publish = () => {
   };
 
   return (
-    <Card title={'发布者'} style={{ width: 500, height: 400 }} loading={loading}>
+    <Card
+      title={'发布者'}
+      style={{ width: 500, height: 400 }}
+      loading={loading}
+      extra={<SyncOutlined style={{ cursor: 'pointer' }} onClick={getDailyWord} />}
+    >
       <Row gutter={24}>
         <Col span={16}>
           <Input.TextArea autoSize ref={messageRef} value={inputVal} onChange={onChange} />

@@ -13,12 +13,12 @@ const ERROR_CODES: { [key: number]: string } = {
   502: '网关错误,状态码:502',
   503: '服务不可用,状态码:503',
   504: '网关超时,状态码:504',
-  505: 'HTTP版本不支持该请求,状态码:505',
+  505: 'HTTP版本不支持该请求,状态码:505'
 };
 
 const service = axios.create({
   baseURL: '',
-  timeout: 50000,
+  timeout: 30000
 });
 
 service.interceptors.request.use(
@@ -30,7 +30,7 @@ service.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  },
+  }
 );
 
 service.interceptors.response.use(
@@ -42,7 +42,7 @@ service.interceptors.response.use(
       setTimeout(() => {
         localStorage.clear();
         window.location.href = '/';
-      }, 1000);
+      }, 500);
       return message.error(response.data.message);
     }
     return response.data;
@@ -50,7 +50,6 @@ service.interceptors.response.use(
   (error) => {
     // 处理请求异常
     const { status } = error.response;
-    0;
     if (error.response && status > 400 && status < 600) {
       if (ERROR_CODES[status]) {
         switch (status) {
@@ -63,9 +62,9 @@ service.interceptors.response.use(
     }
     return {
       code: '9999',
-      msg: '系统异常，请稍后再试',
+      msg: '系统异常，请稍后再试'
     };
-  },
+  }
 );
 
 export default service;

@@ -42,7 +42,7 @@ const User = (props: any) => {
         >
           首页
         </span>
-      ),
+      )
     },
     {
       key: '2',
@@ -54,7 +54,7 @@ const User = (props: any) => {
         >
           我的主页
         </span>
-      ),
+      )
     },
     {
       key: '3',
@@ -66,8 +66,8 @@ const User = (props: any) => {
         >
           退出登录
         </span>
-      ),
-    },
+      )
+    }
   ];
 
   return (
@@ -90,7 +90,7 @@ const User = (props: any) => {
           </Button>,
           <Button key="submit" size={'small'} type="primary" onClick={logOut}>
             确定
-          </Button>,
+          </Button>
         ]}
       >
         <p style={{ padding: '10px 0' }}>是否确认退出系统？</p>

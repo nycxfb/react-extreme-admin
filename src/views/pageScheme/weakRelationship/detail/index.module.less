@@ -1,19 +1,38 @@
-:global {
-  .weak-wrapper {
-    .ant-card-body {
-      padding: 0 !important;
-      overflow-y: scroll;
+.weak-wrapper {
+  :global {
+    .part-A{
+      .user{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        span{
+          &:not(:first-child){
+            white-space: nowrap;
+            color: darkgray;
+            font-size: 13px;
+          }
+        }
+      }
     }
-  }
+    .weak-wrapper-bottom {
+      display: flex;
 
-  .header {
-    border-bottom: 1px solid #efefef;
-  }
-  .test {
-    display: flex;
-  }
+      .part-B {
+        flex: 7;
+      }
 
-  .ant-card-body {
-    //padding: 0 !important;
+      .part-C {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        h3{
+          width: 60%;
+          margin-bottom: 20px;
+        }
+      }
+    }
   }
 }

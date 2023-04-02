@@ -8,7 +8,7 @@ export function http_weather(params: any) {
   return request({
     url: '/api/external/weather',
     method: 'get',
-    params,
+    params
   });
 }
 
@@ -19,7 +19,7 @@ export function http_weather(params: any) {
 export function http_dailyWord() {
   return request({
     url: '/api/external/dailyWord',
-    method: 'get',
+    method: 'get'
   });
 }
 
@@ -30,7 +30,7 @@ export function http_dailyWord() {
 export function http_news_classification() {
   return request({
     url: '/api/external/news/classification',
-    method: 'get',
+    method: 'get'
   });
 }
 
@@ -42,6 +42,6 @@ export function http_news_list(params: any) {
   return request({
     url: '/api/external/news/list',
     method: 'get',
-    params,
+    params
   });
 }

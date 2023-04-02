@@ -21,7 +21,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = {
-  toggleDrawer,
+  toggleDrawer
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Setting);

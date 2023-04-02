@@ -8,26 +8,26 @@ const technologyArray = [
     id: 1,
     icon: 'react',
     name: 'React',
-    url: 'https://zh-hans.reactjs.org/',
+    url: 'https://zh-hans.reactjs.org/'
   },
   {
     id: 2,
     icon: 'antd',
     name: 'antd',
-    url: 'https://ant.design/components/overview-cn/',
+    url: 'https://ant.design/components/overview-cn/'
   },
   {
     id: 3,
     icon: 'redux',
     name: 'redux',
-    url: 'https://cn.redux.js.org/',
+    url: 'https://cn.redux.js.org/'
   },
   {
     id: 4,
     icon: 'webpack',
     name: 'webpack',
-    url: 'https://webpack.docschina.org',
-  },
+    url: 'https://webpack.docschina.org'
+  }
 ];
 
 const TechnologyStack = () => {
@@ -77,7 +77,7 @@ const TechnologyStack = () => {
           </Button>,
           <Button key="submit" size={'small'} type="primary" onClick={toOtherPage}>
             确定
-          </Button>,
+          </Button>
         ]}
       >
         <p style={{ padding: '10px 0' }}>是否离开本系统，前往 {url}</p>

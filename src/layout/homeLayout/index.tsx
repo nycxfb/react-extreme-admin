@@ -19,11 +19,7 @@ const HomeLayout: React.FC = (props: any) => {
 
   //根据路径变化处理面包屑、标签等配置
   useEffect(() => {
-    let homeTag;
     const breadcrumb = generateBreadcrumb(asyncRoutes, pathname);
-    if (pathname !== '/home/index') {
-      homeTag = generateTagName(asyncRoutes, '/home/index');
-    }
     const visitTag = generateTagName(asyncRoutes, pathname);
     toggleBreadcrumb(breadcrumb);
     addVisitTag(visitTag);
@@ -37,7 +33,7 @@ const HomeLayout: React.FC = (props: any) => {
           height: '100vh',
           left: 0,
           top: 0,
-          bottom: 0,
+          bottom: 0
         }}
       >
         <Sider
@@ -71,7 +67,7 @@ const mapDispatchToProps = {
   toggleSideMenu,
   toggleBreadcrumb,
   addVisitTag,
-  toggleVisitTag,
+  toggleVisitTag
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeLayout);
