@@ -1,4 +1,4 @@
-const list = [
+const primaryList = [
   {
     key: 'name',
     label: '姓名',
@@ -147,4 +147,4 @@ const list = [
   }
 ];
 
-export { list };
+export { primaryList };

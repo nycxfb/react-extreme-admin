@@ -8,16 +8,19 @@ const DynamicForm = forwardRef((props: any, ref) => {
 
   const [handleArray, setHandleArray] = useState<any>([]);
   const [labelWidth, setLabelWidth] = useState<string>(props?.labelWidth ?? 5);
+  const [colSpan, setColSpan] = useState(24);
 
   // 处理表单数据
   const handleForm = (arr: any, column: number, labelWidth: string, tempArray: any = []) => {
     setLabelWidth(labelWidth);
+    setColSpan(24 / column);
     for (let i = 0; i < arr.length; i += column) {
       tempArray.push(arr.slice(i, i + column));
       setHandleArray(tempArray);
     }
   };
 
+  //表单项类型判断
   const renderForm = (item: any) => {
     switch (item.type) {
       case 'input':
@@ -48,7 +51,7 @@ const DynamicForm = forwardRef((props: any, ref) => {
       {handleArray.map((rowItem: any) => (
         <Row key={rowItem.index}>
           {rowItem.map((formItem: any) => (
-            <Col key={formItem.label} span={8}>
+            <Col key={formItem.label} span={colSpan}>
               <Form.Item label={formItem.label}>{renderForm(formItem)}</Form.Item>
             </Col>
           ))}

@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { Modal, Checkbox, Button } from 'antd';
-import { list } from './config';
+import { primaryList } from './config';
 import style from './index.module.less';
 
 const ConfigDialog = forwardRef((props: any, ref) => {
@@ -9,6 +9,8 @@ const ConfigDialog = forwardRef((props: any, ref) => {
 
   const [visible, setVisible] = useState<boolean>(false);
   const [configList, setConfigList] = useState([]);
+
+  // 打开弹窗
   const openConfigDialog = (status: boolean) => {
     setVisible(status);
   };
@@ -16,16 +18,16 @@ const ConfigDialog = forwardRef((props: any, ref) => {
     setConfigList(e);
   };
 
-  const handleOk = () => {
-    const arr: any = [];
+  //处理选中数据
+  const confirmSelect = (selectArray: any = []) => {
     configList.forEach((item) => {
-      list.forEach((item1) => {
+      primaryList.forEach((item1) => {
         if (item1.key === item) {
-          arr.push(item1);
+          selectArray.push(item1);
         }
       });
     });
-    onGetConfigList(arr);
+    onGetConfigList(selectArray);
     setVisible(false);
   };
 
@@ -40,7 +42,7 @@ const ConfigDialog = forwardRef((props: any, ref) => {
           type="primary"
           size={'middle'}
           onClick={() => {
-            handleOk();
+            confirmSelect();
           }}
         >
           确认
@@ -57,9 +59,9 @@ const ConfigDialog = forwardRef((props: any, ref) => {
       ]}
     >
       <Checkbox.Group onChange={onChange}>
-        {list.map((listItem: any) => (
-          <Checkbox value={listItem.key} key={listItem.key}>
-            {listItem.label}
+        {primaryList.map((primaryListItem: any) => (
+          <Checkbox value={primaryListItem.key} key={primaryListItem.key}>
+            {primaryListItem.label}
           </Checkbox>
         ))}
       </Checkbox.Group>

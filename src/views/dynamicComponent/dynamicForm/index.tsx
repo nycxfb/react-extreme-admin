@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { Button, Card, Col, Divider, Form, Row, Select, Input } from 'antd';
+import { Button, Card, Form, Select, Input, InputNumber } from 'antd';
 import DynamicForm from '@/components/dynamicForm';
 import ConfigDialog from './components/configDialog';
 import Tips from '@/components/tips';
 import SearchFormCard from '@/components/SearchFormCard';
-import './index.module.less';
 
 const Index = () => {
   const configDialogRef = useRef<any>(null);
@@ -27,14 +26,14 @@ const Index = () => {
   };
 
   //设置列数
-  const setChangedVal = (val: string) => {
-    setColumn(val);
+  const setChangedVal = (column: string) => {
+    setColumn(column);
   };
 
-  //设置宽度
+  //更新配置
   const updateConfig = () => {
     setLabelWidth(form.getFieldsValue().labelWidth);
-    dynamicFormRef.current.handleForm(formList, Number(column), labelWidth);
+    dynamicFormRef.current.handleForm(formList, Number(column), form.getFieldsValue().labelWidth);
   };
   return (
     <div className={'dynamic-container'}>
@@ -68,7 +67,7 @@ const Index = () => {
             />
           </Form.Item>
           <Form.Item label={'配置标签宽度'} name={'labelWidth'}>
-            <Input />
+            <InputNumber />
           </Form.Item>
         </Form>
       </SearchFormCard>
