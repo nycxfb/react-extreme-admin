@@ -8,6 +8,7 @@ import './index.module.less';
 
 const Index = () => {
   const configDialogRef = useRef<any>(null);
+  const dynamicFormRef = useRef<any>(null);
   const [formList, setFormList] = useState([]);
   const [column, setColumn] = useState<string>('1');
   const [labelWidth, setLabelWidth] = useState<string>('');
@@ -20,8 +21,9 @@ const Index = () => {
   };
 
   //获取配置数据
-  const getConfigList = (val: any) => {
-    setFormList(val);
+  const getConfigList = (formList: any) => {
+    setFormList(formList);
+    dynamicFormRef.current.handleForm(formList, Number(column), labelWidth);
   };
 
   //设置列数
@@ -32,6 +34,7 @@ const Index = () => {
   //设置宽度
   const updateConfig = () => {
     setLabelWidth(form.getFieldsValue().labelWidth);
+    dynamicFormRef.current.handleForm(formList, Number(column), labelWidth);
   };
   return (
     <div className={'dynamic-container'}>
@@ -70,7 +73,7 @@ const Index = () => {
         </Form>
       </SearchFormCard>
       <Card title={'动态表单'}>
-        <DynamicForm formList={formList} />
+        <DynamicForm ref={dynamicFormRef} formList={formList} />
       </Card>
       <ConfigDialog ref={configDialogRef} column={column} labelWidth={labelWidth} onGetConfigList={getConfigList} />
     </div>

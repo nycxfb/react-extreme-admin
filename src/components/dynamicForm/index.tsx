@@ -1,19 +1,22 @@
-import React from 'react';
-import { DatePicker, Form, Input, Select, Radio } from 'antd';
-
+import React, { useState, useImperativeHandle, forwardRef, useEffect } from 'react';
+import { DatePicker, Form, Input, Select, Radio, Row, Col } from 'antd';
 const { TextArea } = Input;
 const { RangePicker } = DatePicker;
 
-interface formConfig {
-  formList: Array<any>;
-  column?: number;
-  labelWidth?: number;
-}
+const DynamicForm = forwardRef((props: any, ref) => {
+  useImperativeHandle(ref, () => ({ handleForm }));
 
-const DynamicForm = (props: formConfig) => {
-  const { formList } = props;
-  const column = props?.column ?? 3;
-  const labelWidth = props?.labelWidth ?? 3;
+  const [handleArray, setHandleArray] = useState<any>([]);
+  const [labelWidth, setLabelWidth] = useState<string>(props?.labelWidth ?? 5);
+
+  // 处理表单数据
+  const handleForm = (arr: any, column: number, labelWidth: string, tempArray: any = []) => {
+    setLabelWidth(labelWidth);
+    for (let i = 0; i < arr.length; i += column) {
+      tempArray.push(arr.slice(i, i + column));
+      setHandleArray(tempArray);
+    }
+  };
 
   const renderForm = (item: any) => {
     switch (item.type) {
@@ -42,11 +45,17 @@ const DynamicForm = (props: formConfig) => {
 
   return (
     <Form labelCol={{ span: labelWidth }}>
-      {formList.map((item) => (
-        <Form.Item label={item.label}>{renderForm(item)}</Form.Item>
+      {handleArray.map((rowItem: any) => (
+        <Row key={rowItem.index}>
+          {rowItem.map((formItem: any) => (
+            <Col key={formItem.label} span={8}>
+              <Form.Item label={formItem.label}>{renderForm(formItem)}</Form.Item>
+            </Col>
+          ))}
+        </Row>
       ))}
     </Form>
   );
-};
+});
 
 export default DynamicForm;

@@ -41,13 +41,12 @@ const ConfigDialog = forwardRef((props: any, ref) => {
           size={'middle'}
           onClick={() => {
             handleOk();
-            setVisible(false);
           }}
         >
           确认
         </Button>,
         <Button
-          key="submit"
+          key={'close'}
           size={'middle'}
           onClick={() => {
             setVisible(false);
