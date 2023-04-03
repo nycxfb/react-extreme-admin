@@ -12,7 +12,6 @@ NProgress.configure({
 });
 
 const LoadingProgress: React.FC = () => {
-  console.log('出发了');
   const { pathname } = useLocation();
   useEffect(() => {
     NProgress.start();

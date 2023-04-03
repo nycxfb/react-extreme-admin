@@ -132,9 +132,6 @@ const User: React.FC = () => {
           >
             删除
           </Button>
-          <Button type="link" onClick={() => {}}>
-            查看
-          </Button>
         </>
       )
     }

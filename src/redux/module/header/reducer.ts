@@ -52,7 +52,6 @@ const header = (state: headerState = headerState, action: AnyAction) =>
             break;
           }
         }
-        console.log(draftSate.tags, 5555555);
         break;
 
       case 'DELETE_OTHER_VISIT_TAG':

@@ -126,7 +126,7 @@ const asyncRoutes: baseRouter[] = [
       },
       {
         path: '/designPattern/strategyPattern',
-        element: lazyLoad(() => import('@/views/designPattern/strategyPattern')),
+        element: lazyLoad(() => import('@/views/develop')),
         meta: {
           title: 'strategyPattern',
           icon: 'PartitionOutlined'
