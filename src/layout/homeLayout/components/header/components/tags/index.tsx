@@ -10,7 +10,6 @@ import './index.less';
 
 const Tags = (props: any) => {
   const { tags, deleteVisitTag, deleteOtherVisitTag, deleteAllTags } = props;
-
   const [contextTag, setContextTag] = useState<tagItem>({} as tagItem);
   const { pathname } = useLocation();
   const { t } = useTranslation();

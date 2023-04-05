@@ -8,7 +8,7 @@ import { toggleSideMenu } from '@/redux/module/menu/action';
 import { toggleBreadcrumb, addVisitTag, toggleVisitTag } from '@/redux/module/header/action';
 import asyncRoutes from '@/router/module/asyncRoutes';
 import con from '@/router/module/constantRoutes';
-import { generateBreadcrumb, generateTagName } from '@/router/util/handleRoute';
+import { generateBreadcrumb, generateTagName, flattenRouter } from '@/router/util/handleRoute';
 import './index.less';
 
 const { Sider, Content } = Layout;
@@ -19,9 +19,12 @@ const HomeLayout: React.FC = (props: any) => {
 
   //根据路径变化处理面包屑、标签等配置
   useEffect(() => {
-    const breadcrumb = generateBreadcrumb(asyncRoutes, pathname);
-    const visitTag = generateTagName(asyncRoutes, pathname);
+    const routes = flattenRouter(asyncRoutes);
+    const breadcrumb = generateBreadcrumb(routes, pathname);
+    const homeTag = generateTagName(routes, '/home/index');
+    const visitTag = generateTagName(routes, pathname);
     toggleBreadcrumb(breadcrumb);
+    addVisitTag(homeTag);
     addVisitTag(visitTag);
     toggleVisitTag(pathname);
   }, [pathname]);

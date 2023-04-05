@@ -10,6 +10,7 @@ import { toggleTags, addVisitTag } from '@/redux/module/header/action';
 import { generateSubmenuPath } from '@/router/util/handleRoute';
 import SvgIcon from '@/components/svgIcon';
 import style from './index.module.less';
+import { useMount } from 'ahooks';
 
 const HomeMenu: React.FC = (props: any) => {
   const { menuTheme } = props;
@@ -23,15 +24,25 @@ const HomeMenu: React.FC = (props: any) => {
 
   const [selectedKeys, setSelectKeys] = useState<string[]>([pathname]);
 
-  useEffect(() => {
-    setRootSubmenuKeys(generateSubmenuPath(asyncRoutes));
-  }, []);
-
   //根据路径展开菜单
   useEffect(() => {
     setSelectKeys([pathname]);
-    setOpenKeys([`/${pathname.split('/')[1]}`]);
   }, [pathname]);
+
+  useMount(() => {
+    setRootSubmenuKeys(generateSubmenuPath(asyncRoutes));
+    handleOpenKeys(pathname);
+  });
+
+  const handleOpenKeys = (pathname: string) => {
+    const pathArray = pathname.split('/');
+    const tempArray = [];
+    pathArray.shift();
+    for (let i = 1; i <= pathArray.length; i++) {
+      tempArray.push(`/${pathArray.slice(0, i).join('/')}`);
+    }
+    setOpenKeys(tempArray.slice(0, tempArray.length - 1));
+  };
 
   //菜单点击
   const clickMenu = (props: any) => {
@@ -62,6 +73,7 @@ const HomeMenu: React.FC = (props: any) => {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
+
   const handleMenu = (route: any) =>
     route.map((routeItem: any) => {
       if (routeItem.children) {

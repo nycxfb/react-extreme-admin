@@ -5,7 +5,7 @@ import type { MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { userLogOut } from '@/redux/module/user/action';
 import Cookies from 'js-cookie';
-import owl from '@/assets/image/owl.png';
+import dog from '@/assets/image/dog.png';
 import './index.module.less';
 
 const User = (props: any) => {
@@ -18,7 +18,7 @@ const User = (props: any) => {
 
   useEffect(() => {
     // setAvatar(localStorage.getItem("avatar") || owl);
-    setAvatar(owl);
+    setAvatar(dog);
     setUserName(localStorage.getItem('userName') || '');
   }, []);
 

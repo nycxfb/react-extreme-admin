@@ -31,10 +31,6 @@ const header = (state: headerState = headerState, action: AnyAction) =>
         break;
 
       case 'ADD_VISIT_TAG':
-        if (draftSate.tags.length == 0) {
-          const tag = generateTagName(asyncRoutes, '/home/index');
-          draftSate.tags.push(tag as tagItem);
-        }
         if (draftSate.tags.some((t) => t?.path == action.tags.path)) return;
         draftSate.tags.push(action.tags);
         break;

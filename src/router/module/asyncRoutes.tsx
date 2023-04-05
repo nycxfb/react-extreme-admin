@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { baseRouter } from '@/router/interface';
 import { lazyLoad } from '@/router/util/lazyLoad';
 import HomeLayout from '@/layout/homeLayout';
@@ -206,26 +206,26 @@ const asyncRoutes: baseRouter[] = [
         },
         children: [
           {
-            path: '/multiMenu/secondLevel/thirdLevel',
-            element: lazyLoad(() => import('@/views/develop')),
+            path: '/multiMenu/secondLevel/secondLevel1',
+            element: lazyLoad(() => import('@/views/multiMenu/secondLevel/page1')),
             meta: {
-              title: 'instantMessage'
+              title: 'menu 2-1'
             }
           },
           {
-            path: '/multiMenu/secondLevel/thirdLevel3',
-            element: lazyLoad(() => import('@/views/develop')),
+            path: '/multiMenu/secondLevel/secondLevel2',
+            element: lazyLoad(() => import('@/views/multiMenu/secondLevel/page2')),
             meta: {
-              title: 'instantMessage'
+              title: 'menu 2-2'
             }
           }
         ]
       },
       {
-        path: '/multiMenu/secondLevel1',
-        element: lazyLoad(() => import('@/views/develop')),
+        path: '/multiMenu/firstLevel',
+        element: lazyLoad(() => import('@/views/multiMenu/firstLevel')),
         meta: {
-          title: 'instantMessage'
+          title: 'menu 1-1'
         }
       }
     ]
@@ -248,6 +248,23 @@ const asyncRoutes: baseRouter[] = [
     ]
   },
   {
+    path: '/editor',
+    element: <HomeLayout />,
+    meta: {
+      title: 'editor'
+    },
+    children: [
+      {
+        path: '/editor/index',
+        element: lazyLoad(() => import('@/views/editor')),
+        meta: {
+          title: 'editor',
+          icon: 'FormOutlined'
+        }
+      }
+    ]
+  },
+  {
     path: '/largeScreenDisplay',
     element: <HomeLayout />,
     meta: {
@@ -264,25 +281,6 @@ const asyncRoutes: baseRouter[] = [
       }
     ]
   },
-
-  {
-    path: '/editor',
-    element: <HomeLayout />,
-    meta: {
-      title: 'editor'
-    },
-    children: [
-      {
-        path: '/editor/index',
-        element: lazyLoad(() => import('@/views/develop')),
-        meta: {
-          title: 'editor',
-          icon: 'FormOutlined'
-        }
-      }
-    ]
-  },
-
   {
     path: '/instantMessage',
     element: <HomeLayout />,

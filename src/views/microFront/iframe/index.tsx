@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Card, Col, Image, message, Row, Spin } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Card, Image, message as Message, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import style from './index.module.less';
 import { useMount } from 'ahooks';
@@ -7,8 +7,9 @@ import { http_news_classification, http_news_list } from '@/api/external';
 import Tips from '@/components/tips';
 
 const MicroFront: React.FC = () => {
-  const [newsArray, setNewsArray] = useState([]);
-  const [newsListArray, setNewsListArray] = useState([]);
+  const [newsArray, setNewsArray] = useState<Array<any>>([]);
+  const [newsListArray, setNewsListArray] = useState<Array<any>>([]);
+  const [newsId, setNewsId] = useState<string>('');
   const [classLoading, setClassLoading] = useState<boolean>(false);
   const [newsLoading, setNewsLoading] = useState<boolean>(false);
 
@@ -16,22 +17,26 @@ const MicroFront: React.FC = () => {
     await getNewsClassification();
   });
 
+  useEffect(() => {
+    setNewsListArray([...newsListArray]);
+  }, [newsId]);
+
   //获取新闻分类
   const getNewsClassification = async () => {
     setClassLoading(true);
-    const res = await http_news_classification();
-    if (res.code == '200') {
-      const news = res.data;
-      news.forEach((item: any) => {
-        Object.assign(item, { active: false });
+    const { code, data, message } = await http_news_classification();
+    if (code == '200') {
+      const classicNews = data;
+      classicNews.forEach((item: any) => {
+        item.active = false;
       });
-      news[2].active = true;
-      setNewsArray(news);
+      classicNews[2].active = true;
+      setNewsArray(classicNews);
       setTimeout(() => {
-        getNewsList(news[2].typeId);
+        getNewsList(classicNews[2].typeId);
       }, 1000);
     } else {
-      message.error(res.message);
+      Message.error(message);
     }
     setClassLoading(false);
   };
@@ -40,30 +45,40 @@ const MicroFront: React.FC = () => {
   const getNewsList = async (typeId: string) => {
     newsArray.forEach((newsItem: any) => {
       if (newsItem?.typeId == typeId) {
-        Object.assign(newsItem, {
-          active: true
-        });
+        newsItem.active = true;
       } else {
-        Object.assign(newsItem, {
-          active: false
-        });
+        newsItem.active = false;
       }
     });
+    setNewsId(typeId);
     setNewsLoading(true);
-    const res = await http_news_list({ typeId });
-    if (res.code == '200') {
-      setNewsListArray(res.data);
+    const { code, data, message } = await http_news_list({ typeId });
+    if (code == '200') {
+      const newsList = data;
+      newsList.forEach((item: any) => {
+        item.active = false;
+      });
+      newsList[0].active = true;
+      setNewsListArray(newsList);
       setTimeout(() => {
-        getNewsDetail(res.data[0]?.newsId);
+        getNewsDetail(newsList[0]?.newsId);
       }, 1000);
     } else {
-      message.error(res.message);
+      Message.error(message);
     }
     setNewsLoading(false);
   };
 
-  // 获取新闻详情
+  // 子应用获取新闻详情
   const getNewsDetail = (id: string) => {
+    newsListArray.forEach((newsItem: any) => {
+      if (newsItem?.newsId == id) {
+        newsItem.active = true;
+      } else {
+        newsItem.active = false;
+      }
+    });
+    setNewsId(id);
     const iframe: any = document.getElementById('iframe');
     iframe.contentWindow.postMessage({ type: 'boundFileKeys', data: { id } }, '*');
   };
@@ -94,10 +109,11 @@ const MicroFront: React.FC = () => {
           </Card>
 
           <Spin spinning={newsLoading} indicator={<LoadingOutlined />} style={{ fontSize: 24 }}>
-            <div className={'news_wrapper'}>
+            <div className={'news-wrapper'}>
               {newsListArray.map((newsItem: any) => (
-                <Card className={'news_item'} key={newsItem.newsId}>
+                <Card className={'news-item'} key={newsItem.newsId}>
                   <h2
+                    className={newsItem.active ? 'title-click' : ''}
                     onClick={() => {
                       getNewsDetail(newsItem.newsId);
                     }}

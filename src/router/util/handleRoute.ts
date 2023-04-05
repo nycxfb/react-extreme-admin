@@ -18,22 +18,44 @@ const generateRoutePath = (routes: any, newArr: string[] = []) => {
 
 /**
  * @author nycxfb
- * @date 2023-02-15 21:51:56
  * @description:生成面包屑
  */
-const generateBreadcrumb = (routes: any, path: string, breadcrumbArr: string[] = []) => {
-  routes.forEach((routeItem: any) => {
-    routeItem?.children.forEach((childrenItem: any) => {
-      if (childrenItem.path === path) {
-        if (routeItem.children.length > 1) {
-          breadcrumbArr.push('homepage', routeItem.meta.title, childrenItem.meta.title);
-        } else {
-          breadcrumbArr.push('homepage', routeItem.meta.title);
-        }
+const generateBreadcrumb = (routes: any, path: string, fullPathArray: string[] = [], breadcrumbArr: string[] = []) => {
+  const singlePathArray = path.split('/');
+  singlePathArray.shift();
+
+  // 获得层级路径数组
+  for (let i = 0; i <= singlePathArray.length; i++) {
+    const sliceArray = singlePathArray.slice(0, i);
+    fullPathArray.push(`/${sliceArray.join('/')}`);
+  }
+
+  // 获取页面标题
+  fullPathArray.forEach((item) => {
+    routes.forEach((routeItem: any) => {
+      if (item == routeItem.path) {
+        breadcrumbArr.push(routeItem.meta.title);
       }
     });
   });
+  breadcrumbArr.unshift('homepage');
   return breadcrumbArr;
+};
+
+/**
+ * @author nycxfb
+ * @description:拍平路由数组
+ */
+const flattenRouter = (routes: any, flattenRoutes: any = []) => {
+  routes.forEach((routeItem: any) => {
+    if (routeItem.children) {
+      flattenRoutes = flattenRoutes.concat(flattenRouter(routeItem.children));
+      flattenRoutes.push(routeItem);
+    } else {
+      flattenRoutes.push(routeItem);
+    }
+  });
+  return flattenRoutes;
 };
 
 /**
@@ -41,20 +63,17 @@ const generateBreadcrumb = (routes: any, path: string, breadcrumbArr: string[] =
  * @date 2023-02-15 21:52:35
  * @description:生成页面tag名称
  */
-
 const generateTagName = (routes: any, path: string, tag: {} = {}) => {
-  routes.forEach((routeItem: any) => {
-    routeItem.children.forEach((childrenItem: any) => {
-      if (childrenItem.path === path) {
-        tag = {
-          path: childrenItem.path,
-          title: childrenItem.meta.title,
-          active: false
-        };
-      }
-    });
-  });
-
+  for (let routeItem of routes) {
+    if (routeItem.path === path) {
+      tag = {
+        path: routeItem.path,
+        title: routeItem.meta.title,
+        active: false
+      };
+      break;
+    }
+  }
   return tag;
 };
 
@@ -63,7 +82,6 @@ const generateTagName = (routes: any, path: string, tag: {} = {}) => {
  * @date 2023-02-27 14:38:43
  * @description:生成父级菜单路径数组
  */
-
 const generateSubmenuPath = (routes: any, submenuArr: any = []) => {
   routes.forEach((routeItem: any) => {
     if (routeItem.children && routeItem.children.length > 1) {
@@ -74,4 +92,4 @@ const generateSubmenuPath = (routes: any, submenuArr: any = []) => {
   return submenuArr;
 };
 
-export { generateRoutePath, generateBreadcrumb, generateTagName, generateSubmenuPath };
+export { generateRoutePath, generateBreadcrumb, generateTagName, generateSubmenuPath, flattenRouter };
