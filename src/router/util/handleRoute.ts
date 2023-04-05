@@ -34,7 +34,9 @@ const generateBreadcrumb = (routes: any, path: string, fullPathArray: string[] =
   fullPathArray.forEach((item) => {
     routes.forEach((routeItem: any) => {
       if (item == routeItem.path) {
-        breadcrumbArr.push(routeItem.meta.title);
+        if (routeItem.meta) {
+          breadcrumbArr.push(routeItem.meta.title);
+        }
       }
     });
   });

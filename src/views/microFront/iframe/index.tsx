@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Card, Image, message as Message, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import style from './index.module.less';
-import { useMount } from 'ahooks';
+import { useMount, useLatest } from 'ahooks';
 import { http_news_classification, http_news_list } from '@/api/external';
 import Tips from '@/components/tips';
 
 const MicroFront: React.FC = () => {
   const [newsArray, setNewsArray] = useState<Array<any>>([]);
   const [newsListArray, setNewsListArray] = useState<Array<any>>([]);
-  const [newsId, setNewsId] = useState<string>('');
   const [classLoading, setClassLoading] = useState<boolean>(false);
   const [newsLoading, setNewsLoading] = useState<boolean>(false);
 
@@ -17,9 +16,7 @@ const MicroFront: React.FC = () => {
     await getNewsClassification();
   });
 
-  useEffect(() => {
-    setNewsListArray([...newsListArray]);
-  }, [newsId]);
+  const latestRef = useLatest(newsListArray);
 
   //获取新闻分类
   const getNewsClassification = async () => {
@@ -50,7 +47,6 @@ const MicroFront: React.FC = () => {
         newsItem.active = false;
       }
     });
-    setNewsId(typeId);
     setNewsLoading(true);
     const { code, data, message } = await http_news_list({ typeId });
     if (code == '200') {
@@ -71,14 +67,15 @@ const MicroFront: React.FC = () => {
 
   // 子应用获取新闻详情
   const getNewsDetail = (id: string) => {
-    newsListArray.forEach((newsItem: any) => {
+    latestRef.current.forEach((newsItem: any) => {
       if (newsItem?.newsId == id) {
         newsItem.active = true;
       } else {
         newsItem.active = false;
       }
     });
-    setNewsId(id);
+    setNewsListArray([...latestRef.current]);
+
     const iframe: any = document.getElementById('iframe');
     iframe.contentWindow.postMessage({ type: 'boundFileKeys', data: { id } }, '*');
   };

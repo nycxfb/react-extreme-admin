@@ -44,18 +44,18 @@ const User = (props: any) => {
         </span>
       )
     },
-    {
-      key: '2',
-      label: (
-        <span
-          onClick={() => {
-            logOut();
-          }}
-        >
-          我的主页
-        </span>
-      )
-    },
+    // {
+    //   key: '2',
+    //   label: (
+    //     <span
+    //       onClick={() => {
+    //         logOut();
+    //       }}
+    //     >
+    //       我的主页
+    //     </span>
+    //   )
+    // },
     {
       key: '3',
       label: (

@@ -7,9 +7,6 @@ const asyncRoutes: baseRouter[] = [
   {
     path: '/home',
     element: <HomeLayout />,
-    meta: {
-      title: 'index'
-    },
     children: [
       {
         path: '/home/index',
@@ -233,9 +230,6 @@ const asyncRoutes: baseRouter[] = [
   {
     path: '/map',
     element: <HomeLayout />,
-    meta: {
-      title: 'map'
-    },
     children: [
       {
         path: '/map/index',
@@ -250,9 +244,6 @@ const asyncRoutes: baseRouter[] = [
   {
     path: '/editor',
     element: <HomeLayout />,
-    meta: {
-      title: 'editor'
-    },
     children: [
       {
         path: '/editor/index',
@@ -267,9 +258,6 @@ const asyncRoutes: baseRouter[] = [
   {
     path: '/largeScreenDisplay',
     element: <HomeLayout />,
-    meta: {
-      title: 'largeScreenDisplay'
-    },
     children: [
       {
         path: '/largeScreenDisplay/index',
@@ -284,9 +272,6 @@ const asyncRoutes: baseRouter[] = [
   {
     path: '/instantMessage',
     element: <HomeLayout />,
-    meta: {
-      title: 'instantMessage'
-    },
     children: [
       {
         path: '/instantMessage/demo1',
@@ -301,9 +286,6 @@ const asyncRoutes: baseRouter[] = [
   {
     path: '/storageScheme',
     element: <HomeLayout />,
-    meta: {
-      title: 'storageScheme'
-    },
     children: [
       {
         path: '/storageScheme/demo1',
