@@ -54,19 +54,18 @@ const configs = {
       },
       {
         test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+        type: "asset",
+        parser: {
+          dataUrlCondition:{
+            maxSize:10*1024
+          }
+        },
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 10240,
               name: "assets/image/[name].[hash:8].[ext]",
-              fallback: {
-                loader: 'file-loader',
-                options: {
-                  name: 'assets/image/[name].[contenthash:8].[ext]',
-                  esModule: false
-                }
-              },
               esModule: false
             }
           }
