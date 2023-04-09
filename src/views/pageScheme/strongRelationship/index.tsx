@@ -11,9 +11,9 @@ interface DataType {
   workCode: string;
   workDescription: string;
   taskStatus: string;
-  taskType: string;
-  handlePerson: string;
-  handleSuggestion: string;
+  initiator: string;
+  startTime: string;
+  consume: string;
   [key: string]: any;
 }
 
@@ -36,32 +36,32 @@ const StrongRelationship = () => {
     },
     {
       title: '工单类型',
-      dataIndex: 'taskStatus',
+      dataIndex: 'orderType',
       align: 'center'
     },
     {
       title: '发起人员',
-      dataIndex: 'taskType',
+      dataIndex: 'initiator',
       align: 'center'
     },
     {
       title: '发起时间',
-      dataIndex: 'taskType',
+      dataIndex: 'startTime',
       align: 'center'
     },
     {
       title: '耗时',
-      dataIndex: 'taskType',
+      dataIndex: 'consume',
       align: 'center'
     },
     {
       title: '工单状态',
-      dataIndex: 'taskType',
+      dataIndex: 'orderStatus',
       align: 'center'
     },
     {
       title: '紧急程度',
-      dataIndex: 'handleSuggestion',
+      dataIndex: 'degree',
       align: 'center'
     }
   ];
@@ -70,56 +70,74 @@ const StrongRelationship = () => {
     {
       order: 1,
       workCode: '202201',
+      orderType: '检查工单',
       workDescription: '缺少材料',
       taskStatus: '失败',
-      taskType: '折扣模块',
-      handlePerson: '李四',
-      handleSuggestion: '同意'
+      initiator: '张明',
+      startTime: '2022-03-04 09:34',
+      consume: '一周',
+      orderStatus: '关闭',
+      degree: '一般'
     },
     {
       order: 2,
       workCode: '202201',
+      orderType: '检查工单',
       workDescription: '缺少材料',
       taskStatus: '失败',
-      taskType: '会员模块',
-      handlePerson: '李四',
-      handleSuggestion: '同意'
+      initiator: '张明',
+      startTime: '2022-03-04 09:34',
+      consume: '一周',
+      orderStatus: '关闭',
+      degree: '一般'
     },
     {
       order: 3,
+      orderType: '检查工单',
       workCode: '202201',
       workDescription: '缺少材料',
       taskStatus: '失败',
-      taskType: '会员模块',
-      handlePerson: '李四',
-      handleSuggestion: '同意'
+      initiator: '张明',
+      startTime: '2022-03-04 09:34',
+      consume: '一周',
+      orderStatus: '关闭',
+      degree: '一般'
     },
     {
       order: 4,
+      orderType: '检查工单',
       workCode: '202201',
       workDescription: '缺少材料',
       taskStatus: '失败',
-      taskType: '会员模块',
-      handlePerson: '李四',
-      handleSuggestion: '同意'
+      initiator: '张明',
+      startTime: '2022-03-04 09:34',
+      consume: '一周',
+      orderStatus: '关闭',
+      degree: '一般'
     },
     {
       order: 5,
       workCode: '202201',
+      orderType: '检查工单',
       workDescription: '缺少材料',
       taskStatus: '失败',
-      taskType: '会员模块',
-      handlePerson: '李四',
-      handleSuggestion: '同意'
+      initiator: '张明',
+      startTime: '2022-03-04 09:34',
+      consume: '一周',
+      orderStatus: '关闭',
+      degree: '一般'
     },
     {
       order: 6,
       workCode: '202201',
+      orderType: '检查工单',
       workDescription: '缺少材料',
       taskStatus: '失败',
-      taskType: '会员模块',
-      handlePerson: '李四',
-      handleSuggestion: '同意'
+      initiator: '张明',
+      startTime: '2022-03-04 09:34',
+      consume: '一周',
+      orderStatus: '关闭',
+      degree: '一般'
     }
   ];
   const workOrderRef = useRef<any>(null);

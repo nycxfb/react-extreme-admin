@@ -67,7 +67,7 @@ const Index = () => {
             />
           </Form.Item>
           <Form.Item label={'配置标签宽度'} name={'labelWidth'}>
-            <InputNumber />
+            <InputNumber min={0} />
           </Form.Item>
         </Form>
       </SearchFormCard>
