@@ -1484,6 +1484,11 @@
   "resolved" "https://registry.npmmirror.com/@types/js-cookie/-/js-cookie-3.0.2.tgz"
   "version" "3.0.2"
 
+"@types/js-md5@^0.7.0":
+  "integrity" "sha512-4mN02EhCni6MlvCUl9bpcbMfu7R3G+ac+J37b7gKCu3tWhZc5/Ya41T+2QNR2aFt6vnMe+uTa5rFQ+nT2kl6cA=="
+  "resolved" "https://registry.npmmirror.com/@types/js-md5/-/js-md5-0.7.0.tgz"
+  "version" "0.7.0"
+
 "@types/json-schema@*", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   "integrity" "sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ=="
   "resolved" "https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.11.tgz"
@@ -4213,7 +4218,7 @@
   dependencies:
     "flat-cache" "^3.0.4"
 
-"file-loader@*", "file-loader@^6.2.0":
+"file-loader@^6.2.0":
   "integrity" "sha512-qo3glqyTa61Ytg4u73GultjHGjdRyig3tG6lPtyX/jOEJvHif9uB0/OCI2Kif6ctF3caQTW2G5gym21oAsI4pw=="
   "resolved" "https://registry.npmmirror.com/file-loader/-/file-loader-6.2.0.tgz"
   "version" "6.2.0"
@@ -5484,6 +5489,11 @@
   "integrity" "sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw=="
   "resolved" "https://registry.npmmirror.com/js-cookie/-/js-cookie-3.0.1.tgz"
   "version" "3.0.1"
+
+"js-md5@^0.7.3":
+  "integrity" "sha512-ZC41vPSTLKGwIRjqDh8DfXoCrdQIyBgspJVPXHBGu4nZlAEvG3nf+jO9avM9RmLiGakg7vz974ms99nEV0tmTQ=="
+  "resolved" "https://registry.npmmirror.com/js-md5/-/js-md5-0.7.3.tgz"
+  "version" "0.7.3"
 
 "js-sdsl@^4.1.4":
   "integrity" "sha512-FfVSdx6pJ41Oa+CF7RDaFmTnCaFhua+SNYQX74riGOpl96x+2jQCqEfQ2bnXu/5DPCqlRuiqyvTJM0Qjz26IVg=="
@@ -9225,15 +9235,6 @@
   "integrity" "sha512-Am1ousAhSLBeB9cG/7k7r2R0zj50uDRlZHPGbazid5s9rlF1F/QKYObEKSIunSjIOkJZqwRRLpvewjEkM7pSqg=="
   "resolved" "https://registry.npmmirror.com/urix/-/urix-0.1.0.tgz"
   "version" "0.1.0"
-
-"url-loader@^4.1.1":
-  "integrity" "sha512-3BTV812+AVHHOJQO8O5MkWgZ5aosP7GnROJwvzLS9hWDj00lZ6Z0wNak423Lp9PBZN05N+Jk/N5Si8jRAlGyWA=="
-  "resolved" "https://registry.npmmirror.com/url-loader/-/url-loader-4.1.1.tgz"
-  "version" "4.1.1"
-  dependencies:
-    "loader-utils" "^2.0.0"
-    "mime-types" "^2.1.27"
-    "schema-utils" "^3.0.0"
 
 "url-slug@2.0.0":
   "integrity" "sha512-aiNmSsVgrjCiJ2+KWPferjT46YFKoE8i0YX04BlMVDue022Xwhg/zYlnZ6V9/mP3p8Wj7LEp0myiTkC/p6sxew=="

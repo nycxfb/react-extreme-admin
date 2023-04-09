@@ -55,58 +55,41 @@ const configs = {
       {
         test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
         type: "asset",
+        generator: {
+          filename: "assets/image/[name].[hash:8].[ext]",
+        },
         parser: {
           dataUrlCondition:{
-            maxSize:10*1024
+            maxSize:8*1024
           }
         },
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10240,
-              name: "assets/image/[name].[hash:8].[ext]",
-              esModule: false
-            }
-          }
-        ],
         exclude: path.resolve(__dirname, "../node_modules")
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        use: {
-          loader:'url-loader',
-          options: {
-            limit: 4096,
-            name: "assets/media/[name].[hash:8].[ext]",
-            fallback: {
-              loader: 'file-loader',
-              options: {
-                name: 'assets/media/[name].[contenthash:8].[ext]',
-                esModule: false
-              }
-            },
-            esModule: false
+        type: "asset",
+        generator: {
+          filename: "assets/video/[name].[hash:8].[ext]",
+        },
+        parser: {
+          dataUrlCondition:{
+            maxSize:50*1024
           }
-        }
+        },
+        exclude: path.resolve(__dirname, "../node_modules")
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
-        use: {
-          loader:'url-loader',
-          options: {
-            limit: 4096,
-            name: "assets/font/[name].[hash:8].[ext]",
-            fallback: {
-              loader: 'file-loader',
-              options: {
-                name: 'assets/font/[name].[contenthash:8].[ext]',
-                esModule: false
-              }
-            },
-            esModule: false
+        type: "asset",
+        generator: {
+          filename: "assets/font/[name].[hash:8].[ext]",
+        },
+        parser: {
+          dataUrlCondition:{
+            maxSize:8*1024
           }
-        }
+        },
+        exclude: path.resolve(__dirname, "../node_modules")
       }
     ]
   },

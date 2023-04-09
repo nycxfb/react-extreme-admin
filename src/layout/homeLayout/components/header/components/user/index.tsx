@@ -18,6 +18,7 @@ const User = (props: any) => {
 
   useEffect(() => {
     // setAvatar(localStorage.getItem("avatar") || owl);
+    console.log(dog, 'nnnnnn');
     setAvatar(dog);
     setUserName(localStorage.getItem('userName') || '');
   }, []);

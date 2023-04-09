@@ -5,6 +5,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import SvgIcon from '@/components/svgIcon';
 import { http_user_register } from '@/api/system/user';
 import { validateMobile } from '@/utils/validate';
+import md5 from 'js-md5';
 
 const SignupForm = (props: any) => {
   const { onToggleForm } = props;
@@ -17,6 +18,7 @@ const SignupForm = (props: any) => {
       await form.validateFields();
       const { passwordConfirm, ...params } = form.getFieldsValue();
       if (params.password === passwordConfirm) {
+        params.password = md5(params.password);
         const res = await http_user_register(params);
         const { code, message } = res;
         if (code == 200) {

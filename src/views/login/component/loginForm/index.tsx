@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { setToken } from '@/redux/module/user/action';
 import { useMount } from 'ahooks';
 import { validateMobile } from '@/utils/validate';
+import md5 from 'js-md5';
 
 const LoginForm = (props: any) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,6 +44,7 @@ const LoginForm = (props: any) => {
       await form.validateFields();
       setLoading(true);
       const params = form.getFieldsValue();
+      params.password = md5(params.password);
       const res: any = await http_user_login(params);
       if (res.code == 200) {
         const { token, userInfo } = res.data;
