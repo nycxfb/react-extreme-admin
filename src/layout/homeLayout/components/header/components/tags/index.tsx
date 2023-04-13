@@ -14,7 +14,7 @@ const Tags = (props: any) => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  console.log('tag');
   const items: MenuProps['items'] = [
     {
       key: '1',
@@ -127,4 +127,4 @@ const mapDispatchToProps = {
   deleteAllTags
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tags);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Tags));

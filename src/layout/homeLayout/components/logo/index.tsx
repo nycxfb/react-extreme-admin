@@ -4,6 +4,7 @@ import SvgIcon from '@/components/svgIcon';
 
 const Logo = (props: any) => {
   const { isCollapse, menuTheme } = props;
+  console.log('logo');
   return (
     <div className="side">
       <SvgIcon iconClass="logo-new" width={35} height={35} />
@@ -17,4 +18,4 @@ const Logo = (props: any) => {
 const mapStateToProps = (state: any) => {
   return { ...state.menu, ...state.system };
 };
-export default connect(mapStateToProps, {})(Logo);
+export default connect(mapStateToProps, {})(React.memo(Logo));

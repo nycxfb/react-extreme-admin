@@ -5,7 +5,7 @@ import screenfull from 'screenfull';
 
 const FullScreen = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(screenfull.isFullscreen);
-
+  console.log('full');
   useEffect(() => {
     screenfull.on('change', () => {
       if (screenfull.isFullscreen) {
@@ -38,4 +38,4 @@ const FullScreen = () => {
   );
 };
 
-export default FullScreen;
+export default React.memo(FullScreen);

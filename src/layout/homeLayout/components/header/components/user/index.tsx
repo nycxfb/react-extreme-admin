@@ -9,6 +9,7 @@ import dog from '@/assets/image/dog.png';
 import './index.module.less';
 
 const User = (props: any) => {
+  console.log('user');
   const [avatar, setAvatar] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
@@ -18,7 +19,6 @@ const User = (props: any) => {
 
   useEffect(() => {
     // setAvatar(localStorage.getItem("avatar") || owl);
-    console.log(dog, 'nnnnnn');
     setAvatar(dog);
     setUserName(localStorage.getItem('userName') || '');
   }, []);
@@ -104,4 +104,4 @@ const mapStateToProps = (state: any) => {
   return state;
 };
 
-export default connect(mapStateToProps, { userLogOut })(User);
+export default connect(mapStateToProps, { userLogOut })(React.memo(User));

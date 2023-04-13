@@ -47,4 +47,4 @@ const mapStatusToProps = (state: any) => {
   return state.system;
 };
 
-export default connect(mapStatusToProps, {})(HomeHeader);
+export default connect(mapStatusToProps, {})(React.memo(HomeHeader));

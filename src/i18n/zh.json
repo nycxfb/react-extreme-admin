@@ -18,6 +18,7 @@
   },
   "route": {
     "homepage": "主页",
+    "versionPreview": "版本前瞻",
     "workbench": "工作台",
     "index": "首页",
     "systemManagement": "系统管理",

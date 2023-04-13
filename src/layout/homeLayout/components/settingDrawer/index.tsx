@@ -17,6 +17,7 @@ import {
 import style from './index.module.less';
 
 const SettingDrawer = (props: any) => {
+  console.log('settingDrawer');
   const {
     toggleDrawer,
     drawerVisible,
@@ -110,4 +111,4 @@ const mapDispatchToProps = {
   toggleMenuTheme
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(SettingDrawer));

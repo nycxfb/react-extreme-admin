@@ -5,6 +5,7 @@ import { toggleDrawer } from '@/redux/module/header/action';
 
 const Setting = (props: any) => {
   const { toggleDrawer } = props;
+  console.log('setting');
   const onOpenDrawer = () => {
     toggleDrawer(true);
   };
@@ -24,4 +25,4 @@ const mapDispatchToProps = {
   toggleDrawer
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Setting);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Setting));

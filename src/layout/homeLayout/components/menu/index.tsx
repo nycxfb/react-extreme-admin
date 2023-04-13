@@ -13,6 +13,7 @@ import style from './index.module.less';
 import { useMount } from 'ahooks';
 
 const HomeMenu: React.FC = (props: any) => {
+  console.log('menu');
   const { menuTheme } = props;
 
   const [openKeys, setOpenKeys] = useState<string[]>(['']);
@@ -137,4 +138,4 @@ const mapDispatchToProps = {
   addVisitTag
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(HomeMenu));

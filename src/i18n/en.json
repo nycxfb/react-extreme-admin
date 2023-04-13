@@ -18,6 +18,7 @@
   },
   "route": {
     "homepage": "Homepage",
+    "versionPreview": "Version Preview",
     "workbench": "Workbench",
     "index": "Home",
     "systemManagement": "System Management",

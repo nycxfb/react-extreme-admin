@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useMount, useUnmount } from 'ahooks';
 import * as echarts from 'echarts';
 
@@ -63,7 +63,7 @@ const ColumnChart = () => {
       columnChart.resize();
     };
   };
-  return <div id={'columnChart'} style={{ width: '800px', height: '316px' }} />;
+  return <div id={'columnChart'} style={{ width: '100%', height: '316px' }} />;
 };
 
 export default ColumnChart;

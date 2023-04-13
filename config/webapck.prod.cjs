@@ -63,7 +63,14 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         parallel: true,
-        extractComments: false
+        extractComments: false, //禁止生成 license 文件
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+            pure_funcs: ["console.log", "console.error"]
+          }
+        }
       })
     ]
   },

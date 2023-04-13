@@ -59,7 +59,7 @@ const LineChart = () => {
       lineChart.resize();
     };
   };
-  return <div id={'lineChart'} style={{ width: '800px', height: '316px' }} />;
+  return <div id={'lineChart'} style={{ width: '100%', height: '316px' }} />;
 };
 
 export default LineChart;

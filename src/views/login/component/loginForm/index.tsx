@@ -28,7 +28,7 @@ const LoginForm = (props: any) => {
     await getCaptcha();
     formRef.current.setFieldsValue({
       phone: '18888888888',
-      password: '123456'
+      password: '1446267602'
     });
   });
 
