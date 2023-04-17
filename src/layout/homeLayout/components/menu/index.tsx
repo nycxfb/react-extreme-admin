@@ -13,7 +13,6 @@ import style from './index.module.less';
 import { useMount } from 'ahooks';
 
 const HomeMenu: React.FC = (props: any) => {
-  console.log('menu');
   const { menuTheme } = props;
 
   const [openKeys, setOpenKeys] = useState<string[]>(['']);

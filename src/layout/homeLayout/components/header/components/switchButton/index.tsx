@@ -6,7 +6,6 @@ import style from './index.module.less';
 
 const SwitchButton = (props: any) => {
   const { isCollapse, toggleSideMenu } = props;
-  console.log('switch');
   const ontoggle = () => {
     toggleSideMenu(!isCollapse);
   };

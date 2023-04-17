@@ -4,7 +4,6 @@ import SvgIcon from '@/components/svgIcon';
 
 const Logo = (props: any) => {
   const { isCollapse, menuTheme } = props;
-  console.log('logo');
   return (
     <div className="side">
       <SvgIcon iconClass="logo-new" width={35} height={35} />

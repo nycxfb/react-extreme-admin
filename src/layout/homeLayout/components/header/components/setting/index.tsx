@@ -5,7 +5,6 @@ import { toggleDrawer } from '@/redux/module/header/action';
 
 const Setting = (props: any) => {
   const { toggleDrawer } = props;
-  console.log('setting');
   const onOpenDrawer = () => {
     toggleDrawer(true);
   };

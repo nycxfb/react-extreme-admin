@@ -14,7 +14,6 @@ const Tags = (props: any) => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  console.log('tag');
   const items: MenuProps['items'] = [
     {
       key: '1',

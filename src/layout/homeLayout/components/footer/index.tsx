@@ -3,7 +3,6 @@ import { GithubOutlined } from '@ant-design/icons';
 import style from './index.module.less';
 
 const Footer = () => {
-  console.log('footer');
   return (
     <div className={style.footer}>
       <a href={'https://github.com/nycxfb/react-extreme-admin'}>

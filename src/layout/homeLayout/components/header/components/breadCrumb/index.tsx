@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 const Breadcrumbs: React.FC = (props: any) => {
   const { breadcrumb } = props;
   const { t } = useTranslation();
-  console.log('breadcrumb');
   return (
     <Breadcrumb>
       {breadcrumb.map((item: any) => {

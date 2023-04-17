@@ -17,7 +17,6 @@ import {
 import style from './index.module.less';
 
 const SettingDrawer = (props: any) => {
-  console.log('settingDrawer');
   const {
     toggleDrawer,
     drawerVisible,
