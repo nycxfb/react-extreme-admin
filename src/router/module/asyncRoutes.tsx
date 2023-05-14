@@ -18,20 +18,20 @@ const asyncRoutes: baseRouter[] = [
       }
     ]
   },
-  // {
-  //   path: '/versionPreview',
-  //   element: <HomeLayout />,
-  //   children: [
-  //     {
-  //       path: '/versionPreview/index',
-  //       element: lazyLoad(() => import('@/views/versionPreview')),
-  //       meta: {
-  //         title: 'versionPreview',
-  //         icon: 'FundViewOutlined'
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/versionPreview',
+    element: <HomeLayout />,
+    children: [
+      {
+        path: '/versionPreview/index',
+        element: lazyLoad(() => import('@/views/versionPreview')),
+        meta: {
+          title: 'versionPreview',
+          icon: 'FundViewOutlined'
+        }
+      }
+    ]
+  },
   {
     path: '/systemManagement',
     element: <HomeLayout />,

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';

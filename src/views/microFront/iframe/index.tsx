@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Card, Image, message as Message, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import style from './index.module.less';

@@ -6,6 +6,8 @@ import App from '@/app';
 import { store } from '@/redux';
 import '@/styles/common.less';
 import '@/i18n/config';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 import microApp from '@micro-zoe/micro-app';
 
